@@ -1,6 +1,16 @@
 syntax = "proto3";
 
-message Hello {
-    string message = 1;
+
+option go_package = ".";
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloResponse) {}
 }
-// stes
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
