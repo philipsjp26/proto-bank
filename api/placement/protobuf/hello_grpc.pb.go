@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: proto/hello.proto
 
-package __
+package protobuf
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Greeter_SayHello_FullMethodName = "/Greeter/SayHello"
+	Greeter_SayHello_FullMethodName = "/protobuf.Greeter/SayHello"
 )
 
 // GreeterClient is the client API for Greeter service.
@@ -96,7 +96,7 @@ func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Greeter_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Greeter",
+	ServiceName: "protobuf.Greeter",
 	HandlerType: (*GreeterServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
