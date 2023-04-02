@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+service Document {
+    rpc StoreDocument(UploadDocRequest) returns (UploadDocResponse);    
+
+}
+
+message UploadDocRequest{
+    int32 application_code = 1;    
+    string title = 2;
+    bytes doc_file = 3;
+    string sign_type = 4;
+    string doc_flow = 5;
+    string doc_category = 6;
+
+}
+
+message UploadDocResponse {
+    int32 statusCode = 1;    
+    string reff_number = 2;
+    string doc_url = 3;    
+}
+
