@@ -22,9 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ActivityLogServiceClient interface {
-	ServeInsertActivityLog(ctx context.Context, in *CreateActivityLogRequest, opts ...grpc.CallOption) (*StatusResponse, error)
+	ServeInsertActivityLog(ctx context.Context, in *CreateActivityLogRequest, opts ...grpc.CallOption) (*ActivityLogsResponse, error)
 	ServeGetListActivityLog(ctx context.Context, in *ActivityLogParameterRequest, opts ...grpc.CallOption) (*ActivityLogsResponse, error)
-	ServeFindActivityByID(ctx context.Context, in *FindActivityLogRequest, opts ...grpc.CallOption) (*ActivityLogResponse, error)
+	ServeFindActivityByID(ctx context.Context, in *FindActivityLogRequest, opts ...grpc.CallOption) (*ActivityLog, error)
 }
 
 type activityLogServiceClient struct {
@@ -35,8 +35,8 @@ func NewActivityLogServiceClient(cc grpc.ClientConnInterface) ActivityLogService
 	return &activityLogServiceClient{cc}
 }
 
-func (c *activityLogServiceClient) ServeInsertActivityLog(ctx context.Context, in *CreateActivityLogRequest, opts ...grpc.CallOption) (*StatusResponse, error) {
-	out := new(StatusResponse)
+func (c *activityLogServiceClient) ServeInsertActivityLog(ctx context.Context, in *CreateActivityLogRequest, opts ...grpc.CallOption) (*ActivityLogsResponse, error) {
+	out := new(ActivityLogsResponse)
 	err := c.cc.Invoke(ctx, "/activitypb.ActivityLogService/ServeInsertActivityLog", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -53,8 +53,8 @@ func (c *activityLogServiceClient) ServeGetListActivityLog(ctx context.Context, 
 	return out, nil
 }
 
-func (c *activityLogServiceClient) ServeFindActivityByID(ctx context.Context, in *FindActivityLogRequest, opts ...grpc.CallOption) (*ActivityLogResponse, error) {
-	out := new(ActivityLogResponse)
+func (c *activityLogServiceClient) ServeFindActivityByID(ctx context.Context, in *FindActivityLogRequest, opts ...grpc.CallOption) (*ActivityLog, error) {
+	out := new(ActivityLog)
 	err := c.cc.Invoke(ctx, "/activitypb.ActivityLogService/ServeFindActivityByID", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -66,9 +66,9 @@ func (c *activityLogServiceClient) ServeFindActivityByID(ctx context.Context, in
 // All implementations must embed UnimplementedActivityLogServiceServer
 // for forward compatibility
 type ActivityLogServiceServer interface {
-	ServeInsertActivityLog(context.Context, *CreateActivityLogRequest) (*StatusResponse, error)
+	ServeInsertActivityLog(context.Context, *CreateActivityLogRequest) (*ActivityLogsResponse, error)
 	ServeGetListActivityLog(context.Context, *ActivityLogParameterRequest) (*ActivityLogsResponse, error)
-	ServeFindActivityByID(context.Context, *FindActivityLogRequest) (*ActivityLogResponse, error)
+	ServeFindActivityByID(context.Context, *FindActivityLogRequest) (*ActivityLog, error)
 	mustEmbedUnimplementedActivityLogServiceServer()
 }
 
@@ -76,13 +76,13 @@ type ActivityLogServiceServer interface {
 type UnimplementedActivityLogServiceServer struct {
 }
 
-func (UnimplementedActivityLogServiceServer) ServeInsertActivityLog(context.Context, *CreateActivityLogRequest) (*StatusResponse, error) {
+func (UnimplementedActivityLogServiceServer) ServeInsertActivityLog(context.Context, *CreateActivityLogRequest) (*ActivityLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeInsertActivityLog not implemented")
 }
 func (UnimplementedActivityLogServiceServer) ServeGetListActivityLog(context.Context, *ActivityLogParameterRequest) (*ActivityLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeGetListActivityLog not implemented")
 }
-func (UnimplementedActivityLogServiceServer) ServeFindActivityByID(context.Context, *FindActivityLogRequest) (*ActivityLogResponse, error) {
+func (UnimplementedActivityLogServiceServer) ServeFindActivityByID(context.Context, *FindActivityLogRequest) (*ActivityLog, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeFindActivityByID not implemented")
 }
 func (UnimplementedActivityLogServiceServer) mustEmbedUnimplementedActivityLogServiceServer() {}

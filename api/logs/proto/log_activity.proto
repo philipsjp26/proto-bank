@@ -25,8 +25,9 @@ message ActivityLogParameterRequest {
     int32 page = 1;
     int32 per_page = 2;
     string order_by = 3;
-    string date_start = 4;
-    string date_end = 5;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
   }
 
   /*
@@ -54,8 +55,17 @@ message ActivityLogResponse {
 }
 
 message ActivityLogsResponse {
-    repeated ActivityLogResponse data = 1;
-    ActivityMeta meta = 2;
+    int32 code = 1;
+    string message = 2;
+    repeated ActivityLogResponse data = 3;
+    ActivityMeta meta = 4;
+}
+
+message ActivityLog {
+    int32 code = 1;
+    string message = 2;
+    ActivityLogResponse data = 3;
+    ActivityMeta meta = 4;
 }
 
 message StatusResponse {
@@ -90,7 +100,7 @@ message CreateActivityLogRequest {
 }
 
 service ActivityLogService {
-    rpc ServeInsertActivityLog(CreateActivityLogRequest) returns(StatusResponse);
+    rpc ServeInsertActivityLog(CreateActivityLogRequest) returns(ActivityLogsResponse);
     rpc ServeGetListActivityLog(ActivityLogParameterRequest) returns(ActivityLogsResponse);
-    rpc ServeFindActivityByID(FindActivityLogRequest) returns(ActivityLogResponse);
+    rpc ServeFindActivityByID(FindActivityLogRequest) returns(ActivityLog);
 }
