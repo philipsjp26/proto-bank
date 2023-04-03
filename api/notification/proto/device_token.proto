@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package device_token;
+
+option go_package = "/protobuf/device_token";
+
+/*
+=================
+Parameter Request
+=================
+*/
+message CreateDeviceTokenRequest {
+    string device_token = 1;
+    string privy_id = 2;
+}
+
+message FindDeviceTokensRequest {
+    string privy_id = 1;
+}
+
+message DeviceToken {
+    string id = 1;
+    string device_token = 2;
+    string privy_id = 3;
+}
+
+message DeviceTokens {
+    repeated DeviceToken data = 1;
+}
+
+service DeviceTokenService {
+    rpc CreateDeviceToken(CreateDeviceTokenRequest) returns(DeviceToken);
+    rpc FindDeviceToken(FindDeviceTokensRequest) returns(DeviceTokens);
+}
