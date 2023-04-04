@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentClient interface {
-	StoreDocument(ctx context.Context, in *UploadDocRequest, opts ...grpc.CallOption) (*UploadDocResponse, error)
+	StoreDocument(ctx context.Context, opts ...grpc.CallOption) (Document_StoreDocumentClient, error)
 	GetDocumentByReffNumber(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error)
 }
 
@@ -39,13 +39,38 @@ func NewDocumentClient(cc grpc.ClientConnInterface) DocumentClient {
 	return &documentClient{cc}
 }
 
-func (c *documentClient) StoreDocument(ctx context.Context, in *UploadDocRequest, opts ...grpc.CallOption) (*UploadDocResponse, error) {
-	out := new(UploadDocResponse)
-	err := c.cc.Invoke(ctx, Document_StoreDocument_FullMethodName, in, out, opts...)
+func (c *documentClient) StoreDocument(ctx context.Context, opts ...grpc.CallOption) (Document_StoreDocumentClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Document_ServiceDesc.Streams[0], Document_StoreDocument_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &documentStoreDocumentClient{stream}
+	return x, nil
+}
+
+type Document_StoreDocumentClient interface {
+	Send(*UploadDocRequest) error
+	CloseAndRecv() (*UploadDocResponse, error)
+	grpc.ClientStream
+}
+
+type documentStoreDocumentClient struct {
+	grpc.ClientStream
+}
+
+func (x *documentStoreDocumentClient) Send(m *UploadDocRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *documentStoreDocumentClient) CloseAndRecv() (*UploadDocResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(UploadDocResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *documentClient) GetDocumentByReffNumber(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error) {
@@ -61,7 +86,7 @@ func (c *documentClient) GetDocumentByReffNumber(ctx context.Context, in *GetDoc
 // All implementations must embed UnimplementedDocumentServer
 // for forward compatibility
 type DocumentServer interface {
-	StoreDocument(context.Context, *UploadDocRequest) (*UploadDocResponse, error)
+	StoreDocument(Document_StoreDocumentServer) error
 	GetDocumentByReffNumber(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error)
 	mustEmbedUnimplementedDocumentServer()
 }
@@ -70,8 +95,8 @@ type DocumentServer interface {
 type UnimplementedDocumentServer struct {
 }
 
-func (UnimplementedDocumentServer) StoreDocument(context.Context, *UploadDocRequest) (*UploadDocResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StoreDocument not implemented")
+func (UnimplementedDocumentServer) StoreDocument(Document_StoreDocumentServer) error {
+	return status.Errorf(codes.Unimplemented, "method StoreDocument not implemented")
 }
 func (UnimplementedDocumentServer) GetDocumentByReffNumber(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDocumentByReffNumber not implemented")
@@ -89,22 +114,30 @@ func RegisterDocumentServer(s grpc.ServiceRegistrar, srv DocumentServer) {
 	s.RegisterService(&Document_ServiceDesc, srv)
 }
 
-func _Document_StoreDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadDocRequest)
-	if err := dec(in); err != nil {
+func _Document_StoreDocument_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DocumentServer).StoreDocument(&documentStoreDocumentServer{stream})
+}
+
+type Document_StoreDocumentServer interface {
+	SendAndClose(*UploadDocResponse) error
+	Recv() (*UploadDocRequest, error)
+	grpc.ServerStream
+}
+
+type documentStoreDocumentServer struct {
+	grpc.ServerStream
+}
+
+func (x *documentStoreDocumentServer) SendAndClose(m *UploadDocResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *documentStoreDocumentServer) Recv() (*UploadDocRequest, error) {
+	m := new(UploadDocRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
-	if interceptor == nil {
-		return srv.(DocumentServer).StoreDocument(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Document_StoreDocument_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DocumentServer).StoreDocument(ctx, req.(*UploadDocRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return m, nil
 }
 
 func _Document_GetDocumentByReffNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -133,14 +166,16 @@ var Document_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DocumentServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "StoreDocument",
-			Handler:    _Document_StoreDocument_Handler,
-		},
-		{
 			MethodName: "GetDocumentByReffNumber",
 			Handler:    _Document_GetDocumentByReffNumber_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StoreDocument",
+			Handler:       _Document_StoreDocument_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "proto/document.proto",
 }
