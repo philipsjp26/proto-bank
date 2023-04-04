@@ -3,7 +3,7 @@ syntax = "proto3";
 option go_package = ".";
 
 service Document {
-    rpc StoreDocument(UploadDocRequest) returns (UploadDocResponse);    
+    rpc StoreDocument(stream UploadDocRequest) returns (UploadDocResponse);    
     rpc GetDocumentByReffNumber(GetDocumentRequest) returns (GetDocumentResponse);
 }
 
@@ -22,6 +22,7 @@ message UploadDocRequest{
     string sign_type = 4;
     string doc_flow = 5;
     string doc_category = 6;
+    string doc_file_name = 7;
 
 }
 
