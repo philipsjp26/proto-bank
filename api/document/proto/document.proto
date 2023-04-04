@@ -4,11 +4,19 @@ option go_package = ".";
 
 service Document {
     rpc StoreDocument(UploadDocRequest) returns (UploadDocResponse);    
+    rpc GetDocumentByReffNumber(GetDocumentRequest) returns (GetDocumentResponse);
+}
 
+message GetDocumentRequest {
+    string reff_number = 1;
+}
+message GetDocumentResponse {
+    string reff_number = 1;
+    string doc_url = 2;
 }
 
 message UploadDocRequest{
-    int32 application_code = 1;    
+    string application_code = 1;    
     string title = 2;
     bytes doc_file = 3;
     string sign_type = 4;
