@@ -42,7 +42,6 @@ message Notification {
     NotificationData data = 4;
     string created_at = 5;
     string read_at = 6;
-    
 }
 
 /*
