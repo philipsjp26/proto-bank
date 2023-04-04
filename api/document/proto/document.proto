@@ -37,10 +37,11 @@ message UploadDocRequest{
     string application_code = 1;    
     string filename = 2;
     bytes doc_file = 3;
-    int32 sign_type = 4;
-    int32 doc_flow = 5;
-    string doc_category = 6;    
-    string title = 7;
+    string sign_type = 4;
+    string doc_flow = 5;
+    string doc_category = 6;
+    string doc_file_name = 7;
+
 }
 
 message UploadDocResponse {
