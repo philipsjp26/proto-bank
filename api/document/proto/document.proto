@@ -47,7 +47,8 @@ message UploadDocResponse {
     string reff_number = 2;
     string doc_name = 3;
     string sign_type = 4;
-    string doc_category = 5;    
+    string doc_category = 5;
+    string doc_flow = 7;    
 }
 
 message DeleteDocumentRequest {
