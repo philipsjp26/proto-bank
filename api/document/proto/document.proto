@@ -37,14 +37,16 @@ message UploadDocRequest{
     bytes doc_file = 3;
     string sign_type = 4;
     string doc_flow = 5;
-    string doc_category = 6;
-    string doc_file_name = 7;
+    string doc_category = 6;    
 }
 
 message UploadDocResponse {
     int32 statusCode = 1;    
+    int32 id = 6;
     string reff_number = 2;
-    Documents documents = 3;    
+    string doc_name = 3;
+    string sign_type = 4;
+    string doc_category = 5;    
 }
 
 message DeleteDocumentRequest {
