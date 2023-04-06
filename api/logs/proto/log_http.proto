@@ -1,0 +1,105 @@
+syntax = "proto3";
+package httplogpb;
+
+option go_package = "/protobuf/httplogpb";
+
+/*
+=================
+    Metadata
+=================
+*/
+message HttpMeta {
+    int32 page = 1;
+    int32 per_page = 2;
+    int32 total = 3;
+  }
+
+/*
+=================
+Parameter Request
+=================
+*/
+message HttpLogParameterRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+    string order_by = 3;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
+  }
+
+  /*
+=================
+    Response
+=================
+*/
+
+message HttpLogDataResponse {
+    string id = 1;
+    string reference_no = 2;
+    string log_type = 3;
+    string url = 4;
+    int32 status_code = 5;
+    string date_log = 6;
+    string request = 7;
+    string response = 8;
+    string headers = 9;
+    string created_at = 10;
+    string updated_at = 11;
+}
+
+message HttpLogResponse {
+    int32 code = 1;
+    string message = 2;
+    HttpLogDataResponse data = 3;
+    HttpMeta meta = 4;
+}
+
+message ListHttpLogResponse {
+    int32 code = 1;
+    string message = 2;
+    repeated HttpLogDataResponse data = 3;
+    HttpMeta meta = 4;
+}
+
+/*
+=================
+    Request
+=================
+*/
+
+message CreateHttpLogRequest {
+    string reference_no = 1;
+    string log_type = 2;
+    string url = 3;
+    int32 status_code = 4;
+    string date_log = 5;
+    string request = 6;
+    string response = 7;
+    string headers = 8;
+}
+
+message UpdateHttpLogRequest {
+    string id = 1;
+    string reference_no = 2;
+    string log_type = 3;
+    string url = 4;
+    int32 status_code = 5;
+    string date_log = 6;
+    string request = 7;
+    string response = 8;
+    string headers = 9;
+    string updated_at = 10;
+}
+
+message FindHttpLogRequest {
+    string id = 1;
+}
+
+service HttpLogService {
+    rpc ServInsertHttpLog (CreateHttpLogRequest) returns (HttpLogResponse);
+    rpc ServeGetListHttpLog (HttpLogParameterRequest) returns (ListHttpLogResponse);
+    rpc ServeFindHttpLogById (FindHttpLogRequest) returns (HttpLogResponse);
+    rpc ServeUpdateHttpLogById (UpdateHttpLogRequest) returns (HttpLogResponse);
+}
+
