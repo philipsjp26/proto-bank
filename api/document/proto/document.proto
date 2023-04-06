@@ -15,11 +15,12 @@ message Documents {
 
 message UpdateDocumentRequest {
     string reff_number = 1;
+    string filename = 2;    
 }
 message UpdateDocumentResponse { 
     int32 statusCode = 1;    
     string reff_number = 2;
-    string title = 3;    
+    string filename = 3;    
 }
 
 message GetDocumentRequest {
@@ -33,10 +34,10 @@ message GetDocumentResponse {
 
 message UploadDocRequest{
     string application_code = 1;    
-    string title = 2;
+    string filename = 2;
     bytes doc_file = 3;
-    string sign_type = 4;
-    string doc_flow = 5;
+    int32 sign_type = 4;
+    int32 doc_flow = 5;
     string doc_category = 6;    
 }
 
