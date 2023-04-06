@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Document_StoreDocument_FullMethodName           = "/Document/StoreDocument"
-	Document_GetDocumentByReffNumber_FullMethodName = "/Document/GetDocumentByReffNumber"
+	Document_StoreDocument_FullMethodName              = "/Document/StoreDocument"
+	Document_GetDocumentByReffNumber_FullMethodName    = "/Document/GetDocumentByReffNumber"
+	Document_UpdateDocumentByReffNumber_FullMethodName = "/Document/UpdateDocumentByReffNumber"
+	Document_DeleteDocumentByReffNumber_FullMethodName = "/Document/DeleteDocumentByReffNumber"
 )
 
 // DocumentClient is the client API for Document service.
@@ -29,6 +31,8 @@ const (
 type DocumentClient interface {
 	StoreDocument(ctx context.Context, opts ...grpc.CallOption) (Document_StoreDocumentClient, error)
 	GetDocumentByReffNumber(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error)
+	UpdateDocumentByReffNumber(ctx context.Context, in *UpdateDocumentRequest, opts ...grpc.CallOption) (*UpdateDocumentResponse, error)
+	DeleteDocumentByReffNumber(ctx context.Context, in *DeleteDocumentRequest, opts ...grpc.CallOption) (*DeleteDocumentResponse, error)
 }
 
 type documentClient struct {
@@ -82,12 +86,32 @@ func (c *documentClient) GetDocumentByReffNumber(ctx context.Context, in *GetDoc
 	return out, nil
 }
 
+func (c *documentClient) UpdateDocumentByReffNumber(ctx context.Context, in *UpdateDocumentRequest, opts ...grpc.CallOption) (*UpdateDocumentResponse, error) {
+	out := new(UpdateDocumentResponse)
+	err := c.cc.Invoke(ctx, Document_UpdateDocumentByReffNumber_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *documentClient) DeleteDocumentByReffNumber(ctx context.Context, in *DeleteDocumentRequest, opts ...grpc.CallOption) (*DeleteDocumentResponse, error) {
+	out := new(DeleteDocumentResponse)
+	err := c.cc.Invoke(ctx, Document_DeleteDocumentByReffNumber_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DocumentServer is the server API for Document service.
 // All implementations must embed UnimplementedDocumentServer
 // for forward compatibility
 type DocumentServer interface {
 	StoreDocument(Document_StoreDocumentServer) error
 	GetDocumentByReffNumber(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error)
+	UpdateDocumentByReffNumber(context.Context, *UpdateDocumentRequest) (*UpdateDocumentResponse, error)
+	DeleteDocumentByReffNumber(context.Context, *DeleteDocumentRequest) (*DeleteDocumentResponse, error)
 	mustEmbedUnimplementedDocumentServer()
 }
 
@@ -100,6 +124,12 @@ func (UnimplementedDocumentServer) StoreDocument(Document_StoreDocumentServer) e
 }
 func (UnimplementedDocumentServer) GetDocumentByReffNumber(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDocumentByReffNumber not implemented")
+}
+func (UnimplementedDocumentServer) UpdateDocumentByReffNumber(context.Context, *UpdateDocumentRequest) (*UpdateDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDocumentByReffNumber not implemented")
+}
+func (UnimplementedDocumentServer) DeleteDocumentByReffNumber(context.Context, *DeleteDocumentRequest) (*DeleteDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDocumentByReffNumber not implemented")
 }
 func (UnimplementedDocumentServer) mustEmbedUnimplementedDocumentServer() {}
 
@@ -158,6 +188,42 @@ func _Document_GetDocumentByReffNumber_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Document_UpdateDocumentByReffNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDocumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DocumentServer).UpdateDocumentByReffNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Document_UpdateDocumentByReffNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DocumentServer).UpdateDocumentByReffNumber(ctx, req.(*UpdateDocumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Document_DeleteDocumentByReffNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDocumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DocumentServer).DeleteDocumentByReffNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Document_DeleteDocumentByReffNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DocumentServer).DeleteDocumentByReffNumber(ctx, req.(*DeleteDocumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Document_ServiceDesc is the grpc.ServiceDesc for Document service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -168,6 +234,14 @@ var Document_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDocumentByReffNumber",
 			Handler:    _Document_GetDocumentByReffNumber_Handler,
+		},
+		{
+			MethodName: "UpdateDocumentByReffNumber",
+			Handler:    _Document_UpdateDocumentByReffNumber_Handler,
+		},
+		{
+			MethodName: "DeleteDocumentByReffNumber",
+			Handler:    _Document_DeleteDocumentByReffNumber_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
