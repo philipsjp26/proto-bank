@@ -18,7 +18,7 @@ message UpdateDocumentRequest {
     string filename = 2;    
 }
 message UpdateDocumentResponse { 
-    int32 statusCode = 1;    
+    BaseResponse base_response = 1;
     string reff_number = 2;
     string filename = 3;    
 }
@@ -28,8 +28,9 @@ message GetDocumentRequest {
 }
 
 message GetDocumentResponse {
-    string reff_number = 1;
-    Documents documents = 2;
+    BaseResponse base_response = 1;
+    string reff_number = 2;
+    Documents documents = 3;
 }
 
 message UploadDocRequest{
@@ -42,12 +43,12 @@ message UploadDocRequest{
 }
 
 message UploadDocResponse {
-    int32 statusCode = 1;    
-    int32 id = 6;
-    string reff_number = 2;
-    string doc_name = 3;
-    string sign_type = 4;
-    string doc_category = 5;
+    BaseResponse base_response = 1; 
+    int32 id = 2;
+    string reff_number = 3;
+    string doc_name = 4;
+    string sign_type = 5;
+    string doc_category = 6;
     string doc_flow = 7;    
 }
 
@@ -56,7 +57,12 @@ message DeleteDocumentRequest {
 }
 
 message DeleteDocumentResponse {
-    int32 statusCode = 1;
+    BaseResponse base_response = 1;
     bool result = 2;
+}
+
+message BaseResponse {
+    int32 status_code = 1;
+    string message = 2;
 }
 
