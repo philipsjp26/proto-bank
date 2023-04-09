@@ -97,9 +97,8 @@ message FindHttpLogRequest {
 }
 
 service HttpLogService {
-    rpc ServInsertHttpLog (CreateHttpLogRequest) returns (HttpLogResponse);
+    rpc ServeInsertHttpLog (CreateHttpLogRequest) returns (HttpLogResponse);
     rpc ServeGetListHttpLog (HttpLogParameterRequest) returns (ListHttpLogResponse);
     rpc ServeFindHttpLogById (FindHttpLogRequest) returns (HttpLogResponse);
-    rpc ServeUpdateHttpLogById (UpdateHttpLogRequest) returns (HttpLogResponse);
 }
 

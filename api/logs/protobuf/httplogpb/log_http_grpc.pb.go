@@ -22,10 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HttpLogServiceClient interface {
-	ServInsertHttpLog(ctx context.Context, in *CreateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error)
+	ServeInsertHttpLog(ctx context.Context, in *CreateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error)
 	ServeGetListHttpLog(ctx context.Context, in *HttpLogParameterRequest, opts ...grpc.CallOption) (*ListHttpLogResponse, error)
 	ServeFindHttpLogById(ctx context.Context, in *FindHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error)
-	ServeUpdateHttpLogById(ctx context.Context, in *UpdateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error)
 }
 
 type httpLogServiceClient struct {
@@ -36,9 +35,9 @@ func NewHttpLogServiceClient(cc grpc.ClientConnInterface) HttpLogServiceClient {
 	return &httpLogServiceClient{cc}
 }
 
-func (c *httpLogServiceClient) ServInsertHttpLog(ctx context.Context, in *CreateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error) {
+func (c *httpLogServiceClient) ServeInsertHttpLog(ctx context.Context, in *CreateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error) {
 	out := new(HttpLogResponse)
-	err := c.cc.Invoke(ctx, "/httplogpb.HttpLogService/ServInsertHttpLog", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/httplogpb.HttpLogService/ServeInsertHttpLog", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,23 +62,13 @@ func (c *httpLogServiceClient) ServeFindHttpLogById(ctx context.Context, in *Fin
 	return out, nil
 }
 
-func (c *httpLogServiceClient) ServeUpdateHttpLogById(ctx context.Context, in *UpdateHttpLogRequest, opts ...grpc.CallOption) (*HttpLogResponse, error) {
-	out := new(HttpLogResponse)
-	err := c.cc.Invoke(ctx, "/httplogpb.HttpLogService/ServeUpdateHttpLogById", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // HttpLogServiceServer is the server API for HttpLogService service.
 // All implementations must embed UnimplementedHttpLogServiceServer
 // for forward compatibility
 type HttpLogServiceServer interface {
-	ServInsertHttpLog(context.Context, *CreateHttpLogRequest) (*HttpLogResponse, error)
+	ServeInsertHttpLog(context.Context, *CreateHttpLogRequest) (*HttpLogResponse, error)
 	ServeGetListHttpLog(context.Context, *HttpLogParameterRequest) (*ListHttpLogResponse, error)
 	ServeFindHttpLogById(context.Context, *FindHttpLogRequest) (*HttpLogResponse, error)
-	ServeUpdateHttpLogById(context.Context, *UpdateHttpLogRequest) (*HttpLogResponse, error)
 	mustEmbedUnimplementedHttpLogServiceServer()
 }
 
@@ -87,17 +76,14 @@ type HttpLogServiceServer interface {
 type UnimplementedHttpLogServiceServer struct {
 }
 
-func (UnimplementedHttpLogServiceServer) ServInsertHttpLog(context.Context, *CreateHttpLogRequest) (*HttpLogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ServInsertHttpLog not implemented")
+func (UnimplementedHttpLogServiceServer) ServeInsertHttpLog(context.Context, *CreateHttpLogRequest) (*HttpLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ServeInsertHttpLog not implemented")
 }
 func (UnimplementedHttpLogServiceServer) ServeGetListHttpLog(context.Context, *HttpLogParameterRequest) (*ListHttpLogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeGetListHttpLog not implemented")
 }
 func (UnimplementedHttpLogServiceServer) ServeFindHttpLogById(context.Context, *FindHttpLogRequest) (*HttpLogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeFindHttpLogById not implemented")
-}
-func (UnimplementedHttpLogServiceServer) ServeUpdateHttpLogById(context.Context, *UpdateHttpLogRequest) (*HttpLogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ServeUpdateHttpLogById not implemented")
 }
 func (UnimplementedHttpLogServiceServer) mustEmbedUnimplementedHttpLogServiceServer() {}
 
@@ -112,20 +98,20 @@ func RegisterHttpLogServiceServer(s grpc.ServiceRegistrar, srv HttpLogServiceSer
 	s.RegisterService(&HttpLogService_ServiceDesc, srv)
 }
 
-func _HttpLogService_ServInsertHttpLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _HttpLogService_ServeInsertHttpLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateHttpLogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HttpLogServiceServer).ServInsertHttpLog(ctx, in)
+		return srv.(HttpLogServiceServer).ServeInsertHttpLog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/httplogpb.HttpLogService/ServInsertHttpLog",
+		FullMethod: "/httplogpb.HttpLogService/ServeInsertHttpLog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HttpLogServiceServer).ServInsertHttpLog(ctx, req.(*CreateHttpLogRequest))
+		return srv.(HttpLogServiceServer).ServeInsertHttpLog(ctx, req.(*CreateHttpLogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -166,24 +152,6 @@ func _HttpLogService_ServeFindHttpLogById_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HttpLogService_ServeUpdateHttpLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHttpLogRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HttpLogServiceServer).ServeUpdateHttpLogById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/httplogpb.HttpLogService/ServeUpdateHttpLogById",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HttpLogServiceServer).ServeUpdateHttpLogById(ctx, req.(*UpdateHttpLogRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // HttpLogService_ServiceDesc is the grpc.ServiceDesc for HttpLogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -192,8 +160,8 @@ var HttpLogService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*HttpLogServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ServInsertHttpLog",
-			Handler:    _HttpLogService_ServInsertHttpLog_Handler,
+			MethodName: "ServeInsertHttpLog",
+			Handler:    _HttpLogService_ServeInsertHttpLog_Handler,
 		},
 		{
 			MethodName: "ServeGetListHttpLog",
@@ -202,10 +170,6 @@ var HttpLogService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ServeFindHttpLogById",
 			Handler:    _HttpLogService_ServeFindHttpLogById_Handler,
-		},
-		{
-			MethodName: "ServeUpdateHttpLogById",
-			Handler:    _HttpLogService_ServeUpdateHttpLogById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
