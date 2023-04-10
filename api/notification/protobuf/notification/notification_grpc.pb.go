@@ -7,6 +7,7 @@
 package notification
 
 import (
+	meta "/protobuf/meta"
 	context "context"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -24,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type NotificationServiceClient interface {
 	GetNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
 	UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
+	SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*meta.BaseResponse, error)
 }
 
 type notificationServiceClient struct {
@@ -52,12 +54,22 @@ func (c *notificationServiceClient) UpdateReadStatusNotification(ctx context.Con
 	return out, nil
 }
 
+func (c *notificationServiceClient) SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*meta.BaseResponse, error) {
+	out := new(meta.BaseResponse)
+	err := c.cc.Invoke(ctx, "/notification.NotificationService/SendNotification", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NotificationServiceServer is the server API for NotificationService service.
 // All implementations must embed UnimplementedNotificationServiceServer
 // for forward compatibility
 type NotificationServiceServer interface {
 	GetNotifications(context.Context, *GetNotificationsRequest) (*ListNotificationResponse, error)
 	UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error)
+	SendNotification(context.Context, *SendNotificationRequest) (*meta.BaseResponse, error)
 	mustEmbedUnimplementedNotificationServiceServer()
 }
 
@@ -70,6 +82,9 @@ func (UnimplementedNotificationServiceServer) GetNotifications(context.Context, 
 }
 func (UnimplementedNotificationServiceServer) UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReadStatusNotification not implemented")
+}
+func (UnimplementedNotificationServiceServer) SendNotification(context.Context, *SendNotificationRequest) (*meta.BaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) mustEmbedUnimplementedNotificationServiceServer() {}
 
@@ -120,6 +135,24 @@ func _NotificationService_UpdateReadStatusNotification_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotificationService_SendNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendNotificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotificationServiceServer).SendNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/notification.NotificationService/SendNotification",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotificationServiceServer).SendNotification(ctx, req.(*SendNotificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NotificationService_ServiceDesc is the grpc.ServiceDesc for NotificationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +167,10 @@ var NotificationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateReadStatusNotification",
 			Handler:    _NotificationService_UpdateReadStatusNotification_Handler,
+		},
+		{
+			MethodName: "SendNotification",
+			Handler:    _NotificationService_SendNotification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
