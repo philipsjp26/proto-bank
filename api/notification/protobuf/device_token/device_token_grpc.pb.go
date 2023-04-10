@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeviceTokenServiceClient interface {
 	CreateDeviceToken(ctx context.Context, in *CreateDeviceTokenRequest, opts ...grpc.CallOption) (*DeviceToken, error)
-	FindDeviceToken(ctx context.Context, in *FindDeviceTokensRequest, opts ...grpc.CallOption) (*DeviceTokens, error)
+	FindDeviceToken(ctx context.Context, in *FindDeviceTokensRequest, opts ...grpc.CallOption) (*ListDeviceTokenResponse, error)
 }
 
 type deviceTokenServiceClient struct {
@@ -43,8 +43,8 @@ func (c *deviceTokenServiceClient) CreateDeviceToken(ctx context.Context, in *Cr
 	return out, nil
 }
 
-func (c *deviceTokenServiceClient) FindDeviceToken(ctx context.Context, in *FindDeviceTokensRequest, opts ...grpc.CallOption) (*DeviceTokens, error) {
-	out := new(DeviceTokens)
+func (c *deviceTokenServiceClient) FindDeviceToken(ctx context.Context, in *FindDeviceTokensRequest, opts ...grpc.CallOption) (*ListDeviceTokenResponse, error) {
+	out := new(ListDeviceTokenResponse)
 	err := c.cc.Invoke(ctx, "/device_token.DeviceTokenService/FindDeviceToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func (c *deviceTokenServiceClient) FindDeviceToken(ctx context.Context, in *Find
 // for forward compatibility
 type DeviceTokenServiceServer interface {
 	CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*DeviceToken, error)
-	FindDeviceToken(context.Context, *FindDeviceTokensRequest) (*DeviceTokens, error)
+	FindDeviceToken(context.Context, *FindDeviceTokensRequest) (*ListDeviceTokenResponse, error)
 	mustEmbedUnimplementedDeviceTokenServiceServer()
 }
 
@@ -68,7 +68,7 @@ type UnimplementedDeviceTokenServiceServer struct {
 func (UnimplementedDeviceTokenServiceServer) CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*DeviceToken, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceToken not implemented")
 }
-func (UnimplementedDeviceTokenServiceServer) FindDeviceToken(context.Context, *FindDeviceTokensRequest) (*DeviceTokens, error) {
+func (UnimplementedDeviceTokenServiceServer) FindDeviceToken(context.Context, *FindDeviceTokensRequest) (*ListDeviceTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindDeviceToken not implemented")
 }
 func (UnimplementedDeviceTokenServiceServer) mustEmbedUnimplementedDeviceTokenServiceServer() {}
