@@ -6,23 +6,6 @@ option go_package = "/protobuf/notification";
 
 import "api/meta/proto/meta.proto";
 
-
-/*
-=================
-Parameter Request
-=================
-*/
-message GetNotificationsRequest {
-    string status = 1;
-    uint32 page = 2;
-    uint32 limit = 3;
-}
-
-message UpdateReadStatusNotificationRequest{
-    uint32 id = 1;
-    string string = 2;
-}
-
 /*
 =================
 Data
@@ -44,6 +27,30 @@ message Notification {
     string read_at = 6;
 }
 
+
+/*
+=================
+Parameter Request
+=================
+*/
+message GetNotificationsRequest {
+    string status = 1;
+    uint32 page = 2;
+    uint32 limit = 3;
+}
+
+message UpdateReadStatusNotificationRequest{
+    uint32 id = 1;
+    string string = 2;
+}
+
+message SendNotificationRequest {
+    string type = 1;
+    string case = 2;
+    string message = 3;
+    string amount = 4;
+}
+
 /*
 =================
 Response
@@ -53,9 +60,10 @@ message ListNotificationResponse {
     meta.Pagination pagination = 1;
     repeated Notification notifications = 2;
 }
-     
+
 
 service NotificationService {
     rpc GetNotifications(GetNotificationsRequest) returns(ListNotificationResponse);
     rpc UpdateReadStatusNotification(UpdateReadStatusNotificationRequest) returns(ListNotificationResponse);
+    rpc SendNotification(SendNotificationRequest) returns(meta.BaseResponse);
 }
