@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+service Document {
+    rpc StoreDocument(stream UploadDocRequest) returns (UploadDocResponse);    
+    rpc GetDocumentByReffNumber(GetDocumentRequest) returns (GetDocumentResponse);
+    rpc UpdateDocumentByReffNumber(UpdateDocumentRequest) returns (UpdateDocumentResponse);
+    rpc DeleteDocumentByReffNumber(DeleteDocumentRequest) returns (DeleteDocumentResponse);
+}
+message Documents {
+    string unsigned_doc = 1;
+    string signed_doc = 2;
+}
+
+message UpdateDocumentRequest {
+    string reff_number = 1;
+    string filename = 2;    
+}
+message UpdateDocumentResponse { 
+    BaseResponse base_response = 1;
+    string reff_number = 2;
+    string filename = 3;    
+}
+
+message GetDocumentRequest {
+    string reff_number = 1;
+}
+
+message GetDocumentResponse {
+    BaseResponse base_response = 1;
+    string reff_number = 2;
+    Documents documents = 3;
+}
+
+message UploadDocRequest{
+    string application_code = 1;    
+    string filename = 2;
+    bytes doc_file = 3;
+    int32 sign_type = 4;
+    int32 doc_flow = 5;
+    string doc_category = 6;    
+    string title = 7;
+}
+
+message UploadDocResponse {
+    BaseResponse base_response = 1; 
+    string title = 2;
+    string reff_number = 3;
+    string doc_name = 4;
+    string sign_type = 5;
+    string doc_category = 6;
+    string doc_flow = 7;    
+}
+
+message DeleteDocumentRequest {
+    string reff_number = 1;
+}
+
+message DeleteDocumentResponse {
+    BaseResponse base_response = 1;
+    bool result = 2;
+}
+
+message BaseResponse {
+    int32 status_code = 1;
+    string message = 2;
+}
+
