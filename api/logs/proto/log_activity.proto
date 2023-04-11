@@ -1,0 +1,106 @@
+syntax = "proto3";
+package activitypb;
+
+option go_package = "/protobuf/activitypb";
+
+// import "google/protobuf/struct.proto";
+
+/*
+=================
+    Metadata
+=================
+*/
+message ActivityMeta {
+    int32 page = 1;
+    int32 per_page = 2;
+    int32 total = 3;
+  }
+
+/*
+=================
+Parameter Request
+=================
+*/
+message ActivityLogParameterRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+    string order_by = 3;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
+  }
+
+  /*
+=================
+    Response
+=================
+*/
+
+message ActivityLogResponse {
+    string id = 1;
+    string privy_id = 2;
+    string ip = 3;
+    string activity = 4;
+    string browser = 5;
+    int32 application_id = 6;
+    string url = 7;
+    string request = 8;
+    string response = 9;
+    string headers = 10;
+    string action_method = 11;
+    bool can_show_detail = 12;
+    string before_request = 13;
+    string created_at = 14;
+    string updated_at = 15;
+}
+
+message ActivityLogsResponse {
+    int32 code = 1;
+    string message = 2;
+    repeated ActivityLogResponse data = 3;
+    ActivityMeta meta = 4;
+}
+
+message ActivityLog {
+    int32 code = 1;
+    string message = 2;
+    ActivityLogResponse data = 3;
+    ActivityMeta meta = 4;
+}
+
+message StatusResponse {
+    string status = 1;
+}
+
+/*
+=================
+    Request
+=================
+*/
+
+message FindActivityLogRequest {
+    string id = 1;
+}
+
+message CreateActivityLogRequest {
+    string privy_id = 2;
+    string ip = 3;
+    string activity = 4;
+    string browser = 5;
+    int32 application_id = 6;
+    string url = 7;
+    string request = 8;
+    string response = 9;
+    string headers = 10;
+    string action_method = 11;
+    bool can_show_detail = 12;
+    string before_request = 13;
+    string created_at = 14;
+    string updated_at = 15;
+}
+
+service ActivityLogService {
+    rpc ServeInsertActivityLog(CreateActivityLogRequest) returns(ActivityLogsResponse);
+    rpc ServeGetListActivityLog(ActivityLogParameterRequest) returns(ActivityLogsResponse);
+    rpc ServeFindActivityByID(FindActivityLogRequest) returns(ActivityLog);
+}
