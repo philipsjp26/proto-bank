@@ -14,10 +14,9 @@ message BaseResponse {
     string message = 2;
 }
 
-message SignRequest {
-    BaseResponse base_response = 1;
-    string privy_id = 2;
+message SignRequest {    
     string reff_number = 3;
+    string privy_id = 2;
     int32 doc_flow = 4;
     SignPositions sign_positions = 5;
     EmeteraiPositions emeterai_positions = 6;
