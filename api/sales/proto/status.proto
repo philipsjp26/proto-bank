@@ -52,7 +52,7 @@ message StatusesResponse {
 }
 
 message ResultStatusResponse {
-  string name = 1;
+  string status = 1;
   string message = 2;
   StatusResponse data = 3;
 }
