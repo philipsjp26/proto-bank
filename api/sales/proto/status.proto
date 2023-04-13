@@ -9,7 +9,7 @@ option go_package = "/status";
     Metadata
 =================
 */
-message StatusMeta {
+message Meta {
   int32 page = 1;
   int32 per_page = 2;
   int32 total = 3;
@@ -20,7 +20,7 @@ message StatusMeta {
 Parameter Request
 =================
 */
-message StatusParameterRequest {
+message ParameterRequest {
   int32 page = 1;
   int32 per_page = 2;
   string order_by = 3;
@@ -41,18 +41,18 @@ message StatusParameterRequest {
 */
 message StatusResponse {
   string id = 1;
-  string status = 2;
+  string name = 2;
   string created_at = 3;
   string updated_at = 4;
 }
 
 message StatusesResponse {
   repeated StatusResponse data = 1;
-  StatusMeta meta = 2;
+  Meta meta = 2;
 }
 
 message ResultStatusResponse {
-  string status = 1;
+  string name = 1;
   string message = 2;
   StatusResponse data = 3;
 }
@@ -63,7 +63,8 @@ message ResultStatusResponse {
 =================
 */
 message CreateStatusRequest {
-  string name = 1;
+  string id = 1;
+  string name = 2;
 }
 
 message FindStatusByIdRequest {
