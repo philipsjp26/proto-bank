@@ -40,7 +40,7 @@ message ParameterRequest {
 =================
 */
 message StatusResponse {
-  string id = 1;
+  int32 id = 1;
   string name = 2;
   string created_at = 3;
   string updated_at = 4;
@@ -63,12 +63,12 @@ message ResultStatusResponse {
 =================
 */
 message CreateStatusRequest {
-  string id = 1;
+  int32 id = 1;
   string name = 2;
 }
 
 message FindStatusByIdRequest {
-  string id = 1;
+  int32 id = 1;
 }
 
 service AuthorService {
