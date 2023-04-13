@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package status;
+
+option go_package = "/status";
+
+/*
+=================
+    Metadata
+=================
+*/
+message Meta {
+  int32 page = 1;
+  int32 per_page = 2;
+  int32 total = 3;
+}
+
+/*
+=================
+Parameter Request
+=================
+*/
+message ParameterRequest {
+  int32 page = 1;
+  int32 per_page = 2;
+  string order_by = 3;
+  string order_method = 4;
+  string search_condition = 5;
+  string equal = 6;
+  string not = 7;
+  string like = 8;
+  string date_range_by = 9;
+  string date_start = 10;
+  string date_end = 11;
+}
+
+/*
+=================
+    Response
+=================
+*/
+message StatusResponse {
+  int32 id = 1;
+  string name = 2;
+  string created_at = 3;
+  string updated_at = 4;
+}
+
+message StatusesResponse {
+  repeated StatusResponse data = 1;
+  Meta meta = 2;
+}
+
+message ResultStatusResponse {
+  string status = 1;
+  string message = 2;
+  StatusResponse data = 3;
+}
+
+/*
+=================
+    Request
+=================
+*/
+message CreateStatusRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+message FindStatusByIdRequest {
+  int32 id = 1;
+}
+
+service AuthorService {
+  rpc ServiceCreateStatus(CreateStatusRequest) returns(ResultStatusResponse);
+  rpc ServiceFindStatusById(FindStatusByIdRequest) returns (ResultStatusResponse);
+}
