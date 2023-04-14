@@ -9,8 +9,8 @@ service Document {
     rpc DeleteDocumentByReffNumber(DeleteDocumentRequest) returns (DeleteDocumentResponse);
 }
 message Documents {
-    string unsigned_doc = 1;
-    string signed_doc = 2;
+    optional string unsigned_doc = 1;
+    optional string signed_doc = 2;
 }
 
 message UpdateDocumentRequest {
