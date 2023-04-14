@@ -15,20 +15,19 @@ message Documents {
 
 message UpdateDocumentRequest {
     string reff_number = 1;
-    string title = 2;    
+    string title = 2;
+    string doc_category = 3;
 }
-message UpdateDocumentResponse { 
-    BaseResponse base_response = 1;
+message UpdateDocumentResponse {     
     string reff_number = 2;
-    string title = 3;    
+    string title = 3;
 }
 
 message GetDocumentRequest {
     string reff_number = 1;
 }
 
-message GetDocumentResponse {
-    BaseResponse base_response = 1;
+message GetDocumentResponse {    
     string reff_number = 2;
     Documents documents = 3;
 }
@@ -42,9 +41,8 @@ message UploadDocRequest{
     string doc_category = 6;    
 }
 
-message UploadDocResponse {
-    BaseResponse base_response = 1; 
-    int32 id = 2;
+message UploadDocResponse {    
+    string title = 2;
     string reff_number = 3;
     string doc_name = 4;
     string sign_type = 5;
@@ -56,13 +54,6 @@ message DeleteDocumentRequest {
     string reff_number = 1;
 }
 
-message DeleteDocumentResponse {
-    BaseResponse base_response = 1;
+message DeleteDocumentResponse {    
     bool result = 2;
 }
-
-message BaseResponse {
-    int32 status_code = 1;
-    string message = 2;
-}
-
