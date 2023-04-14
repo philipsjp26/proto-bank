@@ -43,12 +43,12 @@ message UploadDocRequest{
 }
 
 message UploadDocResponse {    
-    string title = 2;
-    string reff_number = 3;
-    string doc_name = 4;
-    string sign_type = 5;
-    string doc_category = 6;
-    string doc_flow = 7;    
+    string title = 1;
+    string reff_number = 2;
+    string doc_name = 3;
+    string sign_type = 4;
+    string doc_category = 5;
+    string doc_flow = 6;    
 }
 
 message DeleteDocumentRequest {
