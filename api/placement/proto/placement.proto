@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+service Placement {    
+    rpc Sign(SignRequest) returns (SignResponse);
+    rpc OtpRequest(Otp) returns (OtpResponse);
+    rpc OtpValidate(OtpValidateRequest) returns (OtpValidateResponse);
+    rpc OtpResend(OtpResendRequest) returns (OtpResendResponse);
+}
+
+message BaseResponse {
+    int32 status_code = 1;
+    string message = 2;
+}
+
+message SignRequest {    
+    string reff_number = 3;
+    string privy_id = 2;
+    int32 doc_flow = 4;
+    SignPositions sign_positions = 5;
+    EmeteraiPositions emeterai_positions = 6;
+}
+
+message SignPositions {
+    string privy_id = 1;
+    optional string nik = 2;
+    optional string name = 3;
+    optional string dob = 4;
+    optional string phone_number = 5;
+    optional string email = 6;
+    float pos_x = 7;
+    float pos_y = 8;
+}
+
+message EmeteraiPositions {
+    float pos_x = 1;
+    float pos_y = 2;
+}
+
+message SignResponse {
+    BaseResponse base_response = 1;
+    string doc_token = 2;
+}
+
+message Otp {
+    BaseResponse base_response = 1;
+    string reff_number = 2;
+    string doc_token = 3;
+    int32 otp_channel = 4;
+}
+
+message OtpResponse {
+    BaseResponse base_response = 1;
+    string transaction_id = 2;
+    string reff_number = 3;
+}
+
+message OtpValidateRequest {
+    string reff_number = 1;
+    int32 otp_code = 2;
+    string transaction_id = 3;
+}
+
+message OtpValidateResponse {
+    BaseResponse base_response = 1;
+}
+
+message OtpResendRequest {
+    string transaction_id = 1;
+}
+
+message OtpResendResponse {
+    BaseResponse base_response = 1;
+    string transaction_id = 2;
+    string reff_number = 3;
+    string request_attempt = 4;
+}
