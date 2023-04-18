@@ -9,10 +9,6 @@ service Placement {
     rpc OtpResend(OtpResendRequest) returns (OtpResendResponse);
 }
 
-message BaseResponse {
-    int32 status_code = 1;
-    string message = 2;
-}
 
 message SignRequest {    
     string reff_number = 3;
@@ -39,21 +35,19 @@ message EmeteraiPositions {
 }
 
 message SignResponse {
-    BaseResponse base_response = 1;
-    string doc_token = 2;
+    string doc_token = 1;
 }
 
 message Otp {
-    BaseResponse base_response = 1;
-    string reff_number = 2;
-    string doc_token = 3;
-    int32 otp_channel = 4;
+    string reff_number = 1;
+    string doc_token = 2;
+    int32 otp_channel = 3;
 }
 
-message OtpResponse {
-    BaseResponse base_response = 1;
-    string transaction_id = 2;
-    string reff_number = 3;
+message OtpResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;
 }
 
 message OtpValidateRequest {
@@ -63,16 +57,18 @@ message OtpValidateRequest {
 }
 
 message OtpValidateResponse {
-    BaseResponse base_response = 1;
+    string message = 1;
+    string transaction_id = 2;
+    string reff_number = 3;
+    string request_attempt = 4;    
 }
 
 message OtpResendRequest {
     string transaction_id = 1;
 }
 
-message OtpResendResponse {
-    BaseResponse base_response = 1;
-    string transaction_id = 2;
-    string reff_number = 3;
-    string request_attempt = 4;
+message OtpResendResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;
 }
