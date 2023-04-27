@@ -11,15 +11,16 @@ service Placement {
 
 
 message SignRequest {    
-    string reff_number = 3;
+    string reff_number = 1;
     string privy_id = 2;
-    int32 doc_flow = 4;
-    repeated SignPositions sign_positions = 5;
-    repeated EmeteraiPositions emeterai_positions = 6;
+    string doc_flow = 3;
+    repeated SignPositions sign_positions = 4;
+    repeated EmeteraiPositions emeterai_positions = 5;
 }
 
 message SignPositions {
     string privy_id = 1;
+    string enterprise_token = 9;
     optional string nik = 2;
     optional string name = 3;
     optional string dob = 4;
@@ -27,7 +28,6 @@ message SignPositions {
     optional string email = 6;
     float pos_x = 7;
     float pos_y = 8;
-    string enterprise_token = 9;
 }
 
 message EmeteraiPositions {

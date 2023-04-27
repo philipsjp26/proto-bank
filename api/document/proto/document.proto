@@ -32,7 +32,8 @@ message GetDocumentRequest {
 
 message GetDocumentResponse {    
     string reff_number = 1;
-    Documents documents = 2;
+    string title = 2;
+    Documents documents = 3;
 }
 
 message UploadDocRequest{
