@@ -14,8 +14,8 @@ message SignRequest {
     string reff_number = 3;
     string privy_id = 2;
     int32 doc_flow = 4;
-    SignPositions sign_positions = 5;
-    EmeteraiPositions emeterai_positions = 6;
+    repeated SignPositions sign_positions = 5;
+    repeated EmeteraiPositions emeterai_positions = 6;
 }
 
 message SignPositions {
@@ -27,6 +27,7 @@ message SignPositions {
     optional string email = 6;
     float pos_x = 7;
     float pos_y = 8;
+    string enterprise_token = 9;
 }
 
 message EmeteraiPositions {
