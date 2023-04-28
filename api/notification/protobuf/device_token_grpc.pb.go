@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: api/notification/proto/device_token.proto
 
-package device_token
+package __
 
 import (
 	context "context"
