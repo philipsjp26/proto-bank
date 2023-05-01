@@ -71,7 +71,7 @@ message ListPlacementDocumentResponse {
 =================
 */
 
-message UpdatePlacementDocument {
+message UpdatePlacementDocumentRequest {
     string channel = 1;
     string reff_no = 2;
     string sign_type = 3;
@@ -86,17 +86,17 @@ message UpdatePlacementDocument {
     string updated_at = 12;
 }
 
-message RevokePlacementDocument {
+message RevokePlacementDocumentRequest {
     string reff_no = 1;
     string doc_status = 2;
 }
 
-message DetailRevokedDocument {
+message DetailRevokedDocumentRequest {
     string reff_no = 1;
 }
 
 service PlacementService {
-    rpc ServeRevokePlacementDocument (RevokePlacementDocument) returns (PlacementDocumentResponse);
+    rpc ServeRevokePlacementDocument (RevokePlacementDocumentRequest) returns (PlacementDocumentResponse);
     rpc ServeListRevokedPlacementDocument (PlacementDocParameterRequest) returns (ListPlacementDocumentResponse);
-    rpc ServeUpdatePlacementDocument (UpdatePlacementDocument) returns (PlacementDocumentResponse);
+    rpc ServeUpdatePlacementDocument (UpdatePlacementDocumentRequest) returns (PlacementDocumentResponse);
 }

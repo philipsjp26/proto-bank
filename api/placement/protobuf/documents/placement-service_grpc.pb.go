@@ -22,9 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlacementServiceClient interface {
-	ServeRevokePlacementDocument(ctx context.Context, in *RevokePlacementDocument, opts ...grpc.CallOption) (*PlacementDocumentResponse, error)
+	ServeRevokePlacementDocument(ctx context.Context, in *RevokePlacementDocumentRequest, opts ...grpc.CallOption) (*PlacementDocumentResponse, error)
 	ServeListRevokedPlacementDocument(ctx context.Context, in *PlacementDocParameterRequest, opts ...grpc.CallOption) (*ListPlacementDocumentResponse, error)
-	ServeUpdatePlacementDocument(ctx context.Context, in *UpdatePlacementDocument, opts ...grpc.CallOption) (*PlacementDocumentResponse, error)
+	ServeUpdatePlacementDocument(ctx context.Context, in *UpdatePlacementDocumentRequest, opts ...grpc.CallOption) (*PlacementDocumentResponse, error)
 }
 
 type placementServiceClient struct {
@@ -35,7 +35,7 @@ func NewPlacementServiceClient(cc grpc.ClientConnInterface) PlacementServiceClie
 	return &placementServiceClient{cc}
 }
 
-func (c *placementServiceClient) ServeRevokePlacementDocument(ctx context.Context, in *RevokePlacementDocument, opts ...grpc.CallOption) (*PlacementDocumentResponse, error) {
+func (c *placementServiceClient) ServeRevokePlacementDocument(ctx context.Context, in *RevokePlacementDocumentRequest, opts ...grpc.CallOption) (*PlacementDocumentResponse, error) {
 	out := new(PlacementDocumentResponse)
 	err := c.cc.Invoke(ctx, "/placementpb.PlacementService/ServeRevokePlacementDocument", in, out, opts...)
 	if err != nil {
@@ -53,7 +53,7 @@ func (c *placementServiceClient) ServeListRevokedPlacementDocument(ctx context.C
 	return out, nil
 }
 
-func (c *placementServiceClient) ServeUpdatePlacementDocument(ctx context.Context, in *UpdatePlacementDocument, opts ...grpc.CallOption) (*PlacementDocumentResponse, error) {
+func (c *placementServiceClient) ServeUpdatePlacementDocument(ctx context.Context, in *UpdatePlacementDocumentRequest, opts ...grpc.CallOption) (*PlacementDocumentResponse, error) {
 	out := new(PlacementDocumentResponse)
 	err := c.cc.Invoke(ctx, "/placementpb.PlacementService/ServeUpdatePlacementDocument", in, out, opts...)
 	if err != nil {
@@ -66,9 +66,9 @@ func (c *placementServiceClient) ServeUpdatePlacementDocument(ctx context.Contex
 // All implementations must embed UnimplementedPlacementServiceServer
 // for forward compatibility
 type PlacementServiceServer interface {
-	ServeRevokePlacementDocument(context.Context, *RevokePlacementDocument) (*PlacementDocumentResponse, error)
+	ServeRevokePlacementDocument(context.Context, *RevokePlacementDocumentRequest) (*PlacementDocumentResponse, error)
 	ServeListRevokedPlacementDocument(context.Context, *PlacementDocParameterRequest) (*ListPlacementDocumentResponse, error)
-	ServeUpdatePlacementDocument(context.Context, *UpdatePlacementDocument) (*PlacementDocumentResponse, error)
+	ServeUpdatePlacementDocument(context.Context, *UpdatePlacementDocumentRequest) (*PlacementDocumentResponse, error)
 	mustEmbedUnimplementedPlacementServiceServer()
 }
 
@@ -76,13 +76,13 @@ type PlacementServiceServer interface {
 type UnimplementedPlacementServiceServer struct {
 }
 
-func (UnimplementedPlacementServiceServer) ServeRevokePlacementDocument(context.Context, *RevokePlacementDocument) (*PlacementDocumentResponse, error) {
+func (UnimplementedPlacementServiceServer) ServeRevokePlacementDocument(context.Context, *RevokePlacementDocumentRequest) (*PlacementDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeRevokePlacementDocument not implemented")
 }
 func (UnimplementedPlacementServiceServer) ServeListRevokedPlacementDocument(context.Context, *PlacementDocParameterRequest) (*ListPlacementDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeListRevokedPlacementDocument not implemented")
 }
-func (UnimplementedPlacementServiceServer) ServeUpdatePlacementDocument(context.Context, *UpdatePlacementDocument) (*PlacementDocumentResponse, error) {
+func (UnimplementedPlacementServiceServer) ServeUpdatePlacementDocument(context.Context, *UpdatePlacementDocumentRequest) (*PlacementDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeUpdatePlacementDocument not implemented")
 }
 func (UnimplementedPlacementServiceServer) mustEmbedUnimplementedPlacementServiceServer() {}
@@ -99,7 +99,7 @@ func RegisterPlacementServiceServer(s grpc.ServiceRegistrar, srv PlacementServic
 }
 
 func _PlacementService_ServeRevokePlacementDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokePlacementDocument)
+	in := new(RevokePlacementDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -111,7 +111,7 @@ func _PlacementService_ServeRevokePlacementDocument_Handler(srv interface{}, ctx
 		FullMethod: "/placementpb.PlacementService/ServeRevokePlacementDocument",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlacementServiceServer).ServeRevokePlacementDocument(ctx, req.(*RevokePlacementDocument))
+		return srv.(PlacementServiceServer).ServeRevokePlacementDocument(ctx, req.(*RevokePlacementDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -135,7 +135,7 @@ func _PlacementService_ServeListRevokedPlacementDocument_Handler(srv interface{}
 }
 
 func _PlacementService_ServeUpdatePlacementDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePlacementDocument)
+	in := new(UpdatePlacementDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -147,7 +147,7 @@ func _PlacementService_ServeUpdatePlacementDocument_Handler(srv interface{}, ctx
 		FullMethod: "/placementpb.PlacementService/ServeUpdatePlacementDocument",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlacementServiceServer).ServeUpdatePlacementDocument(ctx, req.(*UpdatePlacementDocument))
+		return srv.(PlacementServiceServer).ServeUpdatePlacementDocument(ctx, req.(*UpdatePlacementDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
