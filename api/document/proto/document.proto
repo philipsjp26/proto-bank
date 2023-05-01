@@ -17,8 +17,6 @@ message UpdateDocumentRequest {
     string reff_number = 1;
     string title = 2;
     string doc_category = 3;
-    optional string token = 4;
-    optional string status = 5;
 }
 message UpdateDocumentResponse {     
     string reff_number = 1;
@@ -32,9 +30,7 @@ message GetDocumentRequest {
 
 message GetDocumentResponse {    
     string reff_number = 1;
-    string title = 2;
-    string doc_category = 3;
-    Documents documents = 4;
+    Documents documents = 2;
 }
 
 message UploadDocRequest{

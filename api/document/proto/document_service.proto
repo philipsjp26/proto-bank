@@ -1,0 +1,56 @@
+syntax = "proto3";
+package documentservice;
+
+option go_package = "/document_service_pb";
+
+/*
+=================
+    Metadata
+=================
+*/
+
+message DocumentMeta {
+    int32 page = 1;
+    int32 per_page = 2;
+    int32 total = 3;
+}
+
+/*
+=================
+Parameter Request
+=================
+*/
+
+message DocumentParameterRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+    string order_by = 3;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
+}
+
+/*
+=================
+    Response
+=================
+*/
+
+message DocumentRevoke {
+    string reff_number = 1;
+    string unsigned_doc = 2;
+    string status = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message ListServiceDocumentResponse {
+    int32 code = 1;
+    string message = 2;
+    repeated DocumentRevoke data = 3;
+    DocumentMeta meta = 4;
+}
+
+service DocumentService {
+    rpc ServeListRevokedDocument (DocumentParameterRequest) returns (ListServiceDocumentResponse);
+}
