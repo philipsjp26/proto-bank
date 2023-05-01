@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package device_token;
 
-option go_package = "/protobuf/device_token";
+option go_package = ".";
 
 import "api/meta/proto/meta.proto";
 
@@ -37,7 +37,6 @@ message ListDeviceTokenResponse {
     string message = 2;
     repeated DeviceToken data = 3;
     meta.Pagination meta = 4;
-
 }
 
 service DeviceTokenService {

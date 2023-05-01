@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package meta;
 
-option go_package = "/protobuf/meta";
-
+option go_package = ".";
+//option go_package = "./meta";
 /*
 =================
     Response

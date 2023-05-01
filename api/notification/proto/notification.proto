@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package notification;
 
-option go_package = "/protobuf/notification";
+option go_package = ".";
 
 import "api/meta/proto/meta.proto";
 
@@ -58,7 +58,7 @@ Response
 */
 message ListNotificationResponse {
     meta.Pagination pagination = 1;
-    repeated Notification notifications = 2;
+    repeated Notification data = 2;
 }
 
 

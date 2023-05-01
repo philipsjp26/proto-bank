@@ -4,10 +4,9 @@
 // - protoc             v3.21.12
 // source: api/notification/proto/notification.proto
 
-package notification
+package __
 
 import (
-	meta "/protobuf/meta"
 	context "context"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -25,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type NotificationServiceClient interface {
 	GetNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
 	UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
-	SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*meta.BaseResponse, error)
+	SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 }
 
 type notificationServiceClient struct {
@@ -54,8 +53,8 @@ func (c *notificationServiceClient) UpdateReadStatusNotification(ctx context.Con
 	return out, nil
 }
 
-func (c *notificationServiceClient) SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*meta.BaseResponse, error) {
-	out := new(meta.BaseResponse)
+func (c *notificationServiceClient) SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*BaseResponse, error) {
+	out := new(BaseResponse)
 	err := c.cc.Invoke(ctx, "/notification.NotificationService/SendNotification", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -69,7 +68,7 @@ func (c *notificationServiceClient) SendNotification(ctx context.Context, in *Se
 type NotificationServiceServer interface {
 	GetNotifications(context.Context, *GetNotificationsRequest) (*ListNotificationResponse, error)
 	UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error)
-	SendNotification(context.Context, *SendNotificationRequest) (*meta.BaseResponse, error)
+	SendNotification(context.Context, *SendNotificationRequest) (*BaseResponse, error)
 	mustEmbedUnimplementedNotificationServiceServer()
 }
 
@@ -83,7 +82,7 @@ func (UnimplementedNotificationServiceServer) GetNotifications(context.Context, 
 func (UnimplementedNotificationServiceServer) UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReadStatusNotification not implemented")
 }
-func (UnimplementedNotificationServiceServer) SendNotification(context.Context, *SendNotificationRequest) (*meta.BaseResponse, error) {
+func (UnimplementedNotificationServiceServer) SendNotification(context.Context, *SendNotificationRequest) (*BaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) mustEmbedUnimplementedNotificationServiceServer() {}
