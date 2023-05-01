@@ -1,0 +1,102 @@
+syntax = "proto3";
+package placementpb;
+
+option go_package = "/documents";
+
+/*
+=================
+    Metadata
+=================
+*/
+message PlacementHttpMeta {
+    int32 page = 1;
+    int32 per_page = 2;
+    int32 total = 3;
+}
+
+/*
+=================
+Parameter Request
+=================
+*/
+message PlacementDocParameterRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+    string order_by = 3;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
+}
+
+/*
+=================
+    Response
+=================
+*/
+
+message PlacementDocument {
+    string id = 1;
+    string channel = 2;
+    string reff_no = 3;
+    string sign_type = 4;
+    string doc_flow = 5;
+    string doc_category = 6;
+    string doc_title = 7;
+    string doc_status = 8;
+    string uploader = 9;
+    string uploader_privy_id = 10;
+    string e_sign = 11;
+    string e_materai = 12;
+    string created_at = 13;
+    string updated_at = 14;
+}
+
+message PlacementDocumentResponse {
+    int32 code = 1;
+    string message = 2;
+    PlacementDocument data = 3;
+    PlacementHttpMeta meta = 4;
+}
+
+message ListPlacementDocumentResponse {
+    int32 code = 1;
+    string message = 2;
+    repeated PlacementDocument data = 3;
+    PlacementHttpMeta meta = 4;
+}
+
+/*
+=================
+    Request
+=================
+*/
+
+message UpdatePlacementDocument {
+    string channel = 1;
+    string reff_no = 2;
+    string sign_type = 3;
+    string doc_flow = 4;
+    string doc_category = 5;
+    string doc_title = 6;
+    string doc_status = 7;
+    string uploader = 8;
+    string uploader_privy_id = 9;
+    string e_sign = 10;
+    string e_materai = 11;
+    string updated_at = 12;
+}
+
+message RevokePlacementDocument {
+    string reff_no = 1;
+    string doc_status = 2;
+}
+
+message DetailRevokedDocument {
+    string reff_no = 1;
+}
+
+service PlacementService {
+    rpc ServeRevokePlacementDocument (RevokePlacementDocument) returns (PlacementDocumentResponse);
+    rpc ServeListRevokedPlacementDocument (PlacementDocParameterRequest) returns (ListPlacementDocumentResponse);
+    rpc ServeUpdatePlacementDocument (UpdatePlacementDocument) returns (PlacementDocumentResponse);
+}
