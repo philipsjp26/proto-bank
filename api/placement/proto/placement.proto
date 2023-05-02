@@ -11,22 +11,20 @@ service Placement {
 
 
 message SignRequest {    
-    string reff_number = 3;
-    string privy_id = 2;
+    string reff_number = 3;    
     int32 doc_flow = 4;
     SignPositions sign_positions = 5;
     EmeteraiPositions emeterai_positions = 6;
 }
 
-message SignPositions {
-    string privy_id = 1;
-    optional string nik = 2;
-    optional string name = 3;
-    optional string dob = 4;
-    optional string phone_number = 5;
-    optional string email = 6;
-    float pos_x = 7;
-    float pos_y = 8;
+message SignPositions {    
+    optional string nik = 1;
+    optional string name = 2;
+    optional string dob = 3;
+    optional string phone_number = 4;
+    optional string email = 5;
+    float pos_x = 6;
+    float pos_y = 7;
 }
 
 message EmeteraiPositions {
