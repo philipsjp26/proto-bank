@@ -35,7 +35,8 @@ message EmeteraiPositions {
 }
 
 message SignResponse {
-    string doc_token = 1;
+    string reff_number = 1;
+    string doc_token = 2;
 }
 
 message Otp {
@@ -56,11 +57,10 @@ message OtpValidateRequest {
     string transaction_id = 3;
 }
 
-message OtpValidateResponse {
-    string message = 1;
-    string transaction_id = 2;
-    string reff_number = 3;
-    string request_attempt = 4;    
+message OtpValidateResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;    
 }
 
 message OtpResendRequest {
