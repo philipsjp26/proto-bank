@@ -19,11 +19,13 @@ message UpdateDocumentRequest {
     optional string doc_category = 3;
     optional string token = 4;
     optional string status = 5;
+    optional bytes signed_document = 6;
 }
 message UpdateDocumentResponse {     
     string reff_number = 1;
     string title = 2;
     string doc_category = 3;
+    optional int32 document_id = 4;
 }
 
 message GetDocumentRequest {
@@ -47,13 +49,14 @@ message UploadDocRequest{
     string title = 7;
 }
 
-message UploadDocResponse {    
+message UploadDocResponse {        
     string title = 1;
     string reff_number = 2;
     string doc_name = 3;
     string sign_type = 4;
     string doc_category = 5;
     string doc_flow = 6;    
+    optional int32 document_id = 7;
 }
 
 message DeleteDocumentRequest {
