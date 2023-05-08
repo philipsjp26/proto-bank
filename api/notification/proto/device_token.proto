@@ -40,6 +40,5 @@ message ListDeviceTokenResponse {
 }
 
 service DeviceTokenService {
-    rpc CreateDeviceToken(CreateDeviceTokenRequest) returns(DeviceToken);
-    rpc FindDeviceToken(FindDeviceTokensRequest) returns(ListDeviceTokenResponse);
+    rpc CreateDeviceToken(CreateDeviceTokenRequest) returns(meta.BaseResponse);
 }

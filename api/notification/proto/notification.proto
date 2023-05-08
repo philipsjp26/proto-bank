@@ -64,6 +64,6 @@ message ListNotificationResponse {
 
 service NotificationService {
     rpc GetNotifications(GetNotificationsRequest) returns(ListNotificationResponse);
-    rpc UpdateReadStatusNotification(UpdateReadStatusNotificationRequest) returns(ListNotificationResponse);
+    rpc UpdateReadStatusNotification(UpdateReadStatusNotificationRequest) returns(meta.BaseResponse);
     rpc SendNotification(SendNotificationRequest) returns(meta.BaseResponse);
 }

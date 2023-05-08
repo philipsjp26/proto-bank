@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotificationServiceClient interface {
 	GetNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
-	UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error)
+	UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 	SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 }
 
@@ -44,8 +44,8 @@ func (c *notificationServiceClient) GetNotifications(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *notificationServiceClient) UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*ListNotificationResponse, error) {
-	out := new(ListNotificationResponse)
+func (c *notificationServiceClient) UpdateReadStatusNotification(ctx context.Context, in *UpdateReadStatusNotificationRequest, opts ...grpc.CallOption) (*BaseResponse, error) {
+	out := new(BaseResponse)
 	err := c.cc.Invoke(ctx, "/notification.NotificationService/UpdateReadStatusNotification", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -67,7 +67,7 @@ func (c *notificationServiceClient) SendNotification(ctx context.Context, in *Se
 // for forward compatibility
 type NotificationServiceServer interface {
 	GetNotifications(context.Context, *GetNotificationsRequest) (*ListNotificationResponse, error)
-	UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error)
+	UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*BaseResponse, error)
 	SendNotification(context.Context, *SendNotificationRequest) (*BaseResponse, error)
 	mustEmbedUnimplementedNotificationServiceServer()
 }
@@ -79,7 +79,7 @@ type UnimplementedNotificationServiceServer struct {
 func (UnimplementedNotificationServiceServer) GetNotifications(context.Context, *GetNotificationsRequest) (*ListNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNotifications not implemented")
 }
-func (UnimplementedNotificationServiceServer) UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*ListNotificationResponse, error) {
+func (UnimplementedNotificationServiceServer) UpdateReadStatusNotification(context.Context, *UpdateReadStatusNotificationRequest) (*BaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateReadStatusNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) SendNotification(context.Context, *SendNotificationRequest) (*BaseResponse, error) {
