@@ -11,10 +11,11 @@ service Placement {
 
 
 message SignRequest {    
-    string reff_number = 3;    
-    string doc_flow = 4;
-    repeated SignPositions sign_positions = 5;
-    repeated EmeteraiPositions emeterai_positions = 6;
+    string reff_number = 1;    
+    string doc_flow = 2;
+    repeated SignPositions sign_positions = 3;
+    repeated EmeteraiPositions emeterai_positions = 4;
+    optional string sign_type = 5;
 }
 
 message SignPositions {
