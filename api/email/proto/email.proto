@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package status;
+
+option go_package = ".";
+
+import "api/meta/proto/meta.proto";
+
+message EmailData {
+  string balance_type_name = 1;
+  int32 price = 2;
+  int32 quantity = 3;
+  int32 discount = 4;
+  int32 tax = 5;
+  int32 total = 6;
+}
+
+message EmailContent {
+  string invoice_number = 1;
+  string payment_due_date = 2;
+  int32 sub_total = 3;
+  int32 total_paid = 4;
+  int32 amount_due = 5;
+  repeated EmailData data = 6;
+}
+
+message EmailRequest {
+  repeated string to = 1;
+  repeated string cc = 2;
+  repeated string bcc = 3;
+  string subject = 4;
+  string template = 5;
+  EmailContent content = 6;
+}
+
+message EmailReesponse {
+  meta.BaseResponse response = 1;
+  string message = 2;
+}
+
+service EmailService {
+  rpc SendEmail (EmailRequest) returns (meta.BaseResponse) {}
+}
