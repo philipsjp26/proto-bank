@@ -27,6 +27,7 @@ message PlacementDocParameterRequest {
     string date_start = 5;
     string date_end = 6;
     string status = 7;
+    
 }
 
 /*
