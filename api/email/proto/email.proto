@@ -24,8 +24,14 @@ message EmailContent {
   repeated EmailData data = 6;
 }
 
+message Recipient {
+  string email = 1;
+  string name = 2;
+  string type = 3;
+}
+
 message EmailRequest {
-  repeated string to = 1;
+  repeated Recipient to = 1;
   repeated string cc = 2;
   repeated string bcc = 3;
   string subject = 4;
