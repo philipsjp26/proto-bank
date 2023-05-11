@@ -54,7 +54,7 @@ message OtpResponse {
 
 message OtpValidateRequest {
     string reff_number = 1;
-    int32 otp_code = 2;
+    string otp_code = 2;
     string transaction_id = 3;
 }
 
