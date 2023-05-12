@@ -6,6 +6,11 @@ option go_package = ".";
 
 import "api/meta/proto/meta.proto";
 
+/*
+=================
+Data
+=================
+*/
 message DeviceToken {
     string id = 1;
     string device_token = 2;
@@ -40,5 +45,5 @@ message ListDeviceTokenResponse {
 }
 
 service DeviceTokenService {
-    rpc CreateDeviceToken(CreateDeviceTokenRequest) returns(meta.BaseResponse);
+    rpc CreateDeviceToken(CreateDeviceTokenRequest) returns(meta.BaseResponseV2);
 }

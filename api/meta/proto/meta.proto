@@ -28,6 +28,10 @@ message Request {
     string end_date = 4;
 }
 
+message BaseResponseV2 {
+    int32 code = 1;
+    string message = 2;
+}
 
 message Empty {}
 
