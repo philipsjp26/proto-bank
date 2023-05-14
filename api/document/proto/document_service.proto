@@ -92,6 +92,6 @@ message DetailDocumentRequest {
 */
 
 service DocumentService {
-    rpc ServeListRevokedDocument (DocumentParameterRequest) returns (ListServiceDocumentResponse);
+    rpc ServeListDocument (DocumentParameterRequest) returns (ListServiceDocumentResponse);
     rpc ServeRevokeDocument (RevokeDocumentRequest) returns (DocumentResponse);
 }

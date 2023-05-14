@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentServiceClient interface {
-	ServeListRevokedDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error)
+	ServeListDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error)
 	ServeRevokeDocument(ctx context.Context, in *RevokeDocumentRequest, opts ...grpc.CallOption) (*DocumentResponse, error)
 }
 
@@ -34,9 +34,9 @@ func NewDocumentServiceClient(cc grpc.ClientConnInterface) DocumentServiceClient
 	return &documentServiceClient{cc}
 }
 
-func (c *documentServiceClient) ServeListRevokedDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error) {
+func (c *documentServiceClient) ServeListDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error) {
 	out := new(ListServiceDocumentResponse)
-	err := c.cc.Invoke(ctx, "/documentservice.DocumentService/ServeListRevokedDocument", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/documentservice.DocumentService/ServeListDocument", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *documentServiceClient) ServeRevokeDocument(ctx context.Context, in *Rev
 // All implementations must embed UnimplementedDocumentServiceServer
 // for forward compatibility
 type DocumentServiceServer interface {
-	ServeListRevokedDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error)
+	ServeListDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error)
 	ServeRevokeDocument(context.Context, *RevokeDocumentRequest) (*DocumentResponse, error)
 	mustEmbedUnimplementedDocumentServiceServer()
 }
@@ -65,8 +65,8 @@ type DocumentServiceServer interface {
 type UnimplementedDocumentServiceServer struct {
 }
 
-func (UnimplementedDocumentServiceServer) ServeListRevokedDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ServeListRevokedDocument not implemented")
+func (UnimplementedDocumentServiceServer) ServeListDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ServeListDocument not implemented")
 }
 func (UnimplementedDocumentServiceServer) ServeRevokeDocument(context.Context, *RevokeDocumentRequest) (*DocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServeRevokeDocument not implemented")
@@ -84,20 +84,20 @@ func RegisterDocumentServiceServer(s grpc.ServiceRegistrar, srv DocumentServiceS
 	s.RegisterService(&DocumentService_ServiceDesc, srv)
 }
 
-func _DocumentService_ServeListRevokedDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DocumentService_ServeListDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DocumentParameterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DocumentServiceServer).ServeListRevokedDocument(ctx, in)
+		return srv.(DocumentServiceServer).ServeListDocument(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/documentservice.DocumentService/ServeListRevokedDocument",
+		FullMethod: "/documentservice.DocumentService/ServeListDocument",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DocumentServiceServer).ServeListRevokedDocument(ctx, req.(*DocumentParameterRequest))
+		return srv.(DocumentServiceServer).ServeListDocument(ctx, req.(*DocumentParameterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -128,8 +128,8 @@ var DocumentService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DocumentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ServeListRevokedDocument",
-			Handler:    _DocumentService_ServeListRevokedDocument_Handler,
+			MethodName: "ServeListDocument",
+			Handler:    _DocumentService_ServeListDocument_Handler,
 		},
 		{
 			MethodName: "ServeRevokeDocument",
