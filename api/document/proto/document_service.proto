@@ -28,6 +28,7 @@ message DocumentParameterRequest {
     string order_method = 4;
     string date_start = 5;
     string date_end = 6;
+    string status = 7;
 }
 
 /*
@@ -36,21 +37,58 @@ message DocumentParameterRequest {
 =================
 */
 
-message DocumentRevoke {
+message DocumentDetailResponse {
+    int32 id = 1;
+    string application_code = 2;
+    string title = 3;
+    string token = 4;
+    string unsigned_doc = 5;
+    string signed_doc = 6;
+    string sign_type = 7;
+    string category = 8;
+    string status = 9;
+    string doc_flow = 10;
+    string created_at = 11;
+    string updated_at = 12;
+}
+
+message DocumentResponse {
     string reff_number = 1;
-    string unsigned_doc = 2;
-    string status = 3;
-    string created_at = 4;
-    string updated_at = 5;
+    string title = 2;
+    string doc_category = 3;
+    DocumentDetailResponse documents = 4;
+    string status = 5;
 }
 
 message ListServiceDocumentResponse {
     int32 code = 1;
     string message = 2;
-    repeated DocumentRevoke data = 3;
+    repeated DocumentDetailResponse data = 3;
     DocumentMeta meta = 4;
 }
 
+/*
+=================
+    Request
+=================
+*/
+
+message RevokeDocumentRequest {
+    string reff_no = 1;
+    string doc_status = 2;
+}
+
+message DetailDocumentRequest {
+    string reff_no = 1;
+}
+
+/*
+=================
+    Service
+=================
+*/
+
 service DocumentService {
     rpc ServeListRevokedDocument (DocumentParameterRequest) returns (ListServiceDocumentResponse);
+    rpc ServeRevokeDocument (RevokeDocumentRequest) returns (DocumentResponse);
 }
