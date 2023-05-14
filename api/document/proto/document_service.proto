@@ -48,8 +48,11 @@ message DocumentDetailResponse {
     string category = 8;
     string status = 9;
     string doc_flow = 10;
-    string created_at = 11;
-    string updated_at = 12;
+    string reference_number = 11;
+    string doc_owner = 12;
+    string enterprise_token = 13;
+    string created_at = 14;
+    string updated_at = 15;
 }
 
 message DocumentResponse {
