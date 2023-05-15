@@ -26,6 +26,8 @@ type DocumentClient interface {
 	GetDocumentByReffNumber(ctx context.Context, in *GetDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error)
 	UpdateDocumentByReffNumber(ctx context.Context, in *UpdateDocumentRequest, opts ...grpc.CallOption) (*UpdateDocumentResponse, error)
 	DeleteDocumentByReffNumber(ctx context.Context, in *DeleteDocumentRequest, opts ...grpc.CallOption) (*DeleteDocumentResponse, error)
+	ListDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error)
+	RevokeDocument(ctx context.Context, in *RevokeDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error)
 }
 
 type documentClient struct {
@@ -97,6 +99,24 @@ func (c *documentClient) DeleteDocumentByReffNumber(ctx context.Context, in *Del
 	return out, nil
 }
 
+func (c *documentClient) ListDocument(ctx context.Context, in *DocumentParameterRequest, opts ...grpc.CallOption) (*ListServiceDocumentResponse, error) {
+	out := new(ListServiceDocumentResponse)
+	err := c.cc.Invoke(ctx, "/Document/ListDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *documentClient) RevokeDocument(ctx context.Context, in *RevokeDocumentRequest, opts ...grpc.CallOption) (*GetDocumentResponse, error) {
+	out := new(GetDocumentResponse)
+	err := c.cc.Invoke(ctx, "/Document/RevokeDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DocumentServer is the server API for Document service.
 // All implementations must embed UnimplementedDocumentServer
 // for forward compatibility
@@ -105,6 +125,8 @@ type DocumentServer interface {
 	GetDocumentByReffNumber(context.Context, *GetDocumentRequest) (*GetDocumentResponse, error)
 	UpdateDocumentByReffNumber(context.Context, *UpdateDocumentRequest) (*UpdateDocumentResponse, error)
 	DeleteDocumentByReffNumber(context.Context, *DeleteDocumentRequest) (*DeleteDocumentResponse, error)
+	ListDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error)
+	RevokeDocument(context.Context, *RevokeDocumentRequest) (*GetDocumentResponse, error)
 	mustEmbedUnimplementedDocumentServer()
 }
 
@@ -123,6 +145,12 @@ func (UnimplementedDocumentServer) UpdateDocumentByReffNumber(context.Context, *
 }
 func (UnimplementedDocumentServer) DeleteDocumentByReffNumber(context.Context, *DeleteDocumentRequest) (*DeleteDocumentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDocumentByReffNumber not implemented")
+}
+func (UnimplementedDocumentServer) ListDocument(context.Context, *DocumentParameterRequest) (*ListServiceDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDocument not implemented")
+}
+func (UnimplementedDocumentServer) RevokeDocument(context.Context, *RevokeDocumentRequest) (*GetDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevokeDocument not implemented")
 }
 func (UnimplementedDocumentServer) mustEmbedUnimplementedDocumentServer() {}
 
@@ -217,6 +245,42 @@ func _Document_DeleteDocumentByReffNumber_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Document_ListDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DocumentParameterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DocumentServer).ListDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Document/ListDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DocumentServer).ListDocument(ctx, req.(*DocumentParameterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Document_RevokeDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RevokeDocumentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DocumentServer).RevokeDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Document/RevokeDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DocumentServer).RevokeDocument(ctx, req.(*RevokeDocumentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Document_ServiceDesc is the grpc.ServiceDesc for Document service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -235,6 +299,14 @@ var Document_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDocumentByReffNumber",
 			Handler:    _Document_DeleteDocumentByReffNumber_Handler,
+		},
+		{
+			MethodName: "ListDocument",
+			Handler:    _Document_ListDocument_Handler,
+		},
+		{
+			MethodName: "RevokeDocument",
+			Handler:    _Document_RevokeDocument_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

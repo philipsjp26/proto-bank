@@ -2,34 +2,49 @@ syntax = "proto3";
 
 option go_package = ".";
 
-service Document {
-    rpc StoreDocument(stream UploadDocRequest) returns (UploadDocResponse);    
-    rpc GetDocumentByReffNumber(GetDocumentRequest) returns (GetDocumentResponse);
-    rpc UpdateDocumentByReffNumber(UpdateDocumentRequest) returns (UpdateDocumentResponse);
-    rpc DeleteDocumentByReffNumber(DeleteDocumentRequest) returns (DeleteDocumentResponse);
+/*
+=================
+    Metadata
+=================
+*/
+
+message DocumentMeta {
+    int32 page = 1;
+    int32 per_page = 2;
+    int32 total = 3;
 }
+
+/*
+=================
+Parameter Request
+=================
+*/
+
+message DocumentParameterRequest {
+    int32 page = 1;
+    int32 per_page = 2;
+    string order_by = 3;
+    string order_method = 4;
+    string date_start = 5;
+    string date_end = 6;
+    string status = 7;
+}
+
+/*
+=================
+    Response
+=================
+*/
 message Documents {
     optional string unsigned_doc = 1;
     optional string signed_doc = 2;
 }
 
-message UpdateDocumentRequest {
-    string reff_number = 1;
-    optional string title = 2;
-    optional string doc_category = 3;
-    optional string token = 4;
-    optional string status = 5;
-    optional bytes signed_document = 6;
-}
 message UpdateDocumentResponse {     
     string reff_number = 1;
     string title = 2;
     string doc_category = 3;
     optional int32 document_id = 4;
-}
-
-message GetDocumentRequest {
-    string reff_number = 1;
 }
 
 message GetDocumentResponse {    
@@ -38,16 +53,6 @@ message GetDocumentResponse {
     string doc_category = 3;
     Documents documents = 4;
     string status = 5;
-}
-
-message UploadDocRequest{
-    string application_code = 1;    
-    string filename = 2;
-    bytes doc_file = 3;
-    int32 sign_type = 4;
-    int32 doc_flow = 5;
-    string doc_category = 6;    
-    string title = 7;
 }
 
 message UploadDocResponse {        
@@ -60,10 +65,65 @@ message UploadDocResponse {
     optional int32 document_id = 7;
 }
 
+message DeleteDocumentResponse {    
+    bool result = 1;
+}
+
+message ListServiceDocumentResponse {
+    repeated GetDocumentResponse data = 3;
+    DocumentMeta meta = 4;
+}
+
+/*
+=================
+    Request
+=================
+*/
+
+message UpdateDocumentRequest {
+    string reff_number = 1;
+    optional string title = 2;
+    optional string doc_category = 3;
+    optional string token = 4;
+    optional string status = 5;
+    optional bytes signed_document = 6;
+}
+
+message GetDocumentRequest {
+    string reff_number = 1;
+}
+
+message UploadDocRequest{
+    string application_code = 1;    
+    string filename = 2;
+    bytes doc_file = 3;
+    int32 sign_type = 4;
+    int32 doc_flow = 5;
+    string doc_category = 6;    
+    string title = 7;
+}
+
 message DeleteDocumentRequest {
     string reff_number = 1;
 }
 
-message DeleteDocumentResponse {    
-    bool result = 1;
+message RevokeDocumentRequest {
+    string reff_no = 1;
+    string doc_status = 2;
+}
+
+/*
+=================
+    Service
+=================
+*/
+
+service Document {
+    rpc StoreDocument(stream UploadDocRequest) returns (UploadDocResponse);    
+    rpc GetDocumentByReffNumber(GetDocumentRequest) returns (GetDocumentResponse);
+    rpc UpdateDocumentByReffNumber(UpdateDocumentRequest) returns (UpdateDocumentResponse);
+    rpc DeleteDocumentByReffNumber(DeleteDocumentRequest) returns (DeleteDocumentResponse);
+
+    rpc ListDocument (DocumentParameterRequest) returns (ListServiceDocumentResponse);
+    rpc RevokeDocument (RevokeDocumentRequest) returns (GetDocumentResponse);
 }
