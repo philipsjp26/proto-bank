@@ -12,7 +12,7 @@ Request Messages
 ===================
 */
 message SendMessageRequest {
-  string chat_id = 1;
+  int64 chat_id = 1;
   string api_token = 2;
   string message = 3;
 }
