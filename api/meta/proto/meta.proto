@@ -3,7 +3,7 @@ syntax = "proto3";
 package meta;
 
 option go_package = ".";
-//option go_package = "./meta";
+
 /*
 =================
     Response
@@ -28,6 +28,10 @@ message Request {
     string end_date = 4;
 }
 
+message BaseResponseV2 {
+    int32 code = 1;
+    string message = 2;
+}
 
 message Empty {}
 
