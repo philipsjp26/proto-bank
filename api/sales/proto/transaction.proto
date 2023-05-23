@@ -65,6 +65,107 @@ enum BalanceTypeEnum {
 
 /*
 ===========================
+        Entities
+===========================
+*/
+message TransactionEntity {
+  string id = 1;
+  string channel_code = 2;
+  StatusEnum status = 3;
+  string transfer_from = 4;
+  string transfer_to = 5;
+  string created_by = 6;
+  TransactionTypeEnum transaction_type = 7;
+  string origin = 8;
+  string destination = 9;
+  SourceEnum source = 10;
+  string customer_id = 11;
+  string request_number = 12;
+  string payment_id = 13;
+  string invoice_number = 14;
+  string created_at = 15;
+  string updated_at = 16;
+  string deleted_at = 17;
+}
+
+message CustomerRequestEntity {
+  string request_number = 1;
+  string requested_at = 2;
+  string request_approved_at = 3;
+  string request_rejected_at = 4;
+  string request_reject_reason = 5;
+  string invoice_request_due_date = 6;
+  string invoice_requested_at = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string deleted_at = 10;
+}
+
+message CustomerEntity {
+  string id = 1;
+  string cc = 2;
+  string bcc = 3;
+  string send_invoice_to = 4;
+  string send_invoice_request_to = 5;
+  string requester_name = 6;
+  string company_name = 7;
+  string project_name = 8;
+  string pic = 9;
+  string bill_to_email = 10;
+  string phone_number_pic = 11;
+  string letter_address = 12;
+  string created_at = 13;
+  string updated_at = 14;
+  string deleted_at = 15;
+}
+
+message PaymentEntity {
+  string id = 1;
+  string payment_due_date = 2;
+  string payment_term = 3;
+  string payment_rejected_at = 4;
+  string payment_reject_reason = 5;
+  PaymentTypeEnum payment_type = 6;
+  string paid_at = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string deleted_at = 10;
+}
+
+message InvoiceEntity {
+  string invoice_number = 1;
+  string invoice_due_date = 2;
+  string invoice_shipment_date = 3;
+  string integration_type = 4;
+  string cut_off_date = 5;
+  string work_type = 6;
+  int32 ppn = 7;
+  string ppn_report = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  string deleted_at = 11;
+}
+
+message TransactionDetailEntity {
+  int32 id = 1;
+  int32 price = 2;
+  int32 quantity = 3;
+  int32 discount = 4;
+  int32 tax = 5;
+  int32 total_amount = 6;
+  int32 transaction_id = 7;
+  int32 balance_type_code = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  string deleted_at = 11;
+  string description = 12;
+  string start_period = 13;
+  string end_period = 14;
+}
+
+
+/*
+===========================
           Messages
 ===========================
 */
