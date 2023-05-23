@@ -154,7 +154,7 @@ message TransactionDetailEntity {
   int32 tax = 5;
   int32 total_amount = 6;
   string transaction_id = 7;
-  int32 balance_type_code = 8;
+  string balance_type_code = 8;
   string created_at = 9;
   string updated_at = 10;
   string deleted_at = 11;
@@ -197,62 +197,23 @@ message Transaction {
 }
 
 message TransactionDetail {
-  string id = 1;
-  StatusEnum status = 2;
-  string invoice_number = 3;
-  string request_number = 4;
-  string origin = 5;
-  SourceEnum source = 6;
-  string channel_name = 7;
-  string channel_code = 8;
-  PaymentTypeEnum payment_type = 9;
-  TransactionTypeEnum transaction_type = 10;
-  string transfer_from = 11;
-  string transfer_to = 12;
-  string invoice_requested_at = 13;
-  string request_approved_at = 14;
-  string invoice_request_due_date = 15;
-  string invoice_due_date = 16;
-  string cut_off_date = 17;
-  string payment_term = 18;
-  string send_invoice_request_to = 19;
-  string send_invoice_to = 20;
-  string cc = 21;
-  string bcc = 22;
-  string bill_to_email = 23;
-  string request_rejected_at = 24;
-  string request_reject_reason = 25;
-  string paid_at = 26;
-  TransactionDocument payment_proof = 27;
-  string payment_due_date = 28;
-  string payment_rejected_at = 29;
-  string payment_reject_reason = 30;
-  string company_name = 31;
-  string project_name = 32;
-  string requester_name = 33;
-  string customer_name = 34;
-  string pic = 35;
-  string phone_number_pic = 36;
-  string integration_type = 37;
-  string work_type = 38;
-  string letter_address = 39;
-  string invoice_shipment = 40;
-  repeated TransactionDocument documents = 41;
-  repeated TransactionDocument invoice_documents = 42;
-  repeated Item item_details = 43;
-  int32 total_payment = 44;
-  string ppn_report = 45;
-  int32 ppn = 46;
-  string signature = 47;
-  string created_at = 48;
+  TransactionEntity transaction = 1;
+  CustomerRequestEntity customer_request = 2;
+  CustomerEntity customer = 3;
+  PaymentEntity payment = 4;
+  InvoiceEntity invoice = 5;
+  repeated TransactionDetailEntity transaction_details = 6;
+  // TransactionDocument payment_proof = 7;
+  // repeated TransactionDocument documents = 8;
+  // repeated TransactionDocument invoice_documents = 9;
 }
 
-message TransactionDocument {
-  string id = 1;
-  string document_type = 3;
-  string document_id = 4;
-  string created_at = 5;
-}
+// message TransactionDocument {
+//   string id = 1;
+//   string document_type = 3;
+//   string document_id = 4;
+//   string created_at = 5;
+// }
 
 
 /*
@@ -363,7 +324,7 @@ message CreateInvoiceRequest {
   string payment_term = 4;
   repeated Item item_details = 5;
   int32 tax = 6;
-  repeated TransactionDocument supporting_docs = 7;
+  // repeated TransactionDocument supporting_docs = 7;
   string send_invoice_request_to = 8;
   string cc = 9;
   string bcc = 10;
