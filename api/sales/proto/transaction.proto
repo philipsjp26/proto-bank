@@ -135,7 +135,7 @@ message InvoiceEntity {
   string invoice_due_date = 2;
   string invoice_request_due_date = 3;
   string invoice_requested_at = 4;
-  string invoice_shipment_date = 5;
+  string invoice_shipment = 5;
   string integration_type = 6;
   string cut_off_date = 7;
   string work_type = 8;
