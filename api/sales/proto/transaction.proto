@@ -155,12 +155,12 @@ message TransactionDetailEntity {
   int32 total_amount = 6;
   string transaction_id = 7;
   string balance_type_code = 8;
-  string created_at = 9;
-  string updated_at = 10;
-  string deleted_at = 11;
-  string description = 12;
-  string start_period = 13;
-  string end_period = 14;
+  string description = 9;
+  string start_period = 10;
+  string end_period = 11;
+  string created_at = 12;
+  string updated_at = 13;
+  string deleted_at = 14;
 }
 
 
