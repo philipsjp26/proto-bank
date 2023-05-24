@@ -94,11 +94,9 @@ message CustomerRequestEntity {
   string request_approved_at = 3;
   string request_rejected_at = 4;
   string request_reject_reason = 5;
-  string invoice_request_due_date = 6;
-  string invoice_requested_at = 7;
-  string created_at = 8;
-  string updated_at = 9;
-  string deleted_at = 10;
+  string created_at = 6;
+  string updated_at = 7;
+  string deleted_at = 8;
 }
 
 message CustomerEntity {
@@ -135,15 +133,17 @@ message PaymentEntity {
 message InvoiceEntity {
   string invoice_number = 1;
   string invoice_due_date = 2;
-  string invoice_shipment_date = 3;
-  string integration_type = 4;
-  string cut_off_date = 5;
-  string work_type = 6;
-  int32 ppn = 7;
-  string ppn_report = 8;
-  string created_at = 9;
-  string updated_at = 10;
-  string deleted_at = 11;
+  string invoice_request_due_date = 3;
+  string invoice_requested_at = 4;
+  string invoice_shipment_date = 5;
+  string integration_type = 6;
+  string cut_off_date = 7;
+  string work_type = 8;
+  int32 ppn = 9;
+  string ppn_report = 10;
+  string created_at = 11;
+  string updated_at = 12;
+  string deleted_at = 13;
 }
 
 message TransactionDetailEntity {
