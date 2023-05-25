@@ -53,6 +53,9 @@ message GetDocumentResponse {
     string doc_category = 3;
     Documents documents = 4;
     string status = 5;
+    string created_at = 6;
+    string doc_flow = 7;
+    string doc_owner = 8;
 }
 
 message UploadDocResponse {        
