@@ -220,6 +220,61 @@ func (x *Request) GetEndDate() string {
 	return ""
 }
 
+type BaseResponseV2 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code    int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (x *BaseResponseV2) Reset() {
+	*x = BaseResponseV2{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_meta_proto_meta_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BaseResponseV2) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponseV2) ProtoMessage() {}
+
+func (x *BaseResponseV2) ProtoReflect() protoreflect.Message {
+	mi := &file_api_meta_proto_meta_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponseV2.ProtoReflect.Descriptor instead.
+func (*BaseResponseV2) Descriptor() ([]byte, []int) {
+	return file_api_meta_proto_meta_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *BaseResponseV2) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *BaseResponseV2) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 type Empty struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -229,7 +284,7 @@ type Empty struct {
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_meta_proto_meta_proto_msgTypes[3]
+		mi := &file_api_meta_proto_meta_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -242,7 +297,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_api_meta_proto_meta_proto_msgTypes[3]
+	mi := &file_api_meta_proto_meta_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -255,7 +310,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_api_meta_proto_meta_proto_rawDescGZIP(), []int{3}
+	return file_api_meta_proto_meta_proto_rawDescGZIP(), []int{4}
 }
 
 var File_api_meta_proto_meta_proto protoreflect.FileDescriptor
@@ -281,7 +336,11 @@ var file_api_meta_proto_meta_proto_rawDesc = []byte{
 	0x61, 0x72, 0x74, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
 	0x73, 0x74, 0x61, 0x72, 0x74, 0x44, 0x61, 0x74, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x65, 0x6e, 0x64,
 	0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x65, 0x6e, 0x64,
-	0x44, 0x61, 0x74, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x42, 0x03, 0x5a,
+	0x44, 0x61, 0x74, 0x65, 0x22, 0x3e, 0x0a, 0x0e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x56, 0x32, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x42, 0x03, 0x5a,
 	0x01, 0x2e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -297,12 +356,13 @@ func file_api_meta_proto_meta_proto_rawDescGZIP() []byte {
 	return file_api_meta_proto_meta_proto_rawDescData
 }
 
-var file_api_meta_proto_meta_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_meta_proto_meta_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_api_meta_proto_meta_proto_goTypes = []interface{}{
-	(*BaseResponse)(nil), // 0: meta.BaseResponse
-	(*Pagination)(nil),   // 1: meta.Pagination
-	(*Request)(nil),      // 2: meta.Request
-	(*Empty)(nil),        // 3: meta.Empty
+	(*BaseResponse)(nil),   // 0: meta.BaseResponse
+	(*Pagination)(nil),     // 1: meta.Pagination
+	(*Request)(nil),        // 2: meta.Request
+	(*BaseResponseV2)(nil), // 3: meta.BaseResponseV2
+	(*Empty)(nil),          // 4: meta.Empty
 }
 var file_api_meta_proto_meta_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -355,6 +415,18 @@ func file_api_meta_proto_meta_proto_init() {
 			}
 		}
 		file_api_meta_proto_meta_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BaseResponseV2); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_meta_proto_meta_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
@@ -373,7 +445,7 @@ func file_api_meta_proto_meta_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_api_meta_proto_meta_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
