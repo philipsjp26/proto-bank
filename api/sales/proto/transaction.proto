@@ -231,6 +231,7 @@ message GetAllTransactionRequest {
   StatusEnum status = 7;
   string channel_code = 8;
   string q = 9;
+  meta.Request meta = 10;
 }
 
 message GetAllTransactionResponse {
