@@ -14,7 +14,6 @@ Data
 message DeviceToken {
     string id = 1;
     string device_token = 2;
-    string privy_id = 3;
 }
 
 /*
@@ -24,24 +23,6 @@ Parameter Request
 */
 message CreateDeviceTokenRequest {
     string device_token = 1;
-    string privy_id = 2;
-}
-
-message FindDeviceTokensRequest {
-    string privy_id = 1;
-}
-
-message CreateDeviceTokenResponse {
-    int32 status = 1;
-    string message = 2;
-    DeviceToken data = 3;
-}
-
-message ListDeviceTokenResponse {
-    int32 status = 1;
-    string message = 2;
-    repeated DeviceToken data = 3;
-    meta.Pagination meta = 4;
 }
 
 service DeviceTokenService {

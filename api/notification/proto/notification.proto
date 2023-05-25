@@ -21,6 +21,12 @@ enum ActionTypeEnum {
 }
 
 message CaseActionType {
+    enum CaseTypeEnum{
+        BALANCE = 0;
+        APPROVAL = 1;
+        PLACEMENT = 2;
+    }
+
     enum BalanceEnum {
         waiting_for_invoice = 0;
         invoice_issued_and_waiting_for_payment = 1;
@@ -36,18 +42,17 @@ message CaseActionType {
         changes_rejected = 2;
     }
 
-    enum PlacementStatusEnum {
+    enum PlacementEnum {
         submitted = 0;
         completed = 1;
         revoked = 2;
         rejected = 3;
     }
 
-    oneof case_action {
-        BalanceEnum case_action1 = 1;
-        ApprovalEnum case_action2 = 2;
-        PlacementStatusEnum case_action3 = 3;
-    }
+    CaseTypeEnum case_type = 1;
+    optional BalanceEnum balance_case = 2;
+    optional ApprovalEnum approval_case = 3;
+    optional PlacementEnum placement_case = 4;
 }
 
 /*
@@ -60,15 +65,21 @@ message NotificationData {
     string content = 2;
     string link_type = 3;
     string link = 4;
+    string external_id = 5;
+    uint64 amount = 6;
 }
 
 message Notification {
     uint32 id = 1;
-    string status = 2;
-    string actor = 3;
-    NotificationData data = 4;
-    string created_at = 5;
-    string read_at = 6;
+    string title = 2;
+    string content = 3;
+    string link_type = 4;
+    string link = 5;
+    string external_id = 6;
+    uint64 amount = 7;
+    string created_at = 8;
+    bool is_read = 9;
+    string read_at = 10;
 }
 
 
@@ -78,21 +89,21 @@ Parameter Request
 =================
 */
 message GetNotificationsRequest {
-    string status = 1;
+    optional bool is_read = 1;
     uint32 page = 2;
     uint32 limit = 3;
 }
 
 message UpdateReadStatusNotificationRequest{
     uint32 id = 1;
-    string string = 2;
 }
 
 message SendNotificationRequest {
     ActionTypeEnum action_type = 1;
     CaseActionType case_action_type = 2;
-    string id_transaction = 3;
+    string external_id = 3;
     uint64 amount = 4;
+    string extra_data = 5;
 }
 
 /*
