@@ -166,208 +166,312 @@ message TransactionDetailEntity {
 
 /*
 ===========================
-          Messages
-===========================
-*/
-message Item {
-  BalanceTypeEnum balance_type = 1;
-  string start_period = 2;
-  string end_period = 3;
-  int32 quantity = 4;
-  int32 price = 5;
-  int32 discount = 6;
-  int32 total_price = 7;
-  string description = 8;
-}
-
-message Transaction {
-  string id = 1;
-  StatusEnum status = 2;
-  string invoice_number = 3;
-  string request_number = 4;
-  string channel_name = 5;
-  PaymentTypeEnum payment_type = 6;
-  TransactionTypeEnum transaction_type = 7;
-  string invoice_request_due_date = 8;
-  string invoice_due_date = 9;
-  string cut_off_date = 10;
-  string request_reject_reason = 11;
-  repeated Item item_details = 12;
-  string created_at = 13;
-}
-
-message TransactionDetail {
-  TransactionEntity transaction = 1;
-  CustomerRequestEntity customer_request = 2;
-  CustomerEntity customer = 3;
-  PaymentEntity payment = 4;
-  InvoiceEntity invoice = 5;
-  repeated TransactionDetailEntity transaction_details = 6;
-  // TransactionDocument payment_proof = 7;
-  // repeated TransactionDocument documents = 8;
-  // repeated TransactionDocument invoice_documents = 9;
-}
-
-// message TransactionDocument {
-//   string id = 1;
-//   string document_type = 3;
-//   string document_id = 4;
-//   string created_at = 5;
-// }
-
-
-/*
-===========================
-    Get All Transaction
+        Transactions
 ===========================
 */
 message GetAllTransactionRequest {
-  string start_date = 1;
-  string end_date = 2;
-  SourceEnum source = 3;
-  TransactionTypeEnum transaction_type = 4;
-  PaymentTypeEnum payment_type = 5;
-  BalanceTypeEnum balance_type = 6;
-  StatusEnum status = 7;
-  string channel_code = 8;
-  string q = 9;
+  TransactionEntity filter = 1;
+  meta.Request meta = 2;
 }
 
 message GetAllTransactionResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  repeated Transaction data = 3;
-  meta.Pagination meta = 4;
+  repeated TransactionEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
-
-/*
-===========================
-  Get Transaction Detail
-===========================
-*/
-message GetTransactionDetailRequest {
+message GetTransactionByIdRequest {
   string id = 1;
 }
 
-message GetTransactionDetailResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+message GetTransactionByIdResponse {
+  TransactionEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
-
-/*
-===========================
-    Create Transaction
-===========================
-*/
 message CreateTransactionRequest {
-  TransactionTypeEnum transaction_type = 1;
-  string channel_code = 2;
-  string transfer_from = 3;
-  string transfer_to = 4;
-  repeated Item item_details = 5;
-  string invoice_request_due_date = 6;
-  string payment_term = 7;
-  string send_invoice_to = 8;
-  string cc = 9;
-  string bcc = 10;
+  TransactionEntity data = 1;
 }
 
-// TODO: TBD create transaction response
 message CreateTransactionResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+  TransactionEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
+message UpdateTransactionRequest {
+  TransactionEntity data = 1;
+}
 
-/*
-===========================
-  Create Request Invoice
-===========================
-*/
-message CreateRequestInvoiceRequest {
+message UpdateTransactionResponse {
+  TransactionEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeleteTransactionRequest {
   string id = 1;
-  string requester_name = 2;
-  string requested_at = 3;
-  string channel_code = 4;
-  string company_name = 5;
-  string project_name = 6;
-  string pic = 7;
-  string bill_to_email = 8;
-  string phone_number_pic = 9;
-  string invoice_shipment = 10;
-  string integration_type = 11;
-  string letter_address = 12;
-  repeated Item item_details = 13;
 }
 
-// TODO: TBD create invoice request response
-message CreateRequestInvoiceResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+message DeleteTransactionResponse {
+  TransactionEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
 
 /*
 ===========================
-      Create Invoice
+      Customer Request
 ===========================
 */
+message GetAllCustomerRequestRequest {
+  CustomerRequestEntity filter = 1;
+  meta.Request meta = 2;
+}
+
+message GetAllCustomerRequestResponse {
+  repeated CustomerRequestEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message GetCustomerRequestByRequestNumberRequest {
+  string request_number = 1;
+}
+
+message GetCustomerRequestByRequestNumberResponse {
+  CustomerRequestEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message CreateCustomerRequestRequest {
+  CustomerRequestEntity data = 1;
+}
+
+message CreateCustomerRequestResponse {
+  CustomerRequestEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message UpdateCustomerRequestRequest {
+  CustomerRequestEntity data = 1;
+}
+
+message UpdateCustomerRequestResponse {
+  CustomerRequestEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeleteCustomerRequestRequest {
+  string request_number = 1;
+}
+
+message DeleteCustomerRequestResponse {
+  CustomerRequestEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+
+/*
+===========================
+          Customer
+===========================
+*/
+message GetAllCustomerRequest {
+  CustomerEntity filter = 1;
+  meta.Request meta = 2;
+}
+
+message GetAllCustomerResponse {
+  repeated CustomerEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message GetCustomerByIdRequest {
+  string id = 1;
+}
+
+message GetCustomerByIdResponse {
+  CustomerEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message CreateCustomerRequest {
+  CustomerEntity data = 1;
+}
+
+message CreateCustomerResponse {
+  CustomerEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message UpdateCustomerRequest {
+  CustomerEntity data = 1;
+}
+
+message UpdateCustomerResponse {
+  CustomerEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeleteCustomerRequest {
+  string id = 1;
+}
+
+message DeleteCustomerResponse {
+  CustomerEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+
+/*
+===========================
+          Payment
+===========================
+*/
+message GetAllPaymentRequest {
+  PaymentEntity filter = 1;
+  meta.Request meta = 2;
+}
+
+message GetAllPaymentResponse {
+  repeated PaymentEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message GetPaymentByIdRequest {
+  string id = 1;
+}
+
+message GetPaymentByIdResponse {
+  PaymentEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message CreatePaymentRequest {
+  PaymentEntity data = 1;
+}
+
+message CreatePaymentResponse {
+  PaymentEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message UpdatePaymentRequest {
+  PaymentEntity data = 1;
+}
+
+message UpdatePaymentResponse {
+  PaymentEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeletePaymentRequest {
+  string id = 1;
+}
+
+message DeletePaymentResponse {
+  PaymentEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+
+/*
+===========================
+          Invoice
+===========================
+*/
+message GetAllInvoiceRequest {
+  InvoiceEntity filter = 1;
+  meta.Request meta = 2;
+}
+
+message GetAllInvoiceResponse {
+  repeated InvoiceEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message GetInvoiceByInvoiceNumberRequest {
+  string invoice_number = 1;
+}
+
+message GetInvoiceByInvoiceNumberResponse {
+  InvoiceEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
 message CreateInvoiceRequest {
-  string id = 1;
-  string channel_code = 2;
-  string payment_due_date = 3;
-  string payment_term = 4;
-  repeated Item item_details = 5;
-  int32 tax = 6;
-  // repeated TransactionDocument supporting_docs = 7;
-  string send_invoice_request_to = 8;
-  string cc = 9;
-  string bcc = 10;
+  InvoiceEntity data = 1;
 }
 
-// TODO: TBD create invoice response
 message CreateInvoiceResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+  InvoiceEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
+message UpdateInvoiceRequest {
+  InvoiceEntity data = 1;
+}
+
+message UpdateInvoiceResponse {
+  InvoiceEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeleteInvoiceRequest {
+  string id = 1;
+}
+
+message DeleteInvoiceResponse {
+  InvoiceEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
 
 /*
 ===========================
-    Approve Transaction
+    Transaction Detail
 ===========================
 */
-message ApproveTransactionRequest {
+message GetAllTransactionDetailRequest {
+  TransactionDetailEntity filter = 1;
+  meta.Request meta = 2;
+}
+
+message GetAllTransactionDetailResponse {
+  repeated TransactionDetailEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message GetTransactionDetailByIdRequest {
   string id = 1;
-  string invoice_request_due_date = 2;
 }
 
-message ApproveTransactionResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+message GetTransactionDetailByIdResponse {
+  TransactionDetailEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
-/*
-===========================
-    Reject Transaction
-===========================
-*/
-message RejectTransactionRequest {
+message CreateTransactionDetailRequest {
+  TransactionDetailEntity data = 1;
+}
+
+message CreateTransactionDetailResponse {
+  TransactionDetailEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message UpdateTransactionDetailRequest {
+  TransactionDetailEntity data = 1;
+}
+
+message UpdateTransactionDetailResponse {
+  TransactionDetailEntity data = 1;
+  meta.BaseResponse meta = 2;
+}
+
+message DeleteTransactionDetailRequest {
   string id = 1;
-  string request_reject_reason = 2;
 }
 
-message RejectTransactionResponse {
-  meta.BaseResponse response = 1;
-  string message = 2;
-  TransactionDetail data = 3;
+message DeleteTransactionDetailResponse {
+  TransactionDetailEntity data = 1;
+  meta.BaseResponse meta = 2;
 }
 
 
@@ -377,11 +481,39 @@ message RejectTransactionResponse {
 ===========================
 */
 service TransactionService {
-  rpc GetAllTransaction(GetAllTransactionRequest) returns (GetAllTransactionResponse) {}
-  rpc GetTransactionDetail(GetTransactionDetailRequest) returns (GetTransactionDetailResponse) {}
-  rpc CreateTransaction(CreateTransactionRequest) returns (CreateTransactionResponse) {}
-  rpc CreateRequestInvoice(CreateRequestInvoiceRequest) returns (CreateRequestInvoiceResponse) {}
-  rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse) {}
-  rpc ApproveTransaction(ApproveTransactionRequest) returns (ApproveTransactionResponse) {}
-  rpc RejectTransaction(RejectTransactionRequest) returns (RejectTransactionResponse) {}
+  rpc GetAllTransaction(GetAllTransactionRequest) returns (GetAllTransactionResponse);
+  rpc GetTransactionById(GetTransactionByIdRequest) returns (GetTransactionByIdResponse);
+  rpc CreateTransaction(CreateTransactionRequest) returns (CreateTransactionResponse);
+  rpc UpdateTransaction(UpdateTransactionRequest) returns (UpdateTransactionResponse);
+  rpc DeleteTransaction(DeleteTransactionRequest) returns (DeleteTransactionResponse);
+
+  rpc GetAllCustomerReq(GetAllCustomerRequestRequest) returns (GetAllCustomerRequestResponse);
+  rpc GetCustomerReqByRequestNumber(GetCustomerRequestByRequestNumberRequest) returns (GetCustomerRequestByRequestNumberResponse);
+  rpc CreateCustomerReq(CreateCustomerRequestRequest) returns (CreateCustomerRequestResponse);
+  rpc UpdateCustomerReq(UpdateCustomerRequestRequest) returns (UpdateCustomerRequestResponse);
+  rpc DeleteCustomerReq(DeleteCustomerRequestRequest) returns (DeleteCustomerRequestResponse);
+
+  rpc GetAllCustomer(GetAllCustomerRequest) returns (GetAllCustomerResponse);
+  rpc GetCustomerById(GetCustomerByIdRequest) returns (GetCustomerByIdResponse);
+  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse);
+  rpc DeleteCustomer(DeleteCustomerRequest) returns (DeleteCustomerResponse);
+
+  rpc GetAllPayment(GetAllPaymentRequest) returns (GetAllPaymentResponse);
+  rpc GetPaymentById(GetPaymentByIdRequest) returns (GetPaymentByIdResponse);
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+  rpc UpdatePayment(UpdatePaymentRequest) returns (UpdatePaymentResponse);
+  rpc DeletePayment(DeletePaymentRequest) returns (DeletePaymentResponse);
+
+  rpc GetAllInvoice(GetAllInvoiceRequest) returns (GetAllInvoiceResponse);
+  rpc GetInvoiceByInvoiceNumber(GetInvoiceByInvoiceNumberRequest) returns (GetInvoiceByInvoiceNumberResponse);
+  rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse);
+  rpc UpdateInvoice(UpdateInvoiceRequest) returns (UpdateInvoiceResponse);
+  rpc DeleteInvoice(DeleteInvoiceRequest) returns (DeleteInvoiceResponse);
+
+  rpc GetAllTransactionDetail(GetAllTransactionDetailRequest) returns (GetAllTransactionDetailResponse);
+  rpc GetTransactionDetailById(GetTransactionDetailByIdRequest) returns (GetTransactionDetailByIdResponse);
+  rpc CreateTransactionDetail(CreateTransactionDetailRequest) returns (CreateTransactionDetailResponse);
+  rpc UpdateTransactionDetail(UpdateTransactionDetailRequest) returns (UpdateTransactionDetailResponse);
+  rpc DeleteTransactionDetail(DeleteTransactionDetailRequest) returns (DeleteTransactionDetailResponse);
 }
