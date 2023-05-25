@@ -169,48 +169,21 @@ message TransactionDetailEntity {
         Transactions
 ===========================
 */
-message GetAllTransactionRequest {
+message TransactionsRequest {
   TransactionEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllTransactionResponse {
+message TransactionRequest {
+  string id = 1;
+}
+
+message TransactionsResponse {
   repeated TransactionEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetTransactionByIdRequest {
-  string id = 1;
-}
-
-message GetTransactionByIdResponse {
-  TransactionEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message CreateTransactionRequest {
-  TransactionEntity data = 1;
-}
-
-message CreateTransactionResponse {
-  TransactionEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdateTransactionRequest {
-  TransactionEntity data = 1;
-}
-
-message UpdateTransactionResponse {
-  TransactionEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeleteTransactionRequest {
-  string id = 1;
-}
-
-message DeleteTransactionResponse {
+message TransactionResponse {
   TransactionEntity data = 1;
   meta.BaseResponse meta = 2;
 }
@@ -221,48 +194,21 @@ message DeleteTransactionResponse {
       Customer Request
 ===========================
 */
-message GetAllCustomerRequestRequest {
+message CustomerRequestsRequest {
   CustomerRequestEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllCustomerRequestResponse {
+message CustomerRequestRequest {
+  string request_number = 1;
+}
+
+message CustomerRequestsResponse {
   repeated CustomerRequestEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetCustomerRequestByRequestNumberRequest {
-  string request_number = 1;
-}
-
-message GetCustomerRequestByRequestNumberResponse {
-  CustomerRequestEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message CreateCustomerRequestRequest {
-  CustomerRequestEntity data = 1;
-}
-
-message CreateCustomerRequestResponse {
-  CustomerRequestEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdateCustomerRequestRequest {
-  CustomerRequestEntity data = 1;
-}
-
-message UpdateCustomerRequestResponse {
-  CustomerRequestEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeleteCustomerRequestRequest {
-  string request_number = 1;
-}
-
-message DeleteCustomerRequestResponse {
+message CustomerRequestResponse {
   CustomerRequestEntity data = 1;
   meta.BaseResponse meta = 2;
 }
@@ -273,48 +219,21 @@ message DeleteCustomerRequestResponse {
           Customer
 ===========================
 */
-message GetAllCustomerRequest {
+message CustomersRequest {
   CustomerEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllCustomerResponse {
+message CustomerRequest {
+  string id = 1;
+}
+
+message CustomersResponse {
   repeated CustomerEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetCustomerByIdRequest {
-  string id = 1;
-}
-
-message GetCustomerByIdResponse {
-  CustomerEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message CreateCustomerRequest {
-  CustomerEntity data = 1;
-}
-
-message CreateCustomerResponse {
-  CustomerEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdateCustomerRequest {
-  CustomerEntity data = 1;
-}
-
-message UpdateCustomerResponse {
-  CustomerEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeleteCustomerRequest {
-  string id = 1;
-}
-
-message DeleteCustomerResponse {
+message CustomerResponse {
   CustomerEntity data = 1;
   meta.BaseResponse meta = 2;
 }
@@ -325,48 +244,21 @@ message DeleteCustomerResponse {
           Payment
 ===========================
 */
-message GetAllPaymentRequest {
+message PaymentsRequest {
   PaymentEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllPaymentResponse {
+message PaymentRequest {
+  string id = 1;
+}
+
+message PaymentsResponse {
   repeated PaymentEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetPaymentByIdRequest {
-  string id = 1;
-}
-
-message GetPaymentByIdResponse {
-  PaymentEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message CreatePaymentRequest {
-  PaymentEntity data = 1;
-}
-
-message CreatePaymentResponse {
-  PaymentEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdatePaymentRequest {
-  PaymentEntity data = 1;
-}
-
-message UpdatePaymentResponse {
-  PaymentEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeletePaymentRequest {
-  string id = 1;
-}
-
-message DeletePaymentResponse {
+message PaymentResponse {
   PaymentEntity data = 1;
   meta.BaseResponse meta = 2;
 }
@@ -377,99 +269,46 @@ message DeletePaymentResponse {
           Invoice
 ===========================
 */
-message GetAllInvoiceRequest {
+message InvoicesRequest {
   InvoiceEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllInvoiceResponse {
+message InvoiceRequest {
+  string invoice_number = 1;
+}
+
+message InvoicesResponse {
   repeated InvoiceEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetInvoiceByInvoiceNumberRequest {
-  string invoice_number = 1;
-}
-
-message GetInvoiceByInvoiceNumberResponse {
+message InvoiceResponse {
   InvoiceEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message CreateInvoiceRequest {
-  InvoiceEntity data = 1;
-}
-
-message CreateInvoiceResponse {
-  InvoiceEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdateInvoiceRequest {
-  InvoiceEntity data = 1;
-}
-
-message UpdateInvoiceResponse {
-  InvoiceEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeleteInvoiceRequest {
-  string id = 1;
-}
-
-message DeleteInvoiceResponse {
-  InvoiceEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
 
 /*
 ===========================
     Transaction Detail
 ===========================
 */
-message GetAllTransactionDetailRequest {
+message TransactionDetailsRequest {
   TransactionDetailEntity filter = 1;
   meta.Request meta = 2;
 }
 
-message GetAllTransactionDetailResponse {
+message TransactionDetailRequest {
+  string id = 1;
+}
+
+message TransactionDetailsResponse {
   repeated TransactionDetailEntity data = 1;
   meta.BaseResponse meta = 2;
 }
 
-message GetTransactionDetailByIdRequest {
-  string id = 1;
-}
-
-message GetTransactionDetailByIdResponse {
-  TransactionDetailEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message CreateTransactionDetailRequest {
-  TransactionDetailEntity data = 1;
-}
-
-message CreateTransactionDetailResponse {
-  TransactionDetailEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message UpdateTransactionDetailRequest {
-  TransactionDetailEntity data = 1;
-}
-
-message UpdateTransactionDetailResponse {
-  TransactionDetailEntity data = 1;
-  meta.BaseResponse meta = 2;
-}
-
-message DeleteTransactionDetailRequest {
-  string id = 1;
-}
-
-message DeleteTransactionDetailResponse {
+message TransactionDetailResponse {
   TransactionDetailEntity data = 1;
   meta.BaseResponse meta = 2;
 }
@@ -481,39 +320,39 @@ message DeleteTransactionDetailResponse {
 ===========================
 */
 service TransactionService {
-  rpc GetAllTransaction(GetAllTransactionRequest) returns (GetAllTransactionResponse);
-  rpc GetTransactionById(GetTransactionByIdRequest) returns (GetTransactionByIdResponse);
-  rpc CreateTransaction(CreateTransactionRequest) returns (CreateTransactionResponse);
-  rpc UpdateTransaction(UpdateTransactionRequest) returns (UpdateTransactionResponse);
-  rpc DeleteTransaction(DeleteTransactionRequest) returns (DeleteTransactionResponse);
+  rpc GetAllTransaction(TransactionsRequest) returns (TransactionsResponse);
+  rpc GetTransactionById(TransactionRequest) returns (TransactionResponse);
+  rpc CreateTransaction(TransactionEntity) returns (TransactionResponse);
+  rpc UpdateTransaction(TransactionEntity) returns (TransactionResponse);
+  rpc DeleteTransaction(TransactionRequest) returns (TransactionResponse);
 
-  rpc GetAllCustomerReq(GetAllCustomerRequestRequest) returns (GetAllCustomerRequestResponse);
-  rpc GetCustomerReqByRequestNumber(GetCustomerRequestByRequestNumberRequest) returns (GetCustomerRequestByRequestNumberResponse);
-  rpc CreateCustomerReq(CreateCustomerRequestRequest) returns (CreateCustomerRequestResponse);
-  rpc UpdateCustomerReq(UpdateCustomerRequestRequest) returns (UpdateCustomerRequestResponse);
-  rpc DeleteCustomerReq(DeleteCustomerRequestRequest) returns (DeleteCustomerRequestResponse);
+  rpc GetAllCustomerRequest(CustomerRequestsRequest) returns (CustomerRequestsResponse);
+  rpc GetCustomerRequestByRequestNumber(CustomerRequestRequest) returns (CustomerRequestResponse);
+  rpc CreateCustomerRequest(CustomerRequestEntity) returns (CustomerRequestResponse);
+  rpc UpdateCustomerRequest(CustomerRequestEntity) returns (CustomerRequestResponse);
+  rpc DeleteCustomerRequest(CustomerRequestRequest) returns (CustomerRequestResponse);
 
-  rpc GetAllCustomer(GetAllCustomerRequest) returns (GetAllCustomerResponse);
-  rpc GetCustomerById(GetCustomerByIdRequest) returns (GetCustomerByIdResponse);
-  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
-  rpc UpdateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse);
-  rpc DeleteCustomer(DeleteCustomerRequest) returns (DeleteCustomerResponse);
+  rpc GetAllCustomer(CustomersRequest) returns (CustomersResponse);
+  rpc GetCustomerById(CustomerRequest) returns (CustomerResponse);
+  rpc CreateCustomer(CustomerEntity) returns (CustomerResponse);
+  rpc UpdateCustomer(CustomerEntity) returns (CustomerResponse);
+  rpc DeleteCustomer(CustomerRequest) returns (CustomerResponse);
 
-  rpc GetAllPayment(GetAllPaymentRequest) returns (GetAllPaymentResponse);
-  rpc GetPaymentById(GetPaymentByIdRequest) returns (GetPaymentByIdResponse);
-  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
-  rpc UpdatePayment(UpdatePaymentRequest) returns (UpdatePaymentResponse);
-  rpc DeletePayment(DeletePaymentRequest) returns (DeletePaymentResponse);
+  rpc GetAllPayment(PaymentsRequest) returns (PaymentsResponse);
+  rpc GetPaymentById(PaymentRequest) returns (PaymentResponse);
+  rpc CreatePayment(PaymentEntity) returns (PaymentResponse);
+  rpc UpdatePayment(PaymentEntity) returns (PaymentResponse);
+  rpc DeletePayment(PaymentRequest) returns (PaymentResponse);
 
-  rpc GetAllInvoice(GetAllInvoiceRequest) returns (GetAllInvoiceResponse);
-  rpc GetInvoiceByInvoiceNumber(GetInvoiceByInvoiceNumberRequest) returns (GetInvoiceByInvoiceNumberResponse);
-  rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse);
-  rpc UpdateInvoice(UpdateInvoiceRequest) returns (UpdateInvoiceResponse);
-  rpc DeleteInvoice(DeleteInvoiceRequest) returns (DeleteInvoiceResponse);
+  rpc GetAllInvoice(InvoicesRequest) returns (InvoicesResponse);
+  rpc GetInvoiceByInvoiceNumber(InvoiceRequest) returns (InvoiceResponse);
+  rpc CreateInvoice(InvoiceEntity) returns (InvoiceResponse);
+  rpc UpdateInvoice(InvoiceEntity) returns (InvoiceResponse);
+  rpc DeleteInvoice(InvoiceRequest) returns (InvoiceResponse);
 
-  rpc GetAllTransactionDetail(GetAllTransactionDetailRequest) returns (GetAllTransactionDetailResponse);
-  rpc GetTransactionDetailById(GetTransactionDetailByIdRequest) returns (GetTransactionDetailByIdResponse);
-  rpc CreateTransactionDetail(CreateTransactionDetailRequest) returns (CreateTransactionDetailResponse);
-  rpc UpdateTransactionDetail(UpdateTransactionDetailRequest) returns (UpdateTransactionDetailResponse);
-  rpc DeleteTransactionDetail(DeleteTransactionDetailRequest) returns (DeleteTransactionDetailResponse);
+  rpc GetAllTransactionDetail(TransactionDetailsRequest) returns (TransactionDetailsResponse);
+  rpc GetTransactionDetailById(TransactionDetailRequest) returns (TransactionDetailResponse);
+  rpc CreateTransactionDetail(TransactionDetailEntity) returns (TransactionDetailResponse);
+  rpc UpdateTransactionDetail(TransactionDetailEntity) returns (TransactionDetailResponse);
+  rpc DeleteTransactionDetail(TransactionDetailRequest) returns (TransactionDetailResponse);
 }

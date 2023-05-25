@@ -22,36 +22,36 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransactionServiceClient interface {
-	GetAllTransaction(ctx context.Context, in *GetAllTransactionRequest, opts ...grpc.CallOption) (*GetAllTransactionResponse, error)
-	GetTransactionById(ctx context.Context, in *GetTransactionByIdRequest, opts ...grpc.CallOption) (*GetTransactionByIdResponse, error)
-	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
-	UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error)
-	DeleteTransaction(ctx context.Context, in *DeleteTransactionRequest, opts ...grpc.CallOption) (*DeleteTransactionResponse, error)
-	GetAllCustomerReq(ctx context.Context, in *GetAllCustomerRequestRequest, opts ...grpc.CallOption) (*GetAllCustomerRequestResponse, error)
-	GetCustomerReqByRequestNumber(ctx context.Context, in *GetCustomerRequestByRequestNumberRequest, opts ...grpc.CallOption) (*GetCustomerRequestByRequestNumberResponse, error)
-	CreateCustomerReq(ctx context.Context, in *CreateCustomerRequestRequest, opts ...grpc.CallOption) (*CreateCustomerRequestResponse, error)
-	UpdateCustomerReq(ctx context.Context, in *UpdateCustomerRequestRequest, opts ...grpc.CallOption) (*UpdateCustomerRequestResponse, error)
-	DeleteCustomerReq(ctx context.Context, in *DeleteCustomerRequestRequest, opts ...grpc.CallOption) (*DeleteCustomerRequestResponse, error)
-	GetAllCustomer(ctx context.Context, in *GetAllCustomerRequest, opts ...grpc.CallOption) (*GetAllCustomerResponse, error)
-	GetCustomerById(ctx context.Context, in *GetCustomerByIdRequest, opts ...grpc.CallOption) (*GetCustomerByIdResponse, error)
-	CreateCustomer(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error)
-	UpdateCustomer(ctx context.Context, in *UpdateCustomerRequest, opts ...grpc.CallOption) (*UpdateCustomerResponse, error)
-	DeleteCustomer(ctx context.Context, in *DeleteCustomerRequest, opts ...grpc.CallOption) (*DeleteCustomerResponse, error)
-	GetAllPayment(ctx context.Context, in *GetAllPaymentRequest, opts ...grpc.CallOption) (*GetAllPaymentResponse, error)
-	GetPaymentById(ctx context.Context, in *GetPaymentByIdRequest, opts ...grpc.CallOption) (*GetPaymentByIdResponse, error)
-	CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error)
-	UpdatePayment(ctx context.Context, in *UpdatePaymentRequest, opts ...grpc.CallOption) (*UpdatePaymentResponse, error)
-	DeletePayment(ctx context.Context, in *DeletePaymentRequest, opts ...grpc.CallOption) (*DeletePaymentResponse, error)
-	GetAllInvoice(ctx context.Context, in *GetAllInvoiceRequest, opts ...grpc.CallOption) (*GetAllInvoiceResponse, error)
-	GetInvoiceByInvoiceNumber(ctx context.Context, in *GetInvoiceByInvoiceNumberRequest, opts ...grpc.CallOption) (*GetInvoiceByInvoiceNumberResponse, error)
-	CreateInvoice(ctx context.Context, in *CreateInvoiceRequest, opts ...grpc.CallOption) (*CreateInvoiceResponse, error)
-	UpdateInvoice(ctx context.Context, in *UpdateInvoiceRequest, opts ...grpc.CallOption) (*UpdateInvoiceResponse, error)
-	DeleteInvoice(ctx context.Context, in *DeleteInvoiceRequest, opts ...grpc.CallOption) (*DeleteInvoiceResponse, error)
-	GetAllTransactionDetail(ctx context.Context, in *GetAllTransactionDetailRequest, opts ...grpc.CallOption) (*GetAllTransactionDetailResponse, error)
-	GetTransactionDetailById(ctx context.Context, in *GetTransactionDetailByIdRequest, opts ...grpc.CallOption) (*GetTransactionDetailByIdResponse, error)
-	CreateTransactionDetail(ctx context.Context, in *CreateTransactionDetailRequest, opts ...grpc.CallOption) (*CreateTransactionDetailResponse, error)
-	UpdateTransactionDetail(ctx context.Context, in *UpdateTransactionDetailRequest, opts ...grpc.CallOption) (*UpdateTransactionDetailResponse, error)
-	DeleteTransactionDetail(ctx context.Context, in *DeleteTransactionDetailRequest, opts ...grpc.CallOption) (*DeleteTransactionDetailResponse, error)
+	GetAllTransaction(ctx context.Context, in *TransactionsRequest, opts ...grpc.CallOption) (*TransactionsResponse, error)
+	GetTransactionById(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
+	CreateTransaction(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error)
+	UpdateTransaction(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error)
+	DeleteTransaction(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
+	GetAllCustomerRequest(ctx context.Context, in *CustomerRequestsRequest, opts ...grpc.CallOption) (*CustomerRequestsResponse, error)
+	GetCustomerRequestByRequestNumber(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	CreateCustomerRequest(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	UpdateCustomerRequest(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	DeleteCustomerRequest(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	GetAllCustomer(ctx context.Context, in *CustomersRequest, opts ...grpc.CallOption) (*CustomersResponse, error)
+	GetCustomerById(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error)
+	CreateCustomer(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error)
+	UpdateCustomer(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error)
+	DeleteCustomer(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error)
+	GetAllPayment(ctx context.Context, in *PaymentsRequest, opts ...grpc.CallOption) (*PaymentsResponse, error)
+	GetPaymentById(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error)
+	CreatePayment(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error)
+	UpdatePayment(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error)
+	DeletePayment(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error)
+	GetAllInvoice(ctx context.Context, in *InvoicesRequest, opts ...grpc.CallOption) (*InvoicesResponse, error)
+	GetInvoiceByInvoiceNumber(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	CreateInvoice(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	UpdateInvoice(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	DeleteInvoice(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	GetAllTransactionDetail(ctx context.Context, in *TransactionDetailsRequest, opts ...grpc.CallOption) (*TransactionDetailsResponse, error)
+	GetTransactionDetailById(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	CreateTransactionDetail(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	UpdateTransactionDetail(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	DeleteTransactionDetail(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
 }
 
 type transactionServiceClient struct {
@@ -62,8 +62,8 @@ func NewTransactionServiceClient(cc grpc.ClientConnInterface) TransactionService
 	return &transactionServiceClient{cc}
 }
 
-func (c *transactionServiceClient) GetAllTransaction(ctx context.Context, in *GetAllTransactionRequest, opts ...grpc.CallOption) (*GetAllTransactionResponse, error) {
-	out := new(GetAllTransactionResponse)
+func (c *transactionServiceClient) GetAllTransaction(ctx context.Context, in *TransactionsRequest, opts ...grpc.CallOption) (*TransactionsResponse, error) {
+	out := new(TransactionsResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +71,8 @@ func (c *transactionServiceClient) GetAllTransaction(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetTransactionById(ctx context.Context, in *GetTransactionByIdRequest, opts ...grpc.CallOption) (*GetTransactionByIdResponse, error) {
-	out := new(GetTransactionByIdResponse)
+func (c *transactionServiceClient) GetTransactionById(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetTransactionById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (c *transactionServiceClient) GetTransactionById(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error) {
-	out := new(CreateTransactionResponse)
+func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,8 @@ func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *Cr
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error) {
-	out := new(UpdateTransactionResponse)
+func (c *transactionServiceClient) UpdateTransaction(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -98,8 +98,8 @@ func (c *transactionServiceClient) UpdateTransaction(ctx context.Context, in *Up
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *DeleteTransactionRequest, opts ...grpc.CallOption) (*DeleteTransactionResponse, error) {
-	out := new(DeleteTransactionResponse)
+func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -107,53 +107,53 @@ func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *De
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetAllCustomerReq(ctx context.Context, in *GetAllCustomerRequestRequest, opts ...grpc.CallOption) (*GetAllCustomerRequestResponse, error) {
-	out := new(GetAllCustomerRequestResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllCustomerReq", in, out, opts...)
+func (c *transactionServiceClient) GetAllCustomerRequest(ctx context.Context, in *CustomerRequestsRequest, opts ...grpc.CallOption) (*CustomerRequestsResponse, error) {
+	out := new(CustomerRequestsResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllCustomerRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetCustomerReqByRequestNumber(ctx context.Context, in *GetCustomerRequestByRequestNumberRequest, opts ...grpc.CallOption) (*GetCustomerRequestByRequestNumberResponse, error) {
-	out := new(GetCustomerRequestByRequestNumberResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetCustomerReqByRequestNumber", in, out, opts...)
+func (c *transactionServiceClient) GetCustomerRequestByRequestNumber(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetCustomerRequestByRequestNumber", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateCustomerReq(ctx context.Context, in *CreateCustomerRequestRequest, opts ...grpc.CallOption) (*CreateCustomerRequestResponse, error) {
-	out := new(CreateCustomerRequestResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateCustomerReq", in, out, opts...)
+func (c *transactionServiceClient) CreateCustomerRequest(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateCustomerRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdateCustomerReq(ctx context.Context, in *UpdateCustomerRequestRequest, opts ...grpc.CallOption) (*UpdateCustomerRequestResponse, error) {
-	out := new(UpdateCustomerRequestResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateCustomerReq", in, out, opts...)
+func (c *transactionServiceClient) UpdateCustomerRequest(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateCustomerRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteCustomerReq(ctx context.Context, in *DeleteCustomerRequestRequest, opts ...grpc.CallOption) (*DeleteCustomerRequestResponse, error) {
-	out := new(DeleteCustomerRequestResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteCustomerReq", in, out, opts...)
+func (c *transactionServiceClient) DeleteCustomerRequest(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteCustomerRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetAllCustomer(ctx context.Context, in *GetAllCustomerRequest, opts ...grpc.CallOption) (*GetAllCustomerResponse, error) {
-	out := new(GetAllCustomerResponse)
+func (c *transactionServiceClient) GetAllCustomer(ctx context.Context, in *CustomersRequest, opts ...grpc.CallOption) (*CustomersResponse, error) {
+	out := new(CustomersResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllCustomer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -161,8 +161,8 @@ func (c *transactionServiceClient) GetAllCustomer(ctx context.Context, in *GetAl
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetCustomerById(ctx context.Context, in *GetCustomerByIdRequest, opts ...grpc.CallOption) (*GetCustomerByIdResponse, error) {
-	out := new(GetCustomerByIdResponse)
+func (c *transactionServiceClient) GetCustomerById(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetCustomerById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -170,8 +170,8 @@ func (c *transactionServiceClient) GetCustomerById(ctx context.Context, in *GetC
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateCustomer(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error) {
-	out := new(CreateCustomerResponse)
+func (c *transactionServiceClient) CreateCustomer(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateCustomer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -179,8 +179,8 @@ func (c *transactionServiceClient) CreateCustomer(ctx context.Context, in *Creat
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdateCustomer(ctx context.Context, in *UpdateCustomerRequest, opts ...grpc.CallOption) (*UpdateCustomerResponse, error) {
-	out := new(UpdateCustomerResponse)
+func (c *transactionServiceClient) UpdateCustomer(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateCustomer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -188,8 +188,8 @@ func (c *transactionServiceClient) UpdateCustomer(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteCustomer(ctx context.Context, in *DeleteCustomerRequest, opts ...grpc.CallOption) (*DeleteCustomerResponse, error) {
-	out := new(DeleteCustomerResponse)
+func (c *transactionServiceClient) DeleteCustomer(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteCustomer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -197,8 +197,8 @@ func (c *transactionServiceClient) DeleteCustomer(ctx context.Context, in *Delet
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetAllPayment(ctx context.Context, in *GetAllPaymentRequest, opts ...grpc.CallOption) (*GetAllPaymentResponse, error) {
-	out := new(GetAllPaymentResponse)
+func (c *transactionServiceClient) GetAllPayment(ctx context.Context, in *PaymentsRequest, opts ...grpc.CallOption) (*PaymentsResponse, error) {
+	out := new(PaymentsResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllPayment", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -206,8 +206,8 @@ func (c *transactionServiceClient) GetAllPayment(ctx context.Context, in *GetAll
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetPaymentById(ctx context.Context, in *GetPaymentByIdRequest, opts ...grpc.CallOption) (*GetPaymentByIdResponse, error) {
-	out := new(GetPaymentByIdResponse)
+func (c *transactionServiceClient) GetPaymentById(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetPaymentById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -215,8 +215,8 @@ func (c *transactionServiceClient) GetPaymentById(ctx context.Context, in *GetPa
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
-	out := new(CreatePaymentResponse)
+func (c *transactionServiceClient) CreatePayment(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreatePayment", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -224,8 +224,8 @@ func (c *transactionServiceClient) CreatePayment(ctx context.Context, in *Create
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdatePayment(ctx context.Context, in *UpdatePaymentRequest, opts ...grpc.CallOption) (*UpdatePaymentResponse, error) {
-	out := new(UpdatePaymentResponse)
+func (c *transactionServiceClient) UpdatePayment(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdatePayment", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -233,8 +233,8 @@ func (c *transactionServiceClient) UpdatePayment(ctx context.Context, in *Update
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeletePayment(ctx context.Context, in *DeletePaymentRequest, opts ...grpc.CallOption) (*DeletePaymentResponse, error) {
-	out := new(DeletePaymentResponse)
+func (c *transactionServiceClient) DeletePayment(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeletePayment", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -242,8 +242,8 @@ func (c *transactionServiceClient) DeletePayment(ctx context.Context, in *Delete
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetAllInvoice(ctx context.Context, in *GetAllInvoiceRequest, opts ...grpc.CallOption) (*GetAllInvoiceResponse, error) {
-	out := new(GetAllInvoiceResponse)
+func (c *transactionServiceClient) GetAllInvoice(ctx context.Context, in *InvoicesRequest, opts ...grpc.CallOption) (*InvoicesResponse, error) {
+	out := new(InvoicesResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllInvoice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -251,8 +251,8 @@ func (c *transactionServiceClient) GetAllInvoice(ctx context.Context, in *GetAll
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetInvoiceByInvoiceNumber(ctx context.Context, in *GetInvoiceByInvoiceNumberRequest, opts ...grpc.CallOption) (*GetInvoiceByInvoiceNumberResponse, error) {
-	out := new(GetInvoiceByInvoiceNumberResponse)
+func (c *transactionServiceClient) GetInvoiceByInvoiceNumber(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetInvoiceByInvoiceNumber", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -260,8 +260,8 @@ func (c *transactionServiceClient) GetInvoiceByInvoiceNumber(ctx context.Context
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateInvoice(ctx context.Context, in *CreateInvoiceRequest, opts ...grpc.CallOption) (*CreateInvoiceResponse, error) {
-	out := new(CreateInvoiceResponse)
+func (c *transactionServiceClient) CreateInvoice(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateInvoice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -269,8 +269,8 @@ func (c *transactionServiceClient) CreateInvoice(ctx context.Context, in *Create
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdateInvoice(ctx context.Context, in *UpdateInvoiceRequest, opts ...grpc.CallOption) (*UpdateInvoiceResponse, error) {
-	out := new(UpdateInvoiceResponse)
+func (c *transactionServiceClient) UpdateInvoice(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateInvoice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -278,8 +278,8 @@ func (c *transactionServiceClient) UpdateInvoice(ctx context.Context, in *Update
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteInvoice(ctx context.Context, in *DeleteInvoiceRequest, opts ...grpc.CallOption) (*DeleteInvoiceResponse, error) {
-	out := new(DeleteInvoiceResponse)
+func (c *transactionServiceClient) DeleteInvoice(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteInvoice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -287,8 +287,8 @@ func (c *transactionServiceClient) DeleteInvoice(ctx context.Context, in *Delete
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetAllTransactionDetail(ctx context.Context, in *GetAllTransactionDetailRequest, opts ...grpc.CallOption) (*GetAllTransactionDetailResponse, error) {
-	out := new(GetAllTransactionDetailResponse)
+func (c *transactionServiceClient) GetAllTransactionDetail(ctx context.Context, in *TransactionDetailsRequest, opts ...grpc.CallOption) (*TransactionDetailsResponse, error) {
+	out := new(TransactionDetailsResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllTransactionDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -296,8 +296,8 @@ func (c *transactionServiceClient) GetAllTransactionDetail(ctx context.Context, 
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetTransactionDetailById(ctx context.Context, in *GetTransactionDetailByIdRequest, opts ...grpc.CallOption) (*GetTransactionDetailByIdResponse, error) {
-	out := new(GetTransactionDetailByIdResponse)
+func (c *transactionServiceClient) GetTransactionDetailById(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetTransactionDetailById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -305,8 +305,8 @@ func (c *transactionServiceClient) GetTransactionDetailById(ctx context.Context,
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateTransactionDetail(ctx context.Context, in *CreateTransactionDetailRequest, opts ...grpc.CallOption) (*CreateTransactionDetailResponse, error) {
-	out := new(CreateTransactionDetailResponse)
+func (c *transactionServiceClient) CreateTransactionDetail(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateTransactionDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -314,8 +314,8 @@ func (c *transactionServiceClient) CreateTransactionDetail(ctx context.Context, 
 	return out, nil
 }
 
-func (c *transactionServiceClient) UpdateTransactionDetail(ctx context.Context, in *UpdateTransactionDetailRequest, opts ...grpc.CallOption) (*UpdateTransactionDetailResponse, error) {
-	out := new(UpdateTransactionDetailResponse)
+func (c *transactionServiceClient) UpdateTransactionDetail(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/UpdateTransactionDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -323,8 +323,8 @@ func (c *transactionServiceClient) UpdateTransactionDetail(ctx context.Context, 
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteTransactionDetail(ctx context.Context, in *DeleteTransactionDetailRequest, opts ...grpc.CallOption) (*DeleteTransactionDetailResponse, error) {
-	out := new(DeleteTransactionDetailResponse)
+func (c *transactionServiceClient) DeleteTransactionDetail(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
 	err := c.cc.Invoke(ctx, "/invoice.TransactionService/DeleteTransactionDetail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -336,36 +336,36 @@ func (c *transactionServiceClient) DeleteTransactionDetail(ctx context.Context, 
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility
 type TransactionServiceServer interface {
-	GetAllTransaction(context.Context, *GetAllTransactionRequest) (*GetAllTransactionResponse, error)
-	GetTransactionById(context.Context, *GetTransactionByIdRequest) (*GetTransactionByIdResponse, error)
-	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
-	UpdateTransaction(context.Context, *UpdateTransactionRequest) (*UpdateTransactionResponse, error)
-	DeleteTransaction(context.Context, *DeleteTransactionRequest) (*DeleteTransactionResponse, error)
-	GetAllCustomerReq(context.Context, *GetAllCustomerRequestRequest) (*GetAllCustomerRequestResponse, error)
-	GetCustomerReqByRequestNumber(context.Context, *GetCustomerRequestByRequestNumberRequest) (*GetCustomerRequestByRequestNumberResponse, error)
-	CreateCustomerReq(context.Context, *CreateCustomerRequestRequest) (*CreateCustomerRequestResponse, error)
-	UpdateCustomerReq(context.Context, *UpdateCustomerRequestRequest) (*UpdateCustomerRequestResponse, error)
-	DeleteCustomerReq(context.Context, *DeleteCustomerRequestRequest) (*DeleteCustomerRequestResponse, error)
-	GetAllCustomer(context.Context, *GetAllCustomerRequest) (*GetAllCustomerResponse, error)
-	GetCustomerById(context.Context, *GetCustomerByIdRequest) (*GetCustomerByIdResponse, error)
-	CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error)
-	UpdateCustomer(context.Context, *UpdateCustomerRequest) (*UpdateCustomerResponse, error)
-	DeleteCustomer(context.Context, *DeleteCustomerRequest) (*DeleteCustomerResponse, error)
-	GetAllPayment(context.Context, *GetAllPaymentRequest) (*GetAllPaymentResponse, error)
-	GetPaymentById(context.Context, *GetPaymentByIdRequest) (*GetPaymentByIdResponse, error)
-	CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error)
-	UpdatePayment(context.Context, *UpdatePaymentRequest) (*UpdatePaymentResponse, error)
-	DeletePayment(context.Context, *DeletePaymentRequest) (*DeletePaymentResponse, error)
-	GetAllInvoice(context.Context, *GetAllInvoiceRequest) (*GetAllInvoiceResponse, error)
-	GetInvoiceByInvoiceNumber(context.Context, *GetInvoiceByInvoiceNumberRequest) (*GetInvoiceByInvoiceNumberResponse, error)
-	CreateInvoice(context.Context, *CreateInvoiceRequest) (*CreateInvoiceResponse, error)
-	UpdateInvoice(context.Context, *UpdateInvoiceRequest) (*UpdateInvoiceResponse, error)
-	DeleteInvoice(context.Context, *DeleteInvoiceRequest) (*DeleteInvoiceResponse, error)
-	GetAllTransactionDetail(context.Context, *GetAllTransactionDetailRequest) (*GetAllTransactionDetailResponse, error)
-	GetTransactionDetailById(context.Context, *GetTransactionDetailByIdRequest) (*GetTransactionDetailByIdResponse, error)
-	CreateTransactionDetail(context.Context, *CreateTransactionDetailRequest) (*CreateTransactionDetailResponse, error)
-	UpdateTransactionDetail(context.Context, *UpdateTransactionDetailRequest) (*UpdateTransactionDetailResponse, error)
-	DeleteTransactionDetail(context.Context, *DeleteTransactionDetailRequest) (*DeleteTransactionDetailResponse, error)
+	GetAllTransaction(context.Context, *TransactionsRequest) (*TransactionsResponse, error)
+	GetTransactionById(context.Context, *TransactionRequest) (*TransactionResponse, error)
+	CreateTransaction(context.Context, *TransactionEntity) (*TransactionResponse, error)
+	UpdateTransaction(context.Context, *TransactionEntity) (*TransactionResponse, error)
+	DeleteTransaction(context.Context, *TransactionRequest) (*TransactionResponse, error)
+	GetAllCustomerRequest(context.Context, *CustomerRequestsRequest) (*CustomerRequestsResponse, error)
+	GetCustomerRequestByRequestNumber(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error)
+	CreateCustomerRequest(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error)
+	UpdateCustomerRequest(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error)
+	DeleteCustomerRequest(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error)
+	GetAllCustomer(context.Context, *CustomersRequest) (*CustomersResponse, error)
+	GetCustomerById(context.Context, *CustomerRequest) (*CustomerResponse, error)
+	CreateCustomer(context.Context, *CustomerEntity) (*CustomerResponse, error)
+	UpdateCustomer(context.Context, *CustomerEntity) (*CustomerResponse, error)
+	DeleteCustomer(context.Context, *CustomerRequest) (*CustomerResponse, error)
+	GetAllPayment(context.Context, *PaymentsRequest) (*PaymentsResponse, error)
+	GetPaymentById(context.Context, *PaymentRequest) (*PaymentResponse, error)
+	CreatePayment(context.Context, *PaymentEntity) (*PaymentResponse, error)
+	UpdatePayment(context.Context, *PaymentEntity) (*PaymentResponse, error)
+	DeletePayment(context.Context, *PaymentRequest) (*PaymentResponse, error)
+	GetAllInvoice(context.Context, *InvoicesRequest) (*InvoicesResponse, error)
+	GetInvoiceByInvoiceNumber(context.Context, *InvoiceRequest) (*InvoiceResponse, error)
+	CreateInvoice(context.Context, *InvoiceEntity) (*InvoiceResponse, error)
+	UpdateInvoice(context.Context, *InvoiceEntity) (*InvoiceResponse, error)
+	DeleteInvoice(context.Context, *InvoiceRequest) (*InvoiceResponse, error)
+	GetAllTransactionDetail(context.Context, *TransactionDetailsRequest) (*TransactionDetailsResponse, error)
+	GetTransactionDetailById(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error)
+	CreateTransactionDetail(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error)
+	UpdateTransactionDetail(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error)
+	DeleteTransactionDetail(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -373,94 +373,94 @@ type TransactionServiceServer interface {
 type UnimplementedTransactionServiceServer struct {
 }
 
-func (UnimplementedTransactionServiceServer) GetAllTransaction(context.Context, *GetAllTransactionRequest) (*GetAllTransactionResponse, error) {
+func (UnimplementedTransactionServiceServer) GetAllTransaction(context.Context, *TransactionsRequest) (*TransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetTransactionById(context.Context, *GetTransactionByIdRequest) (*GetTransactionByIdResponse, error) {
+func (UnimplementedTransactionServiceServer) GetTransactionById(context.Context, *TransactionRequest) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionById not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
+func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *TransactionEntity) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdateTransaction(context.Context, *UpdateTransactionRequest) (*UpdateTransactionResponse, error) {
+func (UnimplementedTransactionServiceServer) UpdateTransaction(context.Context, *TransactionEntity) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *DeleteTransactionRequest) (*DeleteTransactionResponse, error) {
+func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *TransactionRequest) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetAllCustomerReq(context.Context, *GetAllCustomerRequestRequest) (*GetAllCustomerRequestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllCustomerReq not implemented")
+func (UnimplementedTransactionServiceServer) GetAllCustomerRequest(context.Context, *CustomerRequestsRequest) (*CustomerRequestsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllCustomerRequest not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetCustomerReqByRequestNumber(context.Context, *GetCustomerRequestByRequestNumberRequest) (*GetCustomerRequestByRequestNumberResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerReqByRequestNumber not implemented")
+func (UnimplementedTransactionServiceServer) GetCustomerRequestByRequestNumber(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerRequestByRequestNumber not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateCustomerReq(context.Context, *CreateCustomerRequestRequest) (*CreateCustomerRequestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomerReq not implemented")
+func (UnimplementedTransactionServiceServer) CreateCustomerRequest(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomerRequest not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdateCustomerReq(context.Context, *UpdateCustomerRequestRequest) (*UpdateCustomerRequestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCustomerReq not implemented")
+func (UnimplementedTransactionServiceServer) UpdateCustomerRequest(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCustomerRequest not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteCustomerReq(context.Context, *DeleteCustomerRequestRequest) (*DeleteCustomerRequestResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCustomerReq not implemented")
+func (UnimplementedTransactionServiceServer) DeleteCustomerRequest(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCustomerRequest not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetAllCustomer(context.Context, *GetAllCustomerRequest) (*GetAllCustomerResponse, error) {
+func (UnimplementedTransactionServiceServer) GetAllCustomer(context.Context, *CustomersRequest) (*CustomersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllCustomer not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetCustomerById(context.Context, *GetCustomerByIdRequest) (*GetCustomerByIdResponse, error) {
+func (UnimplementedTransactionServiceServer) GetCustomerById(context.Context, *CustomerRequest) (*CustomerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerById not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error) {
+func (UnimplementedTransactionServiceServer) CreateCustomer(context.Context, *CustomerEntity) (*CustomerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomer not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdateCustomer(context.Context, *UpdateCustomerRequest) (*UpdateCustomerResponse, error) {
+func (UnimplementedTransactionServiceServer) UpdateCustomer(context.Context, *CustomerEntity) (*CustomerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCustomer not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteCustomer(context.Context, *DeleteCustomerRequest) (*DeleteCustomerResponse, error) {
+func (UnimplementedTransactionServiceServer) DeleteCustomer(context.Context, *CustomerRequest) (*CustomerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCustomer not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetAllPayment(context.Context, *GetAllPaymentRequest) (*GetAllPaymentResponse, error) {
+func (UnimplementedTransactionServiceServer) GetAllPayment(context.Context, *PaymentsRequest) (*PaymentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllPayment not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetPaymentById(context.Context, *GetPaymentByIdRequest) (*GetPaymentByIdResponse, error) {
+func (UnimplementedTransactionServiceServer) GetPaymentById(context.Context, *PaymentRequest) (*PaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentById not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
+func (UnimplementedTransactionServiceServer) CreatePayment(context.Context, *PaymentEntity) (*PaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePayment not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdatePayment(context.Context, *UpdatePaymentRequest) (*UpdatePaymentResponse, error) {
+func (UnimplementedTransactionServiceServer) UpdatePayment(context.Context, *PaymentEntity) (*PaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePayment not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeletePayment(context.Context, *DeletePaymentRequest) (*DeletePaymentResponse, error) {
+func (UnimplementedTransactionServiceServer) DeletePayment(context.Context, *PaymentRequest) (*PaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePayment not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetAllInvoice(context.Context, *GetAllInvoiceRequest) (*GetAllInvoiceResponse, error) {
+func (UnimplementedTransactionServiceServer) GetAllInvoice(context.Context, *InvoicesRequest) (*InvoicesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllInvoice not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetInvoiceByInvoiceNumber(context.Context, *GetInvoiceByInvoiceNumberRequest) (*GetInvoiceByInvoiceNumberResponse, error) {
+func (UnimplementedTransactionServiceServer) GetInvoiceByInvoiceNumber(context.Context, *InvoiceRequest) (*InvoiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInvoiceByInvoiceNumber not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateInvoice(context.Context, *CreateInvoiceRequest) (*CreateInvoiceResponse, error) {
+func (UnimplementedTransactionServiceServer) CreateInvoice(context.Context, *InvoiceEntity) (*InvoiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateInvoice not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdateInvoice(context.Context, *UpdateInvoiceRequest) (*UpdateInvoiceResponse, error) {
+func (UnimplementedTransactionServiceServer) UpdateInvoice(context.Context, *InvoiceEntity) (*InvoiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateInvoice not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteInvoice(context.Context, *DeleteInvoiceRequest) (*DeleteInvoiceResponse, error) {
+func (UnimplementedTransactionServiceServer) DeleteInvoice(context.Context, *InvoiceRequest) (*InvoiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteInvoice not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetAllTransactionDetail(context.Context, *GetAllTransactionDetailRequest) (*GetAllTransactionDetailResponse, error) {
+func (UnimplementedTransactionServiceServer) GetAllTransactionDetail(context.Context, *TransactionDetailsRequest) (*TransactionDetailsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllTransactionDetail not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetTransactionDetailById(context.Context, *GetTransactionDetailByIdRequest) (*GetTransactionDetailByIdResponse, error) {
+func (UnimplementedTransactionServiceServer) GetTransactionDetailById(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionDetailById not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateTransactionDetail(context.Context, *CreateTransactionDetailRequest) (*CreateTransactionDetailResponse, error) {
+func (UnimplementedTransactionServiceServer) CreateTransactionDetail(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransactionDetail not implemented")
 }
-func (UnimplementedTransactionServiceServer) UpdateTransactionDetail(context.Context, *UpdateTransactionDetailRequest) (*UpdateTransactionDetailResponse, error) {
+func (UnimplementedTransactionServiceServer) UpdateTransactionDetail(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransactionDetail not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteTransactionDetail(context.Context, *DeleteTransactionDetailRequest) (*DeleteTransactionDetailResponse, error) {
+func (UnimplementedTransactionServiceServer) DeleteTransactionDetail(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransactionDetail not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
@@ -477,7 +477,7 @@ func RegisterTransactionServiceServer(s grpc.ServiceRegistrar, srv TransactionSe
 }
 
 func _TransactionService_GetAllTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllTransactionRequest)
+	in := new(TransactionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -489,13 +489,13 @@ func _TransactionService_GetAllTransaction_Handler(srv interface{}, ctx context.
 		FullMethod: "/invoice.TransactionService/GetAllTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllTransaction(ctx, req.(*GetAllTransactionRequest))
+		return srv.(TransactionServiceServer).GetAllTransaction(ctx, req.(*TransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetTransactionById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTransactionByIdRequest)
+	in := new(TransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -507,13 +507,13 @@ func _TransactionService_GetTransactionById_Handler(srv interface{}, ctx context
 		FullMethod: "/invoice.TransactionService/GetTransactionById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionById(ctx, req.(*GetTransactionByIdRequest))
+		return srv.(TransactionServiceServer).GetTransactionById(ctx, req.(*TransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTransactionRequest)
+	in := new(TransactionEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -525,13 +525,13 @@ func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.
 		FullMethod: "/invoice.TransactionService/CreateTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateTransaction(ctx, req.(*CreateTransactionRequest))
+		return srv.(TransactionServiceServer).CreateTransaction(ctx, req.(*TransactionEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_UpdateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTransactionRequest)
+	in := new(TransactionEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -543,13 +543,13 @@ func _TransactionService_UpdateTransaction_Handler(srv interface{}, ctx context.
 		FullMethod: "/invoice.TransactionService/UpdateTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdateTransaction(ctx, req.(*UpdateTransactionRequest))
+		return srv.(TransactionServiceServer).UpdateTransaction(ctx, req.(*TransactionEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_DeleteTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteTransactionRequest)
+	in := new(TransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -561,103 +561,103 @@ func _TransactionService_DeleteTransaction_Handler(srv interface{}, ctx context.
 		FullMethod: "/invoice.TransactionService/DeleteTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeleteTransaction(ctx, req.(*DeleteTransactionRequest))
+		return srv.(TransactionServiceServer).DeleteTransaction(ctx, req.(*TransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_GetAllCustomerReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllCustomerRequestRequest)
+func _TransactionService_GetAllCustomerRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetAllCustomerReq(ctx, in)
+		return srv.(TransactionServiceServer).GetAllCustomerRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/GetAllCustomerReq",
+		FullMethod: "/invoice.TransactionService/GetAllCustomerRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllCustomerReq(ctx, req.(*GetAllCustomerRequestRequest))
+		return srv.(TransactionServiceServer).GetAllCustomerRequest(ctx, req.(*CustomerRequestsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_GetCustomerReqByRequestNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCustomerRequestByRequestNumberRequest)
+func _TransactionService_GetCustomerRequestByRequestNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetCustomerReqByRequestNumber(ctx, in)
+		return srv.(TransactionServiceServer).GetCustomerRequestByRequestNumber(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/GetCustomerReqByRequestNumber",
+		FullMethod: "/invoice.TransactionService/GetCustomerRequestByRequestNumber",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetCustomerReqByRequestNumber(ctx, req.(*GetCustomerRequestByRequestNumberRequest))
+		return srv.(TransactionServiceServer).GetCustomerRequestByRequestNumber(ctx, req.(*CustomerRequestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_CreateCustomerReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCustomerRequestRequest)
+func _TransactionService_CreateCustomerRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).CreateCustomerReq(ctx, in)
+		return srv.(TransactionServiceServer).CreateCustomerRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/CreateCustomerReq",
+		FullMethod: "/invoice.TransactionService/CreateCustomerRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateCustomerReq(ctx, req.(*CreateCustomerRequestRequest))
+		return srv.(TransactionServiceServer).CreateCustomerRequest(ctx, req.(*CustomerRequestEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_UpdateCustomerReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCustomerRequestRequest)
+func _TransactionService_UpdateCustomerRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).UpdateCustomerReq(ctx, in)
+		return srv.(TransactionServiceServer).UpdateCustomerRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/UpdateCustomerReq",
+		FullMethod: "/invoice.TransactionService/UpdateCustomerRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdateCustomerReq(ctx, req.(*UpdateCustomerRequestRequest))
+		return srv.(TransactionServiceServer).UpdateCustomerRequest(ctx, req.(*CustomerRequestEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_DeleteCustomerReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCustomerRequestRequest)
+func _TransactionService_DeleteCustomerRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).DeleteCustomerReq(ctx, in)
+		return srv.(TransactionServiceServer).DeleteCustomerRequest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/DeleteCustomerReq",
+		FullMethod: "/invoice.TransactionService/DeleteCustomerRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeleteCustomerReq(ctx, req.(*DeleteCustomerRequestRequest))
+		return srv.(TransactionServiceServer).DeleteCustomerRequest(ctx, req.(*CustomerRequestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetAllCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllCustomerRequest)
+	in := new(CustomersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -669,13 +669,13 @@ func _TransactionService_GetAllCustomer_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/invoice.TransactionService/GetAllCustomer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllCustomer(ctx, req.(*GetAllCustomerRequest))
+		return srv.(TransactionServiceServer).GetAllCustomer(ctx, req.(*CustomersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetCustomerById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCustomerByIdRequest)
+	in := new(CustomerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -687,13 +687,13 @@ func _TransactionService_GetCustomerById_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/invoice.TransactionService/GetCustomerById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetCustomerById(ctx, req.(*GetCustomerByIdRequest))
+		return srv.(TransactionServiceServer).GetCustomerById(ctx, req.(*CustomerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_CreateCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCustomerRequest)
+	in := new(CustomerEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -705,13 +705,13 @@ func _TransactionService_CreateCustomer_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/invoice.TransactionService/CreateCustomer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateCustomer(ctx, req.(*CreateCustomerRequest))
+		return srv.(TransactionServiceServer).CreateCustomer(ctx, req.(*CustomerEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_UpdateCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCustomerRequest)
+	in := new(CustomerEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -723,13 +723,13 @@ func _TransactionService_UpdateCustomer_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/invoice.TransactionService/UpdateCustomer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdateCustomer(ctx, req.(*UpdateCustomerRequest))
+		return srv.(TransactionServiceServer).UpdateCustomer(ctx, req.(*CustomerEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_DeleteCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCustomerRequest)
+	in := new(CustomerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -741,13 +741,13 @@ func _TransactionService_DeleteCustomer_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/invoice.TransactionService/DeleteCustomer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeleteCustomer(ctx, req.(*DeleteCustomerRequest))
+		return srv.(TransactionServiceServer).DeleteCustomer(ctx, req.(*CustomerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetAllPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllPaymentRequest)
+	in := new(PaymentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -759,13 +759,13 @@ func _TransactionService_GetAllPayment_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/GetAllPayment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllPayment(ctx, req.(*GetAllPaymentRequest))
+		return srv.(TransactionServiceServer).GetAllPayment(ctx, req.(*PaymentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetPaymentById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPaymentByIdRequest)
+	in := new(PaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -777,13 +777,13 @@ func _TransactionService_GetPaymentById_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/invoice.TransactionService/GetPaymentById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetPaymentById(ctx, req.(*GetPaymentByIdRequest))
+		return srv.(TransactionServiceServer).GetPaymentById(ctx, req.(*PaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePaymentRequest)
+	in := new(PaymentEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -795,13 +795,13 @@ func _TransactionService_CreatePayment_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/CreatePayment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
+		return srv.(TransactionServiceServer).CreatePayment(ctx, req.(*PaymentEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_UpdatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePaymentRequest)
+	in := new(PaymentEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -813,13 +813,13 @@ func _TransactionService_UpdatePayment_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/UpdatePayment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdatePayment(ctx, req.(*UpdatePaymentRequest))
+		return srv.(TransactionServiceServer).UpdatePayment(ctx, req.(*PaymentEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_DeletePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePaymentRequest)
+	in := new(PaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -831,13 +831,13 @@ func _TransactionService_DeletePayment_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/DeletePayment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeletePayment(ctx, req.(*DeletePaymentRequest))
+		return srv.(TransactionServiceServer).DeletePayment(ctx, req.(*PaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetAllInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllInvoiceRequest)
+	in := new(InvoicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -849,13 +849,13 @@ func _TransactionService_GetAllInvoice_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/GetAllInvoice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllInvoice(ctx, req.(*GetAllInvoiceRequest))
+		return srv.(TransactionServiceServer).GetAllInvoice(ctx, req.(*InvoicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetInvoiceByInvoiceNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetInvoiceByInvoiceNumberRequest)
+	in := new(InvoiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -867,13 +867,13 @@ func _TransactionService_GetInvoiceByInvoiceNumber_Handler(srv interface{}, ctx 
 		FullMethod: "/invoice.TransactionService/GetInvoiceByInvoiceNumber",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetInvoiceByInvoiceNumber(ctx, req.(*GetInvoiceByInvoiceNumberRequest))
+		return srv.(TransactionServiceServer).GetInvoiceByInvoiceNumber(ctx, req.(*InvoiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_CreateInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateInvoiceRequest)
+	in := new(InvoiceEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -885,13 +885,13 @@ func _TransactionService_CreateInvoice_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/CreateInvoice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateInvoice(ctx, req.(*CreateInvoiceRequest))
+		return srv.(TransactionServiceServer).CreateInvoice(ctx, req.(*InvoiceEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_UpdateInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateInvoiceRequest)
+	in := new(InvoiceEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -903,13 +903,13 @@ func _TransactionService_UpdateInvoice_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/UpdateInvoice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdateInvoice(ctx, req.(*UpdateInvoiceRequest))
+		return srv.(TransactionServiceServer).UpdateInvoice(ctx, req.(*InvoiceEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_DeleteInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteInvoiceRequest)
+	in := new(InvoiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -921,13 +921,13 @@ func _TransactionService_DeleteInvoice_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/invoice.TransactionService/DeleteInvoice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeleteInvoice(ctx, req.(*DeleteInvoiceRequest))
+		return srv.(TransactionServiceServer).DeleteInvoice(ctx, req.(*InvoiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetAllTransactionDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllTransactionDetailRequest)
+	in := new(TransactionDetailsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -939,13 +939,13 @@ func _TransactionService_GetAllTransactionDetail_Handler(srv interface{}, ctx co
 		FullMethod: "/invoice.TransactionService/GetAllTransactionDetail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllTransactionDetail(ctx, req.(*GetAllTransactionDetailRequest))
+		return srv.(TransactionServiceServer).GetAllTransactionDetail(ctx, req.(*TransactionDetailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_GetTransactionDetailById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTransactionDetailByIdRequest)
+	in := new(TransactionDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -957,13 +957,13 @@ func _TransactionService_GetTransactionDetailById_Handler(srv interface{}, ctx c
 		FullMethod: "/invoice.TransactionService/GetTransactionDetailById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionDetailById(ctx, req.(*GetTransactionDetailByIdRequest))
+		return srv.(TransactionServiceServer).GetTransactionDetailById(ctx, req.(*TransactionDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_CreateTransactionDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTransactionDetailRequest)
+	in := new(TransactionDetailEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -975,13 +975,13 @@ func _TransactionService_CreateTransactionDetail_Handler(srv interface{}, ctx co
 		FullMethod: "/invoice.TransactionService/CreateTransactionDetail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateTransactionDetail(ctx, req.(*CreateTransactionDetailRequest))
+		return srv.(TransactionServiceServer).CreateTransactionDetail(ctx, req.(*TransactionDetailEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_UpdateTransactionDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTransactionDetailRequest)
+	in := new(TransactionDetailEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -993,13 +993,13 @@ func _TransactionService_UpdateTransactionDetail_Handler(srv interface{}, ctx co
 		FullMethod: "/invoice.TransactionService/UpdateTransactionDetail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).UpdateTransactionDetail(ctx, req.(*UpdateTransactionDetailRequest))
+		return srv.(TransactionServiceServer).UpdateTransactionDetail(ctx, req.(*TransactionDetailEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TransactionService_DeleteTransactionDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteTransactionDetailRequest)
+	in := new(TransactionDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1011,7 +1011,7 @@ func _TransactionService_DeleteTransactionDetail_Handler(srv interface{}, ctx co
 		FullMethod: "/invoice.TransactionService/DeleteTransactionDetail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).DeleteTransactionDetail(ctx, req.(*DeleteTransactionDetailRequest))
+		return srv.(TransactionServiceServer).DeleteTransactionDetail(ctx, req.(*TransactionDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1044,24 +1044,24 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TransactionService_DeleteTransaction_Handler,
 		},
 		{
-			MethodName: "GetAllCustomerReq",
-			Handler:    _TransactionService_GetAllCustomerReq_Handler,
+			MethodName: "GetAllCustomerRequest",
+			Handler:    _TransactionService_GetAllCustomerRequest_Handler,
 		},
 		{
-			MethodName: "GetCustomerReqByRequestNumber",
-			Handler:    _TransactionService_GetCustomerReqByRequestNumber_Handler,
+			MethodName: "GetCustomerRequestByRequestNumber",
+			Handler:    _TransactionService_GetCustomerRequestByRequestNumber_Handler,
 		},
 		{
-			MethodName: "CreateCustomerReq",
-			Handler:    _TransactionService_CreateCustomerReq_Handler,
+			MethodName: "CreateCustomerRequest",
+			Handler:    _TransactionService_CreateCustomerRequest_Handler,
 		},
 		{
-			MethodName: "UpdateCustomerReq",
-			Handler:    _TransactionService_UpdateCustomerReq_Handler,
+			MethodName: "UpdateCustomerRequest",
+			Handler:    _TransactionService_UpdateCustomerRequest_Handler,
 		},
 		{
-			MethodName: "DeleteCustomerReq",
-			Handler:    _TransactionService_DeleteCustomerReq_Handler,
+			MethodName: "DeleteCustomerRequest",
+			Handler:    _TransactionService_DeleteCustomerRequest_Handler,
 		},
 		{
 			MethodName: "GetAllCustomer",
