@@ -123,6 +123,7 @@ message DeleteDocumentRequest {
 message RevokeDocumentRequest {
     string reff_no = 1;
     string doc_status = 2;
+    optional string doc_token = 3;
 }
 
 /*
