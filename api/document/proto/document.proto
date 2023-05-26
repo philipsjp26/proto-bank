@@ -94,6 +94,7 @@ message UpdateDocumentRequest {
 
 message GetDocumentRequest {
     string reff_number = 1;
+    optional string doc_token = 2;
 }
 
 message UploadDocRequest{
