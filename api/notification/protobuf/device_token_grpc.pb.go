@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeviceTokenServiceClient interface {
-	CreateDeviceToken(ctx context.Context, in *CreateDeviceTokenRequest, opts ...grpc.CallOption) (*BaseResponse, error)
+	CreateDeviceToken(ctx context.Context, in *CreateDeviceTokenRequest, opts ...grpc.CallOption) (*BaseResponseV2, error)
 }
 
 type deviceTokenServiceClient struct {
@@ -33,8 +33,8 @@ func NewDeviceTokenServiceClient(cc grpc.ClientConnInterface) DeviceTokenService
 	return &deviceTokenServiceClient{cc}
 }
 
-func (c *deviceTokenServiceClient) CreateDeviceToken(ctx context.Context, in *CreateDeviceTokenRequest, opts ...grpc.CallOption) (*BaseResponse, error) {
-	out := new(BaseResponse)
+func (c *deviceTokenServiceClient) CreateDeviceToken(ctx context.Context, in *CreateDeviceTokenRequest, opts ...grpc.CallOption) (*BaseResponseV2, error) {
+	out := new(BaseResponseV2)
 	err := c.cc.Invoke(ctx, "/device_token.DeviceTokenService/CreateDeviceToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func (c *deviceTokenServiceClient) CreateDeviceToken(ctx context.Context, in *Cr
 // All implementations must embed UnimplementedDeviceTokenServiceServer
 // for forward compatibility
 type DeviceTokenServiceServer interface {
-	CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*BaseResponse, error)
+	CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*BaseResponseV2, error)
 	mustEmbedUnimplementedDeviceTokenServiceServer()
 }
 
@@ -54,7 +54,7 @@ type DeviceTokenServiceServer interface {
 type UnimplementedDeviceTokenServiceServer struct {
 }
 
-func (UnimplementedDeviceTokenServiceServer) CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*BaseResponse, error) {
+func (UnimplementedDeviceTokenServiceServer) CreateDeviceToken(context.Context, *CreateDeviceTokenRequest) (*BaseResponseV2, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceToken not implemented")
 }
 func (UnimplementedDeviceTokenServiceServer) mustEmbedUnimplementedDeviceTokenServiceServer() {}
