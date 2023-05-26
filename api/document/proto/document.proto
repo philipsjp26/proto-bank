@@ -72,9 +72,17 @@ message DeleteDocumentResponse {
     bool result = 1;
 }
 
+message ListDocument {
+    string reff_number = 1;
+    string doc_flow = 2;
+    string created_at = 3;
+    string title = 4;
+    string status = 5;
+}
+
 message ListServiceDocumentResponse {
-    repeated GetDocumentResponse data = 3;
-    DocumentMeta meta = 4;
+    repeated ListDocument data = 1;
+    DocumentMeta meta = 2;
 }
 
 /*
