@@ -2,22 +2,21 @@ syntax = "proto3";
 
 option go_package = ".";
 
-service Placement {    
-    rpc Sign(SignRequest) returns (SignResponse);
-    rpc OtpRequest(Otp) returns (OtpResponse);
-    rpc OtpValidate(OtpValidateRequest) returns (OtpValidateResponse);
-    rpc OtpResend(OtpResendRequest) returns (OtpResendResponse);
-}
-
-
-message SignRequest {    
-    string reff_number = 1;    
-    string doc_flow = 2;
-    repeated SignPositions sign_positions = 3;
-    repeated EmeteraiPositions emeterai_positions = 4;
-    optional string sign_type = 5;
-}
-
+/*
+=================
+    Metadata
+=================
+*/
+/*
+=================
+Parameter Request
+=================
+*/
+/*
+=================
+    Response
+=================
+*/
 message SignPositions {
     optional string nik = 1;
     optional string name = 2;
@@ -35,15 +34,14 @@ message EmeteraiPositions {
     string page = 3;
 }
 
+message SignAndMateraiPositions {
+    repeated SignPositions sign_position = 1;
+    repeated EmeteraiPositions emeterai_position = 2;
+}
+
 message SignResponse {
     string reff_number = 1;
     string doc_token = 2;
-}
-
-message Otp {
-    string reff_number = 1;
-    string doc_token = 2;
-    int32 otp_channel = 3;
 }
 
 message OtpResponse {    
@@ -52,20 +50,10 @@ message OtpResponse {
     string request_attempt = 3;
 }
 
-message OtpValidateRequest {
-    string reff_number = 1;
-    string otp_code = 2;
-    string transaction_id = 3;
-}
-
 message OtpValidateResponse {    
     string transaction_id = 1;
     string reff_number = 2;
     string request_attempt = 3;    
-}
-
-message OtpResendRequest {
-    string transaction_id = 1;
 }
 
 message OtpResendResponse {    
@@ -73,3 +61,52 @@ message OtpResendResponse {
     string reff_number = 2;
     string request_attempt = 3;
 }
+
+/*
+=================
+    Request
+=================
+*/
+message SignRequest {    
+    string reff_number = 1;    
+    string doc_flow = 2;
+    repeated SignPositions sign_positions = 3;
+    repeated EmeteraiPositions emeterai_positions = 4;
+    optional string sign_type = 5;
+}
+
+message Otp {
+    string reff_number = 1;
+    string doc_token = 2;
+    int32 otp_channel = 3;
+}
+
+message OtpValidateRequest {
+    string reff_number = 1;
+    string otp_code = 2;
+    string transaction_id = 3;
+}
+
+message OtpResendRequest {
+    string transaction_id = 1;
+}
+
+message DetailSignAndMateraiRequest {
+    string reff_number = 1;
+}
+
+/*
+=================
+    Service
+=================
+*/
+
+service Placement {    
+    rpc Sign(SignRequest) returns (SignResponse);
+    rpc OtpRequest(Otp) returns (OtpResponse);
+    rpc OtpValidate(OtpValidateRequest) returns (OtpValidateResponse);
+    rpc OtpResend(OtpResendRequest) returns (OtpResendResponse);
+
+    rpc GetPosition (DetailSignAndMateraiRequest) returns (SignAndMateraiPositions);
+}
+
