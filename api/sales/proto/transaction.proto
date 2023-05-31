@@ -71,14 +71,14 @@ enum BalanceTypeEnum {
 message TransactionEntity {
   string id = 1;
   string channel_code = 2;
-  StatusEnum status = 3;
+  string status = 3;
   string transfer_from = 4;
   string transfer_to = 5;
   string created_by = 6;
-  TransactionTypeEnum transaction_type = 7;
+  string transaction_type = 7;
   string origin = 8;
   string destination = 9;
-  SourceEnum source = 10;
+  string source = 10;
   string customer_id = 11;
   string request_number = 12;
   string payment_id = 13;
@@ -123,7 +123,7 @@ message PaymentEntity {
   string payment_term = 3;
   string payment_rejected_at = 4;
   string payment_reject_reason = 5;
-  PaymentTypeEnum payment_type = 6;
+  string payment_type = 6;
   string paid_at = 7;
   string created_at = 8;
   string updated_at = 9;
@@ -319,40 +319,56 @@ message TransactionDetailResponse {
           Service
 ===========================
 */
+// Transaction service
 service TransactionService {
-  rpc GetAllTransaction(TransactionsRequest) returns (TransactionsResponse);
-  rpc GetTransactionById(TransactionRequest) returns (TransactionResponse);
-  rpc CreateTransaction(TransactionEntity) returns (TransactionResponse);
-  rpc UpdateTransaction(TransactionEntity) returns (TransactionResponse);
-  rpc DeleteTransaction(TransactionRequest) returns (TransactionResponse);
+  rpc GetAll(TransactionsRequest) returns (TransactionsResponse);
+  rpc Get(TransactionRequest) returns (TransactionResponse);
+  rpc Create(TransactionEntity) returns (TransactionResponse);
+  rpc Update(TransactionEntity) returns (TransactionResponse);
+  rpc Delete(TransactionRequest) returns (TransactionResponse);
+}
 
-  rpc GetAllCustomerRequest(CustomerRequestsRequest) returns (CustomerRequestsResponse);
-  rpc GetCustomerRequestByRequestNumber(CustomerRequestRequest) returns (CustomerRequestResponse);
-  rpc CreateCustomerRequest(CustomerRequestEntity) returns (CustomerRequestResponse);
-  rpc UpdateCustomerRequest(CustomerRequestEntity) returns (CustomerRequestResponse);
-  rpc DeleteCustomerRequest(CustomerRequestRequest) returns (CustomerRequestResponse);
+// Customer Request service
+service CustomerRequestService {
+  rpc GetAll(CustomerRequestsRequest) returns (CustomerRequestsResponse);
+  rpc Get(CustomerRequestRequest) returns (CustomerRequestResponse);
+  rpc Create(CustomerRequestEntity) returns (CustomerRequestResponse);
+  rpc Update(CustomerRequestEntity) returns (CustomerRequestResponse);
+  rpc Delete(CustomerRequestRequest) returns (CustomerRequestResponse);
+}
 
-  rpc GetAllCustomer(CustomersRequest) returns (CustomersResponse);
-  rpc GetCustomerById(CustomerRequest) returns (CustomerResponse);
-  rpc CreateCustomer(CustomerEntity) returns (CustomerResponse);
-  rpc UpdateCustomer(CustomerEntity) returns (CustomerResponse);
-  rpc DeleteCustomer(CustomerRequest) returns (CustomerResponse);
+// Customer service
+service CustomerService {
+  rpc GetAll(CustomersRequest) returns (CustomersResponse);
+  rpc Get(CustomerRequest) returns (CustomerResponse);
+  rpc Create(CustomerEntity) returns (CustomerResponse);
+  rpc Update(CustomerEntity) returns (CustomerResponse);
+  rpc Delete(CustomerRequest) returns (CustomerResponse);
+}
 
-  rpc GetAllPayment(PaymentsRequest) returns (PaymentsResponse);
-  rpc GetPaymentById(PaymentRequest) returns (PaymentResponse);
-  rpc CreatePayment(PaymentEntity) returns (PaymentResponse);
-  rpc UpdatePayment(PaymentEntity) returns (PaymentResponse);
-  rpc DeletePayment(PaymentRequest) returns (PaymentResponse);
+// Payment service
+service PaymentService {
+  rpc GetAll(PaymentsRequest) returns (PaymentsResponse);
+  rpc Get(PaymentRequest) returns (PaymentResponse);
+  rpc Create(PaymentEntity) returns (PaymentResponse);
+  rpc Update(PaymentEntity) returns (PaymentResponse);
+  rpc Delete(PaymentRequest) returns (PaymentResponse);
+}
 
-  rpc GetAllInvoice(InvoicesRequest) returns (InvoicesResponse);
-  rpc GetInvoiceByInvoiceNumber(InvoiceRequest) returns (InvoiceResponse);
-  rpc CreateInvoice(InvoiceEntity) returns (InvoiceResponse);
-  rpc UpdateInvoice(InvoiceEntity) returns (InvoiceResponse);
-  rpc DeleteInvoice(InvoiceRequest) returns (InvoiceResponse);
+// Invoice service
+service InvoiceService {
+  rpc GetAll(InvoicesRequest) returns (InvoicesResponse);
+  rpc Get(InvoiceRequest) returns (InvoiceResponse);
+  rpc Create(InvoiceEntity) returns (InvoiceResponse);
+  rpc Update(InvoiceEntity) returns (InvoiceResponse);
+  rpc Delete(InvoiceRequest) returns (InvoiceResponse);
+}
 
-  rpc GetAllTransactionDetail(TransactionDetailsRequest) returns (TransactionDetailsResponse);
-  rpc GetTransactionDetailById(TransactionDetailRequest) returns (TransactionDetailResponse);
-  rpc CreateTransactionDetail(TransactionDetailEntity) returns (TransactionDetailResponse);
-  rpc UpdateTransactionDetail(TransactionDetailEntity) returns (TransactionDetailResponse);
-  rpc DeleteTransactionDetail(TransactionDetailRequest) returns (TransactionDetailResponse);
+// Transaction Detail service
+service TransactionDetailService {
+  rpc GetAll(TransactionDetailsRequest) returns (TransactionDetailsResponse);
+  rpc Get(TransactionDetailRequest) returns (TransactionDetailResponse);
+  rpc Create(TransactionDetailEntity) returns (TransactionDetailResponse);
+  rpc Update(TransactionDetailEntity) returns (TransactionDetailResponse);
+  rpc Delete(TransactionDetailRequest) returns (TransactionDetailResponse);
 }

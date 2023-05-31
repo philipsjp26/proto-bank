@@ -3,12 +3,7 @@ syntax = "proto3";
 package meta;
 
 option go_package = ".";
-//option go_package = "./meta";
-/*
-=================
-    Response
-=================
-*/
+
 message BaseResponse {
     int32 code = 1;
     string status = 2;
