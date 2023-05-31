@@ -36,7 +36,7 @@ message EmeteraiPositions {
 
 message SignAndMateraiPositions {
     repeated SignPositions sign_position = 1;
-    EmeteraiPositions emeterai_position = 2;
+    repeated EmeteraiPositions emeterai_position = 2;
 }
 
 message SignResponse {
