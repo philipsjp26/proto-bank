@@ -56,6 +56,7 @@ message GetDocumentResponse {
     string created_at = 6;
     string doc_flow = 7;
     string doc_owner = 8;
+    string sign_type = 9;
 }
 
 message UploadDocResponse {        
