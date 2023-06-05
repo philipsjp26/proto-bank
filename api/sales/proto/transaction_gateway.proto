@@ -4,7 +4,7 @@ package invoice;
 
 option go_package = ".";
 
-import "api/meta/proto/meta.proto";
+import "api/sales/proto/meta.proto";
 
 /*
 ===========================
@@ -110,13 +110,13 @@ message GetAllTransactionRequest {
   string status = 5;
   string channel_code = 6;
   string q = 7;
-  meta.Request meta = 8;
+  Request meta = 8;
 }
 
 message GetAllTransactionResponse {
   repeated Transaction data = 1;
-  meta.Pagination pagination = 2;
-  meta.BaseResponse meta = 3;
+  Pagination pagination = 2;
+  BaseResponse meta = 3;
 }
 
 
@@ -131,7 +131,7 @@ message GetTransactionDetailRequest {
 
 message GetTransactionDetailResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -155,7 +155,7 @@ message CreateTransactionRequest {
 
 message CreateTransactionResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -182,7 +182,7 @@ message CreateRequestInvoiceRequest {
 
 message CreateRequestInvoiceResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -206,7 +206,7 @@ message CreateInvoiceRequest {
 
 message CreateInvoiceResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -222,7 +222,7 @@ message ApproveTransactionRequest {
 
 message ApproveTransactionResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 /*
@@ -237,7 +237,7 @@ message RejectTransactionRequest {
 
 message RejectTransactionResponse {
   TransactionDetail data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 

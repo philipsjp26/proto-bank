@@ -4,7 +4,7 @@ package telegram;
 
 option go_package = ".";
 
-import "api/meta/proto/meta.proto";
+import "api/telegram/proto/meta.proto";
 
 /*
 ===================
@@ -27,7 +27,7 @@ Response Messages
 ===================
 */
 message TelegramResponse {
-  meta.BaseResponse response = 1;
+  BaseResponse response = 1;
   string message = 2;
 }
 
