@@ -83,9 +83,10 @@ message TransactionEntity {
   string request_number = 12;
   string payment_id = 13;
   string invoice_number = 14;
-  string created_at = 15;
-  string updated_at = 16;
-  string deleted_at = 17;
+  bool is_active = 15;
+  string created_at = 16;
+  string updated_at = 17;
+  string deleted_at = 18;
 }
 
 message CustomerRequestEntity {
@@ -94,9 +95,10 @@ message CustomerRequestEntity {
   string request_approved_at = 3;
   string request_rejected_at = 4;
   string request_reject_reason = 5;
-  string created_at = 6;
-  string updated_at = 7;
-  string deleted_at = 8;
+  bool is_active = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string deleted_at = 9;
 }
 
 message CustomerEntity {
@@ -112,9 +114,10 @@ message CustomerEntity {
   string bill_to_email = 10;
   string phone_number_pic = 11;
   string letter_address = 12;
-  string created_at = 13;
-  string updated_at = 14;
-  string deleted_at = 15;
+  bool is_active = 13;
+  string created_at = 14;
+  string updated_at = 15;
+  string deleted_at = 16;
 }
 
 message PaymentEntity {
@@ -125,9 +128,10 @@ message PaymentEntity {
   string payment_reject_reason = 5;
   string payment_type = 6;
   string paid_at = 7;
-  string created_at = 8;
-  string updated_at = 9;
-  string deleted_at = 10;
+  bool is_active = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  string deleted_at = 11;
 }
 
 message InvoiceEntity {
@@ -141,9 +145,10 @@ message InvoiceEntity {
   string work_type = 8;
   int32 ppn = 9;
   string ppn_report = 10;
-  string created_at = 11;
-  string updated_at = 12;
-  string deleted_at = 13;
+  bool is_active = 11;
+  string created_at = 12;
+  string updated_at = 13;
+  string deleted_at = 14;
 }
 
 message TransactionDetailEntity {
@@ -158,9 +163,10 @@ message TransactionDetailEntity {
   string description = 9;
   string start_period = 10;
   string end_period = 11;
-  string created_at = 12;
-  string updated_at = 13;
-  string deleted_at = 14;
+  bool is_active = 12;
+  string created_at = 13;
+  string updated_at = 14;
+  string deleted_at = 15;
 }
 
 
