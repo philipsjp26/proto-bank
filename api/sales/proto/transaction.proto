@@ -4,7 +4,7 @@ package invoice;
 
 option go_package = ".";
 
-import "api/meta/proto/meta.proto";
+import "api/sales/proto/meta.proto";
 
 /*
 ===========================
@@ -177,7 +177,7 @@ message TransactionDetailEntity {
 */
 message TransactionsRequest {
   TransactionEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message TransactionRequest {
@@ -186,12 +186,12 @@ message TransactionRequest {
 
 message TransactionsResponse {
   repeated TransactionEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message TransactionResponse {
   TransactionEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -202,7 +202,7 @@ message TransactionResponse {
 */
 message CustomerRequestsRequest {
   CustomerRequestEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message CustomerRequestRequest {
@@ -211,12 +211,12 @@ message CustomerRequestRequest {
 
 message CustomerRequestsResponse {
   repeated CustomerRequestEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message CustomerRequestResponse {
   CustomerRequestEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -227,7 +227,7 @@ message CustomerRequestResponse {
 */
 message CustomersRequest {
   CustomerEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message CustomerRequest {
@@ -236,12 +236,12 @@ message CustomerRequest {
 
 message CustomersResponse {
   repeated CustomerEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message CustomerResponse {
   CustomerEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -252,7 +252,7 @@ message CustomerResponse {
 */
 message PaymentsRequest {
   PaymentEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message PaymentRequest {
@@ -261,12 +261,12 @@ message PaymentRequest {
 
 message PaymentsResponse {
   repeated PaymentEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message PaymentResponse {
   PaymentEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -277,7 +277,7 @@ message PaymentResponse {
 */
 message InvoicesRequest {
   InvoiceEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message InvoiceRequest {
@@ -286,12 +286,12 @@ message InvoiceRequest {
 
 message InvoicesResponse {
   repeated InvoiceEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message InvoiceResponse {
   InvoiceEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
@@ -302,7 +302,7 @@ message InvoiceResponse {
 */
 message TransactionDetailsRequest {
   TransactionDetailEntity filter = 1;
-  meta.Request meta = 2;
+  Request meta = 2;
 }
 
 message TransactionDetailRequest {
@@ -311,12 +311,12 @@ message TransactionDetailRequest {
 
 message TransactionDetailsResponse {
   repeated TransactionDetailEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 message TransactionDetailResponse {
   TransactionDetailEntity data = 1;
-  meta.BaseResponse meta = 2;
+  BaseResponse meta = 2;
 }
 
 
