@@ -22,13 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransactionServiceClient interface {
-	GetAllTransaction(ctx context.Context, in *GetAllTransactionRequest, opts ...grpc.CallOption) (*GetAllTransactionResponse, error)
-	GetTransactionDetail(ctx context.Context, in *GetTransactionDetailRequest, opts ...grpc.CallOption) (*GetTransactionDetailResponse, error)
-	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
-	CreateRequestInvoice(ctx context.Context, in *CreateRequestInvoiceRequest, opts ...grpc.CallOption) (*CreateRequestInvoiceResponse, error)
-	CreateInvoice(ctx context.Context, in *CreateInvoiceRequest, opts ...grpc.CallOption) (*CreateInvoiceResponse, error)
-	ApproveTransaction(ctx context.Context, in *ApproveTransactionRequest, opts ...grpc.CallOption) (*ApproveTransactionResponse, error)
-	RejectTransaction(ctx context.Context, in *RejectTransactionRequest, opts ...grpc.CallOption) (*RejectTransactionResponse, error)
+	GetAll(ctx context.Context, in *TransactionsRequest, opts ...grpc.CallOption) (*TransactionsResponse, error)
+	Get(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
+	Create(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error)
+	Update(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error)
+	Delete(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 }
 
 type transactionServiceClient struct {
@@ -39,63 +37,45 @@ func NewTransactionServiceClient(cc grpc.ClientConnInterface) TransactionService
 	return &transactionServiceClient{cc}
 }
 
-func (c *transactionServiceClient) GetAllTransaction(ctx context.Context, in *GetAllTransactionRequest, opts ...grpc.CallOption) (*GetAllTransactionResponse, error) {
-	out := new(GetAllTransactionResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAllTransaction", in, out, opts...)
+func (c *transactionServiceClient) GetAll(ctx context.Context, in *TransactionsRequest, opts ...grpc.CallOption) (*TransactionsResponse, error) {
+	out := new(TransactionsResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetTransactionDetail(ctx context.Context, in *GetTransactionDetailRequest, opts ...grpc.CallOption) (*GetTransactionDetailResponse, error) {
-	out := new(GetTransactionDetailResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/GetTransactionDetail", in, out, opts...)
+func (c *transactionServiceClient) Get(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error) {
-	out := new(CreateTransactionResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateTransaction", in, out, opts...)
+func (c *transactionServiceClient) Create(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateRequestInvoice(ctx context.Context, in *CreateRequestInvoiceRequest, opts ...grpc.CallOption) (*CreateRequestInvoiceResponse, error) {
-	out := new(CreateRequestInvoiceResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateRequestInvoice", in, out, opts...)
+func (c *transactionServiceClient) Update(ctx context.Context, in *TransactionEntity, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionServiceClient) CreateInvoice(ctx context.Context, in *CreateInvoiceRequest, opts ...grpc.CallOption) (*CreateInvoiceResponse, error) {
-	out := new(CreateInvoiceResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/CreateInvoice", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) ApproveTransaction(ctx context.Context, in *ApproveTransactionRequest, opts ...grpc.CallOption) (*ApproveTransactionResponse, error) {
-	out := new(ApproveTransactionResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/ApproveTransaction", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transactionServiceClient) RejectTransaction(ctx context.Context, in *RejectTransactionRequest, opts ...grpc.CallOption) (*RejectTransactionResponse, error) {
-	out := new(RejectTransactionResponse)
-	err := c.cc.Invoke(ctx, "/invoice.TransactionService/RejectTransaction", in, out, opts...)
+func (c *transactionServiceClient) Delete(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -106,13 +86,11 @@ func (c *transactionServiceClient) RejectTransaction(ctx context.Context, in *Re
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility
 type TransactionServiceServer interface {
-	GetAllTransaction(context.Context, *GetAllTransactionRequest) (*GetAllTransactionResponse, error)
-	GetTransactionDetail(context.Context, *GetTransactionDetailRequest) (*GetTransactionDetailResponse, error)
-	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
-	CreateRequestInvoice(context.Context, *CreateRequestInvoiceRequest) (*CreateRequestInvoiceResponse, error)
-	CreateInvoice(context.Context, *CreateInvoiceRequest) (*CreateInvoiceResponse, error)
-	ApproveTransaction(context.Context, *ApproveTransactionRequest) (*ApproveTransactionResponse, error)
-	RejectTransaction(context.Context, *RejectTransactionRequest) (*RejectTransactionResponse, error)
+	GetAll(context.Context, *TransactionsRequest) (*TransactionsResponse, error)
+	Get(context.Context, *TransactionRequest) (*TransactionResponse, error)
+	Create(context.Context, *TransactionEntity) (*TransactionResponse, error)
+	Update(context.Context, *TransactionEntity) (*TransactionResponse, error)
+	Delete(context.Context, *TransactionRequest) (*TransactionResponse, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -120,26 +98,20 @@ type TransactionServiceServer interface {
 type UnimplementedTransactionServiceServer struct {
 }
 
-func (UnimplementedTransactionServiceServer) GetAllTransaction(context.Context, *GetAllTransactionRequest) (*GetAllTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllTransaction not implemented")
+func (UnimplementedTransactionServiceServer) GetAll(context.Context, *TransactionsRequest) (*TransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetTransactionDetail(context.Context, *GetTransactionDetailRequest) (*GetTransactionDetailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionDetail not implemented")
+func (UnimplementedTransactionServiceServer) Get(context.Context, *TransactionRequest) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
+func (UnimplementedTransactionServiceServer) Create(context.Context, *TransactionEntity) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateRequestInvoice(context.Context, *CreateRequestInvoiceRequest) (*CreateRequestInvoiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRequestInvoice not implemented")
+func (UnimplementedTransactionServiceServer) Update(context.Context, *TransactionEntity) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateInvoice(context.Context, *CreateInvoiceRequest) (*CreateInvoiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateInvoice not implemented")
-}
-func (UnimplementedTransactionServiceServer) ApproveTransaction(context.Context, *ApproveTransactionRequest) (*ApproveTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ApproveTransaction not implemented")
-}
-func (UnimplementedTransactionServiceServer) RejectTransaction(context.Context, *RejectTransactionRequest) (*RejectTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RejectTransaction not implemented")
+func (UnimplementedTransactionServiceServer) Delete(context.Context, *TransactionRequest) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
 
@@ -154,128 +126,92 @@ func RegisterTransactionServiceServer(s grpc.ServiceRegistrar, srv TransactionSe
 	s.RegisterService(&TransactionService_ServiceDesc, srv)
 }
 
-func _TransactionService_GetAllTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllTransactionRequest)
+func _TransactionService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetAllTransaction(ctx, in)
+		return srv.(TransactionServiceServer).GetAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/GetAllTransaction",
+		FullMethod: "/invoice.TransactionService/GetAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetAllTransaction(ctx, req.(*GetAllTransactionRequest))
+		return srv.(TransactionServiceServer).GetAll(ctx, req.(*TransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_GetTransactionDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTransactionDetailRequest)
+func _TransactionService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetTransactionDetail(ctx, in)
+		return srv.(TransactionServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/GetTransactionDetail",
+		FullMethod: "/invoice.TransactionService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionDetail(ctx, req.(*GetTransactionDetailRequest))
+		return srv.(TransactionServiceServer).Get(ctx, req.(*TransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTransactionRequest)
+func _TransactionService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).CreateTransaction(ctx, in)
+		return srv.(TransactionServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/CreateTransaction",
+		FullMethod: "/invoice.TransactionService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateTransaction(ctx, req.(*CreateTransactionRequest))
+		return srv.(TransactionServiceServer).Create(ctx, req.(*TransactionEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_CreateRequestInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequestInvoiceRequest)
+func _TransactionService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).CreateRequestInvoice(ctx, in)
+		return srv.(TransactionServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/CreateRequestInvoice",
+		FullMethod: "/invoice.TransactionService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateRequestInvoice(ctx, req.(*CreateRequestInvoiceRequest))
+		return srv.(TransactionServiceServer).Update(ctx, req.(*TransactionEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_CreateInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateInvoiceRequest)
+func _TransactionService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).CreateInvoice(ctx, in)
+		return srv.(TransactionServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/invoice.TransactionService/CreateInvoice",
+		FullMethod: "/invoice.TransactionService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateInvoice(ctx, req.(*CreateInvoiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_ApproveTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ApproveTransactionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).ApproveTransaction(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/invoice.TransactionService/ApproveTransaction",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).ApproveTransaction(ctx, req.(*ApproveTransactionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransactionService_RejectTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RejectTransactionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransactionServiceServer).RejectTransaction(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/invoice.TransactionService/RejectTransaction",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).RejectTransaction(ctx, req.(*RejectTransactionRequest))
+		return srv.(TransactionServiceServer).Delete(ctx, req.(*TransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -288,32 +224,1176 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TransactionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetAllTransaction",
-			Handler:    _TransactionService_GetAllTransaction_Handler,
+			MethodName: "GetAll",
+			Handler:    _TransactionService_GetAll_Handler,
 		},
 		{
-			MethodName: "GetTransactionDetail",
-			Handler:    _TransactionService_GetTransactionDetail_Handler,
+			MethodName: "Get",
+			Handler:    _TransactionService_Get_Handler,
 		},
 		{
-			MethodName: "CreateTransaction",
-			Handler:    _TransactionService_CreateTransaction_Handler,
+			MethodName: "Create",
+			Handler:    _TransactionService_Create_Handler,
 		},
 		{
-			MethodName: "CreateRequestInvoice",
-			Handler:    _TransactionService_CreateRequestInvoice_Handler,
+			MethodName: "Update",
+			Handler:    _TransactionService_Update_Handler,
 		},
 		{
-			MethodName: "CreateInvoice",
-			Handler:    _TransactionService_CreateInvoice_Handler,
+			MethodName: "Delete",
+			Handler:    _TransactionService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api/sales/proto/transaction.proto",
+}
+
+// CustomerRequestServiceClient is the client API for CustomerRequestService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CustomerRequestServiceClient interface {
+	GetAll(ctx context.Context, in *CustomerRequestsRequest, opts ...grpc.CallOption) (*CustomerRequestsResponse, error)
+	Get(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	Create(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	Update(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+	Delete(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error)
+}
+
+type customerRequestServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCustomerRequestServiceClient(cc grpc.ClientConnInterface) CustomerRequestServiceClient {
+	return &customerRequestServiceClient{cc}
+}
+
+func (c *customerRequestServiceClient) GetAll(ctx context.Context, in *CustomerRequestsRequest, opts ...grpc.CallOption) (*CustomerRequestsResponse, error) {
+	out := new(CustomerRequestsResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerRequestService/GetAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerRequestServiceClient) Get(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerRequestService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerRequestServiceClient) Create(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerRequestService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerRequestServiceClient) Update(ctx context.Context, in *CustomerRequestEntity, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerRequestService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerRequestServiceClient) Delete(ctx context.Context, in *CustomerRequestRequest, opts ...grpc.CallOption) (*CustomerRequestResponse, error) {
+	out := new(CustomerRequestResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerRequestService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CustomerRequestServiceServer is the server API for CustomerRequestService service.
+// All implementations must embed UnimplementedCustomerRequestServiceServer
+// for forward compatibility
+type CustomerRequestServiceServer interface {
+	GetAll(context.Context, *CustomerRequestsRequest) (*CustomerRequestsResponse, error)
+	Get(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error)
+	Create(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error)
+	Update(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error)
+	Delete(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error)
+	mustEmbedUnimplementedCustomerRequestServiceServer()
+}
+
+// UnimplementedCustomerRequestServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCustomerRequestServiceServer struct {
+}
+
+func (UnimplementedCustomerRequestServiceServer) GetAll(context.Context, *CustomerRequestsRequest) (*CustomerRequestsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedCustomerRequestServiceServer) Get(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCustomerRequestServiceServer) Create(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCustomerRequestServiceServer) Update(context.Context, *CustomerRequestEntity) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedCustomerRequestServiceServer) Delete(context.Context, *CustomerRequestRequest) (*CustomerRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedCustomerRequestServiceServer) mustEmbedUnimplementedCustomerRequestServiceServer() {
+}
+
+// UnsafeCustomerRequestServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CustomerRequestServiceServer will
+// result in compilation errors.
+type UnsafeCustomerRequestServiceServer interface {
+	mustEmbedUnimplementedCustomerRequestServiceServer()
+}
+
+func RegisterCustomerRequestServiceServer(s grpc.ServiceRegistrar, srv CustomerRequestServiceServer) {
+	s.RegisterService(&CustomerRequestService_ServiceDesc, srv)
+}
+
+func _CustomerRequestService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerRequestServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerRequestService/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerRequestServiceServer).GetAll(ctx, req.(*CustomerRequestsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerRequestService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerRequestServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerRequestService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerRequestServiceServer).Get(ctx, req.(*CustomerRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerRequestService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerRequestServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerRequestService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerRequestServiceServer).Create(ctx, req.(*CustomerRequestEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerRequestService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerRequestServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerRequestService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerRequestServiceServer).Update(ctx, req.(*CustomerRequestEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerRequestService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerRequestServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerRequestService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerRequestServiceServer).Delete(ctx, req.(*CustomerRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// CustomerRequestService_ServiceDesc is the grpc.ServiceDesc for CustomerRequestService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CustomerRequestService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "invoice.CustomerRequestService",
+	HandlerType: (*CustomerRequestServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAll",
+			Handler:    _CustomerRequestService_GetAll_Handler,
 		},
 		{
-			MethodName: "ApproveTransaction",
-			Handler:    _TransactionService_ApproveTransaction_Handler,
+			MethodName: "Get",
+			Handler:    _CustomerRequestService_Get_Handler,
 		},
 		{
-			MethodName: "RejectTransaction",
-			Handler:    _TransactionService_RejectTransaction_Handler,
+			MethodName: "Create",
+			Handler:    _CustomerRequestService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _CustomerRequestService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _CustomerRequestService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api/sales/proto/transaction.proto",
+}
+
+// CustomerServiceClient is the client API for CustomerService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CustomerServiceClient interface {
+	GetAll(ctx context.Context, in *CustomersRequest, opts ...grpc.CallOption) (*CustomersResponse, error)
+	Get(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error)
+	Create(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error)
+	Update(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error)
+	Delete(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error)
+}
+
+type customerServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCustomerServiceClient(cc grpc.ClientConnInterface) CustomerServiceClient {
+	return &customerServiceClient{cc}
+}
+
+func (c *customerServiceClient) GetAll(ctx context.Context, in *CustomersRequest, opts ...grpc.CallOption) (*CustomersResponse, error) {
+	out := new(CustomersResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerService/GetAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) Get(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) Create(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) Update(ctx context.Context, in *CustomerEntity, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) Delete(ctx context.Context, in *CustomerRequest, opts ...grpc.CallOption) (*CustomerResponse, error) {
+	out := new(CustomerResponse)
+	err := c.cc.Invoke(ctx, "/invoice.CustomerService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CustomerServiceServer is the server API for CustomerService service.
+// All implementations must embed UnimplementedCustomerServiceServer
+// for forward compatibility
+type CustomerServiceServer interface {
+	GetAll(context.Context, *CustomersRequest) (*CustomersResponse, error)
+	Get(context.Context, *CustomerRequest) (*CustomerResponse, error)
+	Create(context.Context, *CustomerEntity) (*CustomerResponse, error)
+	Update(context.Context, *CustomerEntity) (*CustomerResponse, error)
+	Delete(context.Context, *CustomerRequest) (*CustomerResponse, error)
+	mustEmbedUnimplementedCustomerServiceServer()
+}
+
+// UnimplementedCustomerServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCustomerServiceServer struct {
+}
+
+func (UnimplementedCustomerServiceServer) GetAll(context.Context, *CustomersRequest) (*CustomersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedCustomerServiceServer) Get(context.Context, *CustomerRequest) (*CustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCustomerServiceServer) Create(context.Context, *CustomerEntity) (*CustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCustomerServiceServer) Update(context.Context, *CustomerEntity) (*CustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedCustomerServiceServer) Delete(context.Context, *CustomerRequest) (*CustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedCustomerServiceServer) mustEmbedUnimplementedCustomerServiceServer() {}
+
+// UnsafeCustomerServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CustomerServiceServer will
+// result in compilation errors.
+type UnsafeCustomerServiceServer interface {
+	mustEmbedUnimplementedCustomerServiceServer()
+}
+
+func RegisterCustomerServiceServer(s grpc.ServiceRegistrar, srv CustomerServiceServer) {
+	s.RegisterService(&CustomerService_ServiceDesc, srv)
+}
+
+func _CustomerService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerService/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).GetAll(ctx, req.(*CustomersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).Get(ctx, req.(*CustomerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).Create(ctx, req.(*CustomerEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).Update(ctx, req.(*CustomerEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.CustomerService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).Delete(ctx, req.(*CustomerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// CustomerService_ServiceDesc is the grpc.ServiceDesc for CustomerService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CustomerService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "invoice.CustomerService",
+	HandlerType: (*CustomerServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAll",
+			Handler:    _CustomerService_GetAll_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _CustomerService_Get_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _CustomerService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _CustomerService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _CustomerService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api/sales/proto/transaction.proto",
+}
+
+// PaymentServiceClient is the client API for PaymentService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PaymentServiceClient interface {
+	GetAll(ctx context.Context, in *PaymentsRequest, opts ...grpc.CallOption) (*PaymentsResponse, error)
+	Get(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error)
+	Create(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error)
+	Update(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error)
+	Delete(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error)
+}
+
+type paymentServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPaymentServiceClient(cc grpc.ClientConnInterface) PaymentServiceClient {
+	return &paymentServiceClient{cc}
+}
+
+func (c *paymentServiceClient) GetAll(ctx context.Context, in *PaymentsRequest, opts ...grpc.CallOption) (*PaymentsResponse, error) {
+	out := new(PaymentsResponse)
+	err := c.cc.Invoke(ctx, "/invoice.PaymentService/GetAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentServiceClient) Get(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
+	err := c.cc.Invoke(ctx, "/invoice.PaymentService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentServiceClient) Create(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
+	err := c.cc.Invoke(ctx, "/invoice.PaymentService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentServiceClient) Update(ctx context.Context, in *PaymentEntity, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
+	err := c.cc.Invoke(ctx, "/invoice.PaymentService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentServiceClient) Delete(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
+	err := c.cc.Invoke(ctx, "/invoice.PaymentService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PaymentServiceServer is the server API for PaymentService service.
+// All implementations must embed UnimplementedPaymentServiceServer
+// for forward compatibility
+type PaymentServiceServer interface {
+	GetAll(context.Context, *PaymentsRequest) (*PaymentsResponse, error)
+	Get(context.Context, *PaymentRequest) (*PaymentResponse, error)
+	Create(context.Context, *PaymentEntity) (*PaymentResponse, error)
+	Update(context.Context, *PaymentEntity) (*PaymentResponse, error)
+	Delete(context.Context, *PaymentRequest) (*PaymentResponse, error)
+	mustEmbedUnimplementedPaymentServiceServer()
+}
+
+// UnimplementedPaymentServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedPaymentServiceServer struct {
+}
+
+func (UnimplementedPaymentServiceServer) GetAll(context.Context, *PaymentsRequest) (*PaymentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedPaymentServiceServer) Get(context.Context, *PaymentRequest) (*PaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPaymentServiceServer) Create(context.Context, *PaymentEntity) (*PaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPaymentServiceServer) Update(context.Context, *PaymentEntity) (*PaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPaymentServiceServer) Delete(context.Context, *PaymentRequest) (*PaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
+
+// UnsafePaymentServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PaymentServiceServer will
+// result in compilation errors.
+type UnsafePaymentServiceServer interface {
+	mustEmbedUnimplementedPaymentServiceServer()
+}
+
+func RegisterPaymentServiceServer(s grpc.ServiceRegistrar, srv PaymentServiceServer) {
+	s.RegisterService(&PaymentService_ServiceDesc, srv)
+}
+
+func _PaymentService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.PaymentService/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).GetAll(ctx, req.(*PaymentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.PaymentService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).Get(ctx, req.(*PaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.PaymentService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).Create(ctx, req.(*PaymentEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.PaymentService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).Update(ctx, req.(*PaymentEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.PaymentService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).Delete(ctx, req.(*PaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PaymentService_ServiceDesc is the grpc.ServiceDesc for PaymentService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PaymentService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "invoice.PaymentService",
+	HandlerType: (*PaymentServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAll",
+			Handler:    _PaymentService_GetAll_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _PaymentService_Get_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _PaymentService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _PaymentService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _PaymentService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api/sales/proto/transaction.proto",
+}
+
+// InvoiceServiceClient is the client API for InvoiceService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type InvoiceServiceClient interface {
+	GetAll(ctx context.Context, in *InvoicesRequest, opts ...grpc.CallOption) (*InvoicesResponse, error)
+	Get(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	Create(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	Update(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error)
+	Delete(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error)
+}
+
+type invoiceServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewInvoiceServiceClient(cc grpc.ClientConnInterface) InvoiceServiceClient {
+	return &invoiceServiceClient{cc}
+}
+
+func (c *invoiceServiceClient) GetAll(ctx context.Context, in *InvoicesRequest, opts ...grpc.CallOption) (*InvoicesResponse, error) {
+	out := new(InvoicesResponse)
+	err := c.cc.Invoke(ctx, "/invoice.InvoiceService/GetAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invoiceServiceClient) Get(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
+	err := c.cc.Invoke(ctx, "/invoice.InvoiceService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invoiceServiceClient) Create(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
+	err := c.cc.Invoke(ctx, "/invoice.InvoiceService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invoiceServiceClient) Update(ctx context.Context, in *InvoiceEntity, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
+	err := c.cc.Invoke(ctx, "/invoice.InvoiceService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invoiceServiceClient) Delete(ctx context.Context, in *InvoiceRequest, opts ...grpc.CallOption) (*InvoiceResponse, error) {
+	out := new(InvoiceResponse)
+	err := c.cc.Invoke(ctx, "/invoice.InvoiceService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// InvoiceServiceServer is the server API for InvoiceService service.
+// All implementations must embed UnimplementedInvoiceServiceServer
+// for forward compatibility
+type InvoiceServiceServer interface {
+	GetAll(context.Context, *InvoicesRequest) (*InvoicesResponse, error)
+	Get(context.Context, *InvoiceRequest) (*InvoiceResponse, error)
+	Create(context.Context, *InvoiceEntity) (*InvoiceResponse, error)
+	Update(context.Context, *InvoiceEntity) (*InvoiceResponse, error)
+	Delete(context.Context, *InvoiceRequest) (*InvoiceResponse, error)
+	mustEmbedUnimplementedInvoiceServiceServer()
+}
+
+// UnimplementedInvoiceServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedInvoiceServiceServer struct {
+}
+
+func (UnimplementedInvoiceServiceServer) GetAll(context.Context, *InvoicesRequest) (*InvoicesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedInvoiceServiceServer) Get(context.Context, *InvoiceRequest) (*InvoiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedInvoiceServiceServer) Create(context.Context, *InvoiceEntity) (*InvoiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedInvoiceServiceServer) Update(context.Context, *InvoiceEntity) (*InvoiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedInvoiceServiceServer) Delete(context.Context, *InvoiceRequest) (*InvoiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedInvoiceServiceServer) mustEmbedUnimplementedInvoiceServiceServer() {}
+
+// UnsafeInvoiceServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to InvoiceServiceServer will
+// result in compilation errors.
+type UnsafeInvoiceServiceServer interface {
+	mustEmbedUnimplementedInvoiceServiceServer()
+}
+
+func RegisterInvoiceServiceServer(s grpc.ServiceRegistrar, srv InvoiceServiceServer) {
+	s.RegisterService(&InvoiceService_ServiceDesc, srv)
+}
+
+func _InvoiceService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvoicesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvoiceServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.InvoiceService/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvoiceServiceServer).GetAll(ctx, req.(*InvoicesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvoiceService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvoiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvoiceServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.InvoiceService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvoiceServiceServer).Get(ctx, req.(*InvoiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvoiceService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvoiceEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvoiceServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.InvoiceService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvoiceServiceServer).Create(ctx, req.(*InvoiceEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvoiceService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvoiceEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvoiceServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.InvoiceService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvoiceServiceServer).Update(ctx, req.(*InvoiceEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvoiceService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvoiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvoiceServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.InvoiceService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvoiceServiceServer).Delete(ctx, req.(*InvoiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// InvoiceService_ServiceDesc is the grpc.ServiceDesc for InvoiceService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var InvoiceService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "invoice.InvoiceService",
+	HandlerType: (*InvoiceServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAll",
+			Handler:    _InvoiceService_GetAll_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _InvoiceService_Get_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _InvoiceService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _InvoiceService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _InvoiceService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api/sales/proto/transaction.proto",
+}
+
+// TransactionDetailServiceClient is the client API for TransactionDetailService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TransactionDetailServiceClient interface {
+	GetAll(ctx context.Context, in *TransactionDetailsRequest, opts ...grpc.CallOption) (*TransactionDetailsResponse, error)
+	Get(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	Create(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	Update(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+	Delete(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error)
+}
+
+type transactionDetailServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTransactionDetailServiceClient(cc grpc.ClientConnInterface) TransactionDetailServiceClient {
+	return &transactionDetailServiceClient{cc}
+}
+
+func (c *transactionDetailServiceClient) GetAll(ctx context.Context, in *TransactionDetailsRequest, opts ...grpc.CallOption) (*TransactionDetailsResponse, error) {
+	out := new(TransactionDetailsResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionDetailService/GetAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionDetailServiceClient) Get(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionDetailService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionDetailServiceClient) Create(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionDetailService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionDetailServiceClient) Update(ctx context.Context, in *TransactionDetailEntity, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionDetailService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionDetailServiceClient) Delete(ctx context.Context, in *TransactionDetailRequest, opts ...grpc.CallOption) (*TransactionDetailResponse, error) {
+	out := new(TransactionDetailResponse)
+	err := c.cc.Invoke(ctx, "/invoice.TransactionDetailService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TransactionDetailServiceServer is the server API for TransactionDetailService service.
+// All implementations must embed UnimplementedTransactionDetailServiceServer
+// for forward compatibility
+type TransactionDetailServiceServer interface {
+	GetAll(context.Context, *TransactionDetailsRequest) (*TransactionDetailsResponse, error)
+	Get(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error)
+	Create(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error)
+	Update(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error)
+	Delete(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error)
+	mustEmbedUnimplementedTransactionDetailServiceServer()
+}
+
+// UnimplementedTransactionDetailServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTransactionDetailServiceServer struct {
+}
+
+func (UnimplementedTransactionDetailServiceServer) GetAll(context.Context, *TransactionDetailsRequest) (*TransactionDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
+}
+func (UnimplementedTransactionDetailServiceServer) Get(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedTransactionDetailServiceServer) Create(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedTransactionDetailServiceServer) Update(context.Context, *TransactionDetailEntity) (*TransactionDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTransactionDetailServiceServer) Delete(context.Context, *TransactionDetailRequest) (*TransactionDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTransactionDetailServiceServer) mustEmbedUnimplementedTransactionDetailServiceServer() {
+}
+
+// UnsafeTransactionDetailServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TransactionDetailServiceServer will
+// result in compilation errors.
+type UnsafeTransactionDetailServiceServer interface {
+	mustEmbedUnimplementedTransactionDetailServiceServer()
+}
+
+func RegisterTransactionDetailServiceServer(s grpc.ServiceRegistrar, srv TransactionDetailServiceServer) {
+	s.RegisterService(&TransactionDetailService_ServiceDesc, srv)
+}
+
+func _TransactionDetailService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionDetailServiceServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.TransactionDetailService/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionDetailServiceServer).GetAll(ctx, req.(*TransactionDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionDetailService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionDetailServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.TransactionDetailService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionDetailServiceServer).Get(ctx, req.(*TransactionDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionDetailService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionDetailEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionDetailServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.TransactionDetailService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionDetailServiceServer).Create(ctx, req.(*TransactionDetailEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionDetailService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionDetailEntity)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionDetailServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.TransactionDetailService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionDetailServiceServer).Update(ctx, req.(*TransactionDetailEntity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionDetailService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionDetailServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/invoice.TransactionDetailService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionDetailServiceServer).Delete(ctx, req.(*TransactionDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TransactionDetailService_ServiceDesc is the grpc.ServiceDesc for TransactionDetailService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TransactionDetailService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "invoice.TransactionDetailService",
+	HandlerType: (*TransactionDetailServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAll",
+			Handler:    _TransactionDetailService_GetAll_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _TransactionDetailService_Get_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _TransactionDetailService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _TransactionDetailService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _TransactionDetailService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
