@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+/*
+=================
+    Metadata
+=================
+*/
+/*
+=================
+Parameter Request
+=================
+*/
+/*
+=================
+    Response
+=================
+*/
+message SignPositions {
+    optional string nik = 1;
+    optional string name = 2;
+    optional string dob = 3;
+    optional string phone_number = 4;
+    optional string email = 5;
+    float pos_x = 6;
+    float pos_y = 7;
+    string sign_page = 8;
+}
+
+message EmeteraiPositions {
+    float pos_x = 1;
+    float pos_y = 2;
+    string page = 3;
+}
+
+message SignAndMateraiPositions {
+    repeated SignPositions sign_position = 1;
+    repeated EmeteraiPositions emeterai_position = 2;
+}
+
+message SignResponse {
+    string reff_number = 1;
+    string doc_token = 2;
+}
+
+message OtpResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;
+}
+
+message OtpValidateResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;    
+}
+
+message OtpResendResponse {    
+    string transaction_id = 1;
+    string reff_number = 2;
+    string request_attempt = 3;
+}
+
+/*
+=================
+    Request
+=================
+*/
+message SignRequest {    
+    string reff_number = 1;    
+    string doc_flow = 2;
+    repeated SignPositions sign_positions = 3;
+    repeated EmeteraiPositions emeterai_positions = 4;
+    optional string sign_type = 5;
+}
+
+message Otp {
+    string reff_number = 1;
+    string doc_token = 2;
+    int32 otp_channel = 3;
+}
+
+message OtpValidateRequest {
+    string reff_number = 1;
+    string otp_code = 2;
+    string transaction_id = 3;
+}
+
+message OtpResendRequest {
+    string transaction_id = 1;
+}
+
+message DetailSignAndMateraiRequest {
+    string reff_number = 1;
+}
+
+/*
+=================
+    Service
+=================
+*/
+
+service Placement {    
+    rpc Sign(SignRequest) returns (SignResponse);
+    rpc OtpRequest(Otp) returns (OtpResponse);
+    rpc OtpValidate(OtpValidateRequest) returns (OtpValidateResponse);
+    rpc OtpResend(OtpResendRequest) returns (OtpResendResponse);
+
+    rpc GetPosition (DetailSignAndMateraiRequest) returns (SignAndMateraiPositions);
+}
+
