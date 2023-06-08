@@ -107,17 +107,6 @@ message UpdateReadAllNotificationsRequest {
     string enterprise_token = 3;
 }
 
-message SendNotificationPublicRequest {
-    string privy_id = 1;
-    string application_code = 2;
-    string enterprise_token = 3;
-    ActionTypeEnum action_type = 4;
-    CaseActionType case_action_type = 5;
-    string external_id = 6;
-    uint64 amount = 7;
-    string extra_data = 8;
-}
-
 /*
 =================
 Response
