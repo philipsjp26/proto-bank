@@ -56,7 +56,7 @@ message CaseActionType {
     optional BalanceEnum balance_case = 2;
     optional ApprovalEnum approval_case = 3;
     optional PlacementEnum placement_case = 4;
-
+    string balance_sender = 5;
 }
 
 /*
