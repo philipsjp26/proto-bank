@@ -178,6 +178,15 @@ message CreateRequestInvoiceRequest {
   string integration_type = 11;
   string letter_address = 12;
   repeated Item item_details = 13;
+  string cut_off_date = 14;
+  string work_type = 15;
+  int32 tax = 16;
+  string ppn_report = 17;
+  string payment_due_date = 18;
+  repeated TransactionDocument supporting_docs = 19;
+  string send_invoice_request_to = 20;
+  string cc = 21;
+  string bcc = 22;
 }
 
 message CreateRequestInvoiceResponse {
