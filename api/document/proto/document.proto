@@ -28,7 +28,9 @@ message DocumentParameterRequest {
     string date_start = 5;
     string date_end = 6;
     string status = 7;
-    optional string filter_by = 8;
+    optional string channel = 8;
+    optional string docflow = 9;
+    optional string search = 10;
 }
 
 /*
