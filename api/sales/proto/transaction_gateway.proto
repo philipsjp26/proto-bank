@@ -16,10 +16,10 @@ message Item {
   string balance_type = 2;
   string start_period = 3;
   string end_period = 4;
-  int32 quantity = 5;
-  int32 price = 6;
-  int32 discount = 7;
-  int32 total_price = 8;
+  int64 quantity = 5;
+  int64 price = 6;
+  int64 discount = 7;
+  int64 total_price = 8;
   string description = 9;
 }
 
@@ -83,9 +83,9 @@ message TransactionDetail {
   repeated TransactionDocument documents = 41;
   repeated TransactionDocument invoice_documents = 42;
   repeated Item item_details = 43;
-  int32 total_payment = 44;
+  int64 total_payment = 44;
   string ppn_report = 45;
-  int32 ppn = 46;
+  int64 ppn = 46;
   string signature = 47;
   string created_at = 48;
   string customer_id = 50;
@@ -183,7 +183,7 @@ message CreateRequestInvoiceRequest {
   repeated Item item_details = 13;
   string cut_off_date = 14;
   string work_type = 15;
-  int32 tax = 16;
+  int64 tax = 16;
   string ppn_report = 17;
   string payment_due_date = 18;
   repeated TransactionDocument supporting_docs = 19;
@@ -209,7 +209,7 @@ message CreateInvoiceRequest {
   string payment_due_date = 3;
   string payment_term = 4;
   repeated Item item_details = 5;
-  int32 tax = 6;
+  int64 tax = 6;
   repeated TransactionDocument supporting_docs = 7;
   string send_invoice_request_to = 8;
   string cc = 9;
