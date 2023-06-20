@@ -56,7 +56,6 @@ message CaseActionType {
     optional BalanceEnum balance_case = 2;
     optional ApprovalEnum approval_case = 3;
     optional PlacementEnum placement_case = 4;
-    string balance_sender = 5;
 }
 
 /*
@@ -68,12 +67,22 @@ message Notification {
     string id = 1;
     string title = 2;
     string message = 3;
-    string link_type = 4;
-    string link = 5;
-    string external_id = 6;
-    string created_at = 7;
-    bool is_read = 8;
-    string read_at = 9;
+    string external_id = 4;
+    string created_at = 5;
+    string read = 6;
+    string read_at = 7;
+    Actor actor = 8;
+    Link link = 9;
+}
+
+message Actor {
+    string name = 1;
+}
+
+message Link {
+    string url = 1;
+    string text = 2;
+    string type = 3;
 }
 
 /*
@@ -97,8 +106,11 @@ message SendNotificationRequest {
     ActionTypeEnum action_type = 1;
     CaseActionType case_action_type = 2;
     string external_id = 3;
-    string privy_id = 6;
-    string application_code = 7;
+    string privy_id = 4;
+    string application_code = 5;
+    string actor = 6;
+    int64 amount = 7;
+    string link = 8;
 }
 
 message UpdateReadAllNotificationsRequest {
