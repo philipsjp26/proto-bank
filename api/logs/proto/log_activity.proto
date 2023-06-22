@@ -28,6 +28,7 @@ message ActivityLogParameterRequest {
     string order_method = 4;
     string date_start = 5;
     string date_end = 6;
+    optional string search = 7;
   }
 
   /*
