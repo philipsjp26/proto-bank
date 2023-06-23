@@ -56,7 +56,7 @@ message ActivityLogResponse {
     string updated_at = 16;
 }
 
-message ActivirtyLogListResponse {
+message ActivityLogListResponse {
     string created_at = 1;
     string privy_id = 2;
     string ip = 3;
@@ -67,7 +67,7 @@ message ActivirtyLogListResponse {
 message ActivityLogsResponse {
     int32 code = 1;
     string message = 2;
-    repeated ActivirtyLogListResponse data = 3;
+    repeated ActivityLogListResponse data = 3;
     ActivityMeta meta = 4;
 }
 
