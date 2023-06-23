@@ -11,7 +11,7 @@ message GetUserRequest {
 message GetUserResponse {
   string privy_id=1;
   string name=2;
-  string role_code=3;
+  repeated string role_code=3;
   repeated string access_string=4;
   repeated string merchant_code=5;
 }
