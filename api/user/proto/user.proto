@@ -12,8 +12,8 @@ message GetUserResponse {
   string privy_id=1;
   string name=2;
   repeated string role_codes=3;
-  repeated string access_string=4;
-  repeated string merchant_code=5;
+  repeated string access_strings=4;
+  repeated string merchant_codes=5;
 }
 
 service UserService {
